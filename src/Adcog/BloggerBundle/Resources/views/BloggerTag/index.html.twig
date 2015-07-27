@@ -1,0 +1,47 @@
+{% extends 'AdcogBloggerBundle:Blogger:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_tag_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_tag_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th>Tag</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tag in paginator %}
+                        <tr>
+                            <td>{{ tag.id }}</td>
+                            <td>{{ tag }}</td>
+                            <td>{{ link('blogger_tag_read',{tag:tag.id},{class:'btn btn-xs btn-default',ficon:'comment',name:''},{vars:{'%entity%':tag }}) }}</td>
+                            <td>{{ link('blogger_tag_replace',{tag:tag.id},{class:'btn btn-xs btn-info',ficon:'random',name:''},{vars:{'%entity%':tag }}) }}</td>
+                            <td>{{ link('blogger_tag_update',{tag:tag.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:''},{vars:{'%entity%':tag }}) }}</td>
+                            <td>{{ link('blogger_tag_delete',{tag:tag.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:''},{vars:{'%entity%':tag }}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

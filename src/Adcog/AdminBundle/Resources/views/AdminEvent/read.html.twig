@@ -1,0 +1,61 @@
+{% extends 'AdcogAdminBundle:AdminEvent:index.html.twig' %}
+
+{% block title %}{{ event }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_event_read',{event:event.id},{name:event,title:event}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_event_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_event_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_event_update',{event:event.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_event_delete',{event:event.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ event.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ event.slug }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ event.date|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Participations</th>
+                <td>
+                    <ul>
+                        {% for participation in event.participations %}
+                            <li>{{ link('admin_event_participation_read',{participation:participation.id},{name:participation,title:participation}) }}</li>
+                        {% else %}
+                            <li>Aucune</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ event.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ event.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Description</h2>
+    <div>{{ event.description|raw }}</div>
+    <h2>Programme</h2>
+    <div>{{ event.program|raw }}</div>
+{% endblock %}

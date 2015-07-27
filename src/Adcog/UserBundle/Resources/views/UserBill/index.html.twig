@@ -1,0 +1,16 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_bill_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="colored-timeline full">
+        {% for payment in payments %}
+            {% include 'AdcogDefaultBundle:Widget:_payment.html.twig' %}
+        {% else %}
+            {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+        {% endfor %}
+    </ul>
+{% endblock %}

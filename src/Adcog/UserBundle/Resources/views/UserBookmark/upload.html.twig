@@ -1,0 +1,28 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="container-fluid">
+            {{ form_start(form) }}
+            <div class="row form-group">
+                {{ form_label(form.title,null) }}
+                {{ form_widget(form.title,{attr:{class:'form-control' }}) }}
+                {{ form_errors(form.title) }}
+            </div>
+            <div class="row form-group">
+                {{ form_label(form.href,null) }}
+                {{ form_widget(form.href,{attr:{class:'form-control' }}) }}
+                {{ form_errors(form.href) }}
+            </div>
+            <div class="row form-group">
+                {{ form_label(form.tags,null) }}
+                {{ form_widget(form.tags,{attr:{class:'form-control' }}) }}
+                {{ form_errors(form.tags) }}
+            </div>
+            <div class="row form-group">
+                <button type="submit" class="btn btn-success btn-block"><span class="fa fa-plus"></span> {{ title() }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

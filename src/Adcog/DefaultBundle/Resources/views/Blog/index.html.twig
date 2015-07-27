@@ -1,0 +1,75 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block title %}Le BAC : Blog des Anciens Diplômés en Cognitique{% endblock %}
+
+{% block description %}Le BAC : Blog des Anciens Diplômés en Cognitique{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blog_index') }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ block('title') }}</h1>
+    <div id="articles" class="row">
+        <div class="col-lg-8">
+            {% block articles %}
+                {% for post in paginator %}
+                    <article class="article row">
+                        <div class="col-sm-2">
+                            <div class="date">{{ post.created.format('d') }} {{ strftime('%b',post.created.timestamp) }} <br>{{ post.created.format('Y') }}</div>
+                            <div class="type"><span class="fa fa-asterisk"></span></div>
+                        </div>
+                        <div class="col-sm-10">
+                            <header class="header">
+                                <h2>{{- link('blog_read',{post:post.id,slug:post.slug},{name:post.title,title:post.title}) -}}</h2>
+                            </header>
+                            {% if post.uri is not empty %}
+                                <div class="img">
+                                    <img src="{{ post.uri }}" alt="{{ post.title }}"/>
+                                </div>
+                            {% endif %}
+                            <div class="content">{{ post.text|cut(500) }}</div>
+                            <footer class="footer">
+                                <ul class="list-inline list-unstyled">
+                                    {% if post.author.profile %}
+                                        <li><span class="fa fa-user"></span> {{ link('default_profile',{slug:post.author.profile.slug},{name:post.author,title:post.author}) }}</li>
+                                    {% else %}
+                                        <li><span class="fa fa-user"></span> {{ post.author }}</li>
+                                    {% endif %}
+                                    {% if post.tags|length > 0 %}
+                                        <li>
+                                            <span class="fa fa-tags"></span>
+                                            {% for tag in post.tags -%}
+                                                {{ tag_render(tag) }}{{ loop.last?'':', ' }}
+                                            {%- endfor %}
+                                        </li>
+                                    {% endif %}
+                                    {% if post.comments|length > 0 %}
+                                        <li>
+                                            <span class="fa fa-comment"></span>
+                                            {{ post.comments|length }} réponse{{ post.comments|length>1?'s':'' }}
+                                        </li>
+                                    {% endif %}
+                                    <li class="pull-right">
+                                        {{ link('blog_read',{post:post.id,slug:post.slug},{name:'Lire l\'article &raquo;',title:post.title}) }}
+                                    </li>
+                                </ul>
+                            </footer>
+                        </div>
+                    </article>
+                {% else %}
+                    <p class="alert alert-info">Aucun article dans le blog.</p>
+                {% endfor %}
+                {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+            {% endblock %}
+        </div>
+        <div class="col-lg-4">
+            {% block column %}
+                {{ render(controller('AdcogDefaultBundle:Blog:popularTags')) }}
+                {{ render(controller('AdcogDefaultBundle:Blog:popularComments')) }}
+                {{ render(controller('AdcogDefaultBundle:Blog:recentArticles')) }}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

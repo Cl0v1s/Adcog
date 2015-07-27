@@ -1,0 +1,36 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_presentation') }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="featurette">
+        <img class="featurette-image pull-right" alt="ADCOG" src="{{ asset('bundles/adcogdefault/img/adcog256.png') }}">
+        <h1 class="featurette-heading">L'Association des Diplômés en Cognitique. Notre mission.</h1>
+        <p class="lead">
+            L'Association des Diplômés en Cognitique (ADCOG), a été fondée en 2007, dans le cadre de la
+            loi 1901.
+        </p>
+    </div>
+    <h2>{{ organization.title }}</h2>
+    <div>{{ organization.content|raw }}</div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>{{ list.title }}</h2>
+            <div>{{ list.content|raw }}</div>
+        </div>
+        <div class="col-md-6">
+            <h2>{{ office.title }}</h2>
+            <div>{{ office.content|raw }}</div>
+            <ul class="colored-timeline full square">
+                {% for office in offices %}
+                    {% include 'AdcogDefaultBundle:Widget:_office.html.twig' %}
+                {% else %}
+                    {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

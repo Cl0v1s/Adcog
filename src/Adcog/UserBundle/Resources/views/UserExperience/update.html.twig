@@ -1,0 +1,23 @@
+{% extends 'AdcogUserBundle:UserExperience:read.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_experience_update',{experience:experience.id}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('user_experience_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

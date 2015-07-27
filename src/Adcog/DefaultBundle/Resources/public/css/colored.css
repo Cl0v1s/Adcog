@@ -1,0 +1,67 @@
+.colored-timeline .timeline-heading h4{ margin-bottom:0; }
+.colored-timeline .timeline-heading p{ margin-bottom:0; }
+.colored-timeline .timeline-title{ font-size:18px; }
+.colored-timeline .timeline-badge{ background-color:#bdbdbd !important; }
+.colored-timeline .timeline-badge img{ background-color:#ffffff; display:block; margin:1px; width:48px; height:48px; border-top-right-radius:50%; border-top-left-radius:50%; border-bottom-right-radius:50%; border-bottom-left-radius:50%; }
+.colored-timeline .timeline-body h3{ font-size:16px; }
+.colored-timeline .timeline-body ul:only-child,
+.colored-timeline .timeline-body p:only-child{ margin:0; }
+
+.colored-timeline .section-subtitle .fa:before{ color:#ffffff; font-size:14px; padding:8px; border-top-right-radius:50%; border-top-left-radius:50%; border-bottom-right-radius:50%; border-bottom-left-radius:50%; }
+
+.colored-timeline .experience.work .timeline-title{ color:#3f903f !important; }
+.colored-timeline .experience.work .timeline-badge{ background-color:#3f903f !important; }
+.colored-timeline .section-subtitle .experience.work .fa:before{ background-color:#3f903f !important; }
+.colored-timeline .section-subtitle .experience.work .fa:before,
+.colored-timeline .experience.work .timeline-badge .fa:before{ content:'\f0b1'; }
+
+.colored-timeline .experience.internship .timeline-title{ color:#ac7740 !important; }
+.colored-timeline .experience.internship .timeline-badge{ background-color:#f0ad4e !important; }
+.colored-timeline .section-subtitle .experience.internship .fa:before{ background-color:#f0ad4e !important; }
+.colored-timeline .section-subtitle .experience.internship .fa:before,
+.colored-timeline .experience.internship .timeline-badge .fa:before{ content:'\f0c0'; }
+
+.colored-timeline .experience.study .timeline-title{ color:#d9534f !important; }
+.colored-timeline .experience.study .timeline-badge{ background-color:#d9534f !important; }
+.colored-timeline .section-subtitle .experience.study .fa:before{ background-color:#d9534f !important; }
+.colored-timeline .section-subtitle .experience.study .fa:before,
+.colored-timeline .experience.study .timeline-badge .fa:before{ content:'\f02d'; }
+
+.colored-timeline .experience.thesis .timeline-title{ color:#5bc0de !important; }
+.colored-timeline .experience.thesis .timeline-badge{ background-color:#5bc0de !important; }
+.colored-timeline .section-subtitle .experience.thesis .fa:before{ background-color:#5bc0de !important; }
+.colored-timeline .section-subtitle .experience.thesis .fa:before,
+.colored-timeline .experience.thesis .timeline-badge .fa:before{ content:'\f085'; }
+
+.colored-timeline .user .timeline-title{ color:#666666 !important; }
+.colored-timeline .user .timeline-badge{ background-color:#666666 !important; }
+.colored-timeline .section-subtitle .user .fa:before{ background-color:#666666 !important; }
+.colored-timeline .section-subtitle .user .fa:before,
+.colored-timeline .user .timeline-badge .fa:before{ content:'\f007'; }
+
+.colored-timeline .payment .timeline-title{ color:#394b90 !important; }
+.colored-timeline .payment .timeline-badge{ background-color:#394b90 !important; }
+.colored-timeline .section-subtitle .payment .fa:before{ background-color:#394b90 !important; }
+.colored-timeline .section-subtitle .payment .fa:before,
+.colored-timeline .payment .timeline-badge .fa:before{ content:'\f0d6'; }
+
+.colored-timeline .employer .timeline-title{ color:#ae357a !important; }
+.colored-timeline .employer .timeline-badge{ background-color:#ae357a !important; }
+.colored-timeline .section-subtitle .employer .fa:before{ background-color:#ae357a !important; }
+.colored-timeline .section-subtitle .employer .fa:before,
+.colored-timeline .employer .timeline-badge .fa:before{ content:'\f015'; }
+
+.colored-timeline .mail .timeline-title{ color:#193f73 !important; }
+.colored-timeline .mail .timeline-badge{ background-color:#193f73 !important; }
+.colored-timeline .section-subtitle .mail .fa:before{ background-color:#193f73 !important; }
+.colored-timeline .section-subtitle .mail .fa:before,
+.colored-timeline .mail .timeline-badge .fa:before{ content:'\f0e5'; }
+
+.colored-timeline .timeline-heading{ position:relative; }
+.colored-timeline .timeline-heading .actions{ position:absolute; top:0; right:0; }
+
+.colored-timeline.square > li > .timeline-badge{ top:6px; border-top-right-radius:0; border-top-left-radius:0; border-bottom-right-radius:0; border-bottom-left-radius:0; }
+.colored-timeline.square > li > .timeline-badge img{ border-top-right-radius:0; border-top-left-radius:0; border-bottom-right-radius:0; border-bottom-left-radius:0; }
+.colored-timeline.square > li > .timeline-panel{ padding:10px; }
+.colored-timeline.square > li > .timeline-panel:before{ top:14px; }
+.colored-timeline.square > li > .timeline-panel:after{ top:15px; }

@@ -1,0 +1,49 @@
+{% extends 'AdcogBloggerBundle:Blogger:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_slider_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_slider_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th class="sm"></th>
+                        <th>Texte</th>
+                        <th>Lien</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for slider in paginator %}
+                        <tr>
+                            <td>{{ slider.id }}</td>
+                            <td><img class="no-max" src="{{ slider.uri|imagine_filter('default_20_20') }}"/></td>
+                            <td>{{ slider.alt }}</td>
+                            <td>{% if slider.href %}<a href="{{ slider.href }}" target="_blank">{{ slider.href }}</a>{% else %}-{% endif %}</td>
+                            <td>{{ link('blogger_slider_read',{slider:slider.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:''},{vars:{'%entity%':slider }}) }}</td>
+                            <td>{{ link('blogger_slider_update',{slider:slider.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:''},{vars:{'%entity%':slider }}) }}</td>
+                            <td>{{ link('blogger_slider_delete',{slider:slider.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:''},{vars:{'%entity%':slider }}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

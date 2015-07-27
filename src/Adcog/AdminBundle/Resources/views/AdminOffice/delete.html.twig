@@ -1,0 +1,34 @@
+{% extends 'AdcogAdminBundle:AdminOffice:read.html.twig' %}
+
+{% block title %}Supprimer {{ office }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_office_delete',{office:office.id}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_office_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_office_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_office_read',{office:office.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:office,title:office}) }}</li>
+        <li>{{ link('admin_office_update',{office:office.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+    </ul>
+    <p class="alert alert-danger">Êtes-vous certain de voulois supprimer {{ office }} ?</p>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('admin_office_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('admin_office_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('admin_office_read',{office:office.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:office,title:office}) }}</li>
+                <li>{{ link('admin_office_update',{office:office.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-danger"><span class="fa fa-trash-o"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

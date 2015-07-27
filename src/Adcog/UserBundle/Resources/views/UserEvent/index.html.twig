@@ -1,0 +1,49 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_event_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <div class="timeline">
+        <ol class="list-unstyled">
+            {% for event in events %}
+                <li class="line">
+                    <div class="icon">
+                        <span class="fa fa-glass"></span>
+                    </div>
+                    <div class="title">
+                        <h2>{{ link('user_event_read',{event:event.id,slug:event.slug},{name:event,title:event}) }}</h2>
+                        <small class="text-muted">{{ event.date.format('d/m/Y') }}</small>
+                    </div>
+                    <div class="content">
+                        <div>{{ event.description|raw }}</div>
+                        <p>
+                            {% if event.userParticipation(app.user) %}
+                                <span class="label label-success"><span class="fa fa-thumbs-up"></span></span> Vous êtes des notres pour cet événement !
+                            {% else %}
+                                <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span> Vous ne participez pas encore, mais il est encore temps ...
+                            {% endif %}
+                        </p>
+                        {% if is_future(event.date) %}
+                            <ul class="pull-right footer list-inline list-unstyled">
+                                {% if event.userParticipation(app.user) %}
+                                    <li>{{ link('user_event_cancel',{event:event.id},{ficon:'thumbs-down',class:'btn btn-xs btn-danger'}) }}</li>
+                                {% else %}
+                                    <li>{{ link('user_event_participate',{event:event.id},{ficon:'thumbs-up',class:'btn btn-xs btn-success'}) }}</li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+            {% else %}
+                <li class="line">
+                    <div class="content">
+                        <p>Aucun événement trouvé.</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

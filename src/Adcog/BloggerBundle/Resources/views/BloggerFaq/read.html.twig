@@ -1,0 +1,47 @@
+{% extends 'AdcogBloggerBundle:BloggerFaq:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':faq}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_faq_read',{faq:faq.id},{},{vars:{'%entity%':faq }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_faq_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_faq_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_faq_update',{faq:faq.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':faq }}) }}</li>
+        <li>{{ link('blogger_faq_delete',{faq:faq.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':faq }}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ faq.id }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ link('blogger_faq_category_read',{faqCategory:faq.category.id},{name:faq.category,title:faq.category}) }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ faq.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ faq.slug }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ faq.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ faq.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Contenu</h2>
+    <div>{{ faq.text|raw }}</div>
+{% endblock %}

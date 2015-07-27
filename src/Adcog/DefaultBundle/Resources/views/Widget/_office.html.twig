@@ -1,0 +1,27 @@
+<li class="timeline-inverted office">
+    <div class="timeline-badge">
+        <img src="{{ office.user|user_profile|imagine_filter('default_40_40') }}" alt="{{ office.user }}"/>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">
+                {% if office.user.profile and office.user.isValid() %}
+                    {{ link('default_profile',{slug:office.user.profile.slug},{name:office.user,title:office.user}) }}
+                {% else %}
+                    {{ office.user }}
+                {% endif %}
+            </h4>
+            <p>
+                <small class="text-muted">
+                    {{ office.role }}
+                    {%- if office.ended -%}
+                        , {{ office.started|timeago }}, fin du mandat {{ office.ended|timeago }}
+                    {%- else %}
+                        , {{ office.started|timeago }}
+                    {%- endif -%}
+                    .
+                </small>
+            </p>
+        </div>
+    </div>
+</li>

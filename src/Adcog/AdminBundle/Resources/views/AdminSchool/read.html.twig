@@ -1,0 +1,69 @@
+{% extends 'AdcogAdminBundle:AdminSchool:index.html.twig' %}
+
+{% block title %}{{ school }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_school_read',{school:school.id},{name:school,title:school}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_school_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_school_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_school_update',{school:school.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_school_delete',{school:school.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ school.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ school.name }}</td>
+            </tr>
+            <tr>
+                <th>Année</th>
+                <td>{{ school.year }}</td>
+            </tr>
+            <tr>
+                <th>Wikipedia</th>
+                <td>{% if school.wikipedia %}<a href="{{ school.wikipedia }}">{{ school.wikipedia }}</a>{% else %}-{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Graduates</th>
+                <td>{{ school.graduates|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><img src="{{ school|school_profile }}"/></td>
+            </tr>
+            <tr>
+                <th>Élèves</th>
+                <td>
+                    <ul>
+                        {% for user in school.users %}
+                            <li>{{ link('admin_user_read',{user:user.id},{name:user,title:user}) }}</li>
+                        {% else %}
+                            <li>Aucun</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ school.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ school.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Description</h2>
+    <div>{{ school.description|default('-')|raw }}</div>
+    <h2>Remise des diplômes</h2>
+    <div>{{ school.graduation|default('-')|raw }}</div>
+{% endblock %}

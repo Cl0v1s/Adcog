@@ -1,0 +1,78 @@
+{% extends 'AdcogUserBundle:UserEvent:index.html.twig' %}
+
+{% block title %}{{ event }}{% endblock %}
+
+{% block description %}{{ event }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_event_read',{event:event.id,slug:event.slug},{name:event,title:event}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <div class="timeline">
+        <ol class="list-unstyled">
+            <li class="line">
+                <div class="icon">
+                    <span class="fa fa-search"></span>
+                </div>
+                <div class="title">
+                    <h2>Description</h2>
+                    <small class="text-muted">{{ event.date.format('d/m/Y') }}</small>
+                </div>
+                <div class="content">
+                    <div>{{ event.description|raw }}</div>
+                    <p>
+                        {% if event.userParticipation(app.user) %}
+                            <span class="label label-success"><span class="fa fa-thumbs-up"></span></span> Vous êtes des notres pour cet événement !
+                        {% else %}
+                            <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span> Vous ne participez pas encore, mais il est encore temps ...
+                        {% endif %}
+                    </p>
+                    {% if is_future(event.date) %}
+                        <ul class="pull-right footer list-inline list-unstyled">
+                            {% if event.userParticipation(app.user) %}
+                                <li>{{ link('user_event_cancel',{event:event.id},{ficon:'thumbs-down',class:'btn btn-xs btn-danger'}) }}</li>
+                            {% else %}
+                                <li>{{ link('user_event_participate',{event:event.id},{ficon:'thumbs-up',class:'btn btn-xs btn-success'}) }}</li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </li>
+            <li class="line">
+                <div class="icon">
+                    <span class="fa fa-th-list"></span>
+                </div>
+                <div class="title">
+                    <h2>Programme</h2>
+                    <small class="text-muted">&nbsp;</small>
+                </div>
+                <div class="content">
+                    <div>{{ event.program|raw }}</div>
+                </div>
+            </li>
+            <li class="line">
+                <div class="icon">
+                    <span class="fa fa-users"></span>
+                </div>
+                <div class="title">
+                    <h2>Participants</h2>
+                    <small class="text-muted">{{ event.participations.count }} participant{{ event.participations.count>1?'s':'' }}</small>
+                </div>
+                <div class="content">
+                    <ul>
+                        {% for participation in event.participations %}
+                            <li data-type="{{ participation.type }}">
+                                <strong>{{ participation.user }}</strong> {% if participation.user.school %} - {{ participation.user.school }} {% endif %}
+                                {% if participation.comment %}
+                                    <blockquote>{{ participation.comment|nl2br }}</blockquote>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+        </ol>
+    </div>
+{% endblock %}

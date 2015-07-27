@@ -1,0 +1,79 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_index') }}</li>
+{% endblock %}
+
+{% block content %}
+    {% if sliders|length > 0 %}
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for slider in sliders %}
+                    <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index0 }}"{{ loop.first?' class="active"':'' }} title="{{ slider.alt }}"></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for slider in sliders %}
+                    <div class="item{{ loop.first?' active':'' }}">
+                        {% if slider.href %}
+                            <a href="{{ slider.href }}" title="{{ slider.alt }}"><img src="{{ slider.uri|imagine_filter('default_800_400') }}" alt="{{ slider.alt }}" title="{{ slider.alt }}"></a>
+                            <div class="carousel-caption"><a href="{{ slider.href }}" title="{{ slider.alt }}">{{ slider.alt }}</a></div>
+                        {% else %}
+                            <img src="{{ slider.uri|imagine_filter('default_800_400') }}" alt="{{ slider.alt }}" title="{{ slider.alt }}">
+                            <div class="carousel-caption">{{ slider.alt }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    {% endif %}
+    <div class="text-center">
+        <h1>{{ welcome.title }}</h1>
+        <div>{{ welcome.content|raw }}</div>
+        {% if not app.user %}
+            {{ link('default_connexion',{},{'class':'btn btn-default'}) }}
+            {{ link('default_register',{},{'class':'btn btn-default'}) }}
+        {% endif %}
+        <br>
+        <br>
+        <a class="btn btn-default btn-facebook" target="_blank" href="{{ facebook_uri }}"><span class="fa fa-facebook"></span> Rejoignez le groupe Facebook !</a>
+        <a class="btn btn-default btn-twitter" target="_blank" href="{{ twitter_uri }}"><span class="fa fa-twitter"></span> Suivez nous sur Twitter !</a>
+    </div>
+    <hr/>
+    <h2>{{ organization.title }}</h2>
+    <div>{{ organization.content|raw }}</div>
+    <hr/>
+    <div class="row" id="home">
+        <div class="col-sm-4">
+            <div class="feature">
+                <div class="border inner">
+                    <h3>{{ link('default_register',{},{title:join.title,name:join.title}) }}</h3>
+                    <div>{{ join.content|raw }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="feature">
+                <div class="border inner">
+                    <h3>{{ link('default_presentation',{},{title:speek.title,name:speek.title,tag:'listes'}) }}</h3>
+                    <div>{{ speek.content|raw }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="feature">
+                <div class="border inner">
+                    <h3>{{ link('default_contact',{},{title:share.title,name:share.title,tag:'supports'}) }}</h3>
+                    <div>{{ share.content|raw }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

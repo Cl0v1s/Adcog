@@ -1,0 +1,51 @@
+security:
+  firewalls:
+    dev:
+      pattern:  ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    login:
+       pattern:  ^/connexion$
+       security: false
+    secured_area:
+      pattern: ^/
+      anonymous: true
+      form_login:
+        check_path: /connexion-en-cours
+        login_path: /connexion
+        use_referer: true
+        default_target_path: /utilisateur/informations
+      logout:
+        path: /deconnexion
+        target: /
+  access_control:
+    -
+      path: ^/connexion
+      roles: [IS_AUTHENTICATED_ANONYMOUSLY]
+    -
+      path: ^/admin
+      roles: [ROLE_ADMIN]
+    -
+      path: ^/validator
+      roles: [ROLE_VALIDATOR]
+    -
+      path: ^/blogger
+      roles: [ROLE_BLOGGER]
+    -
+      path: ^/membre
+      roles: [ROLE_MEMBER]
+    -
+      path: ^/utilisateur/adhesion/
+      roles: [ROLE_USER_VALIDATED]
+    -
+      path: ^/utilisateur
+      roles: [ROLE_USER]
+  providers:
+    main:
+      entity:
+        class: Adcog\DefaultBundle\Entity\User
+        property: username
+  encoders:
+    Symfony\Component\Security\Core\User\UserInterface: sha512
+  role_hierarchy:
+    ROLE_BLOGGER: [ROLE_VALIDATOR]
+    ROLE_ADMIN: [ROLE_VALIDATOR, ROLE_BLOGGER]

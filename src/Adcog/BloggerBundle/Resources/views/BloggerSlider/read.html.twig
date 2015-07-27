@@ -1,0 +1,55 @@
+{% extends 'AdcogBloggerBundle:BloggerSlider:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':slider}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_slider_read',{slider: slider.id},{},{vars:{'%entity%':slider }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_slider_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_slider_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_slider_update',{slider: slider.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':slider }}) }}</li>
+        <li>{{ link('blogger_slider_delete',{slider: slider.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':slider }}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ slider.id }}</td>
+            </tr>
+            <tr>
+                <th>Alternative</th>
+                <td>{{ slider.alt }}</td>
+            </tr>
+            <tr>
+                <th>Fichier</th>
+                <td>{{ slider.path }}</td>
+            </tr>
+            <tr>
+                <th>URL</th>
+                <td>
+                    {% if slider.href %}
+                        <a href="{{ slider.href }}">{{ slider.href }}</a>
+                    {% else %}
+                        Aucune
+                    {% endif     %}
+                </td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ slider.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ slider.updated|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ slider.uri }}" alt="{{ slider.alt }}"></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

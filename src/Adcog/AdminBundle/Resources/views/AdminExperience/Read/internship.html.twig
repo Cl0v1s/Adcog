@@ -1,0 +1,54 @@
+<table class="{{ table_class }}">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <td>{{ experience.id }}</td>
+        </tr>
+        <tr>
+            <th>Sujet</th>
+            <td>{{ experience.internshipSubject }}</td>
+        </tr>
+        <tr>
+            <th>Date de début</th>
+            <td>{{ experience.started.format('d/m/Y H\\hi') }}</td>
+        </tr>
+        <tr>
+            <th>Date de fin</th>
+            <td>{{ experience.ended ? experience.ended.format('d/m/Y H\\hi') : '-' }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ experience.description|default('-') }}</td>
+        </tr>
+        <tr>
+            <th>Salaire</th>
+            <td>{{ experience.salaryName }}</td>
+        </tr>
+        <tr>
+            <th>Utilisateur</th>
+            <td>{{ link('admin_user_read',{user:experience.user.id},{name:experience.user,title:experience.user}) }}</td>
+        </tr>
+        <tr>
+            <th>Employeur</th>
+            <td>{{ link('admin_employer_read',{employer:experience.employer.id},{name:experience.employer,title:experience.employer}) }}</td>
+        </tr>
+        <tr>
+            <th>Secteurs</th>
+            <td>
+                <ul>
+                    {% for sector in experience.sectors %}
+                        <li>{{ link('admin_sector_read',{sector:sector.id},{name:sector,title:sector}) }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Création</th>
+            <td>{{ experience.created|timeago }}</td>
+        </tr>
+        <tr>
+            <th>Modification</th>
+            <td>{{ experience.updated|timeago }}</td>
+        </tr>
+    </tbody>
+</table>

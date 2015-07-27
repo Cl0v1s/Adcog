@@ -1,0 +1,28 @@
+<li class="timeline-inverted user">
+    <div class="timeline-badge">
+        <img src="{{ user|user_profile|imagine_filter('default_40_40') }}" alt="{{ user }}"/>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">
+                {% if user.isValid() %}
+                    {{ link('default_profile',{slug:user.profile.slug},{name:user,title:user}) }}
+                {% else %}
+                    {{ user }}
+                {% endif %}
+            </h4>
+            <p>
+                <small class="text-muted">
+                    Inscrit depuis le {{ user.created.format('d/m/Y à H\\hi') }}
+                    {% if user.isMember() %}
+                        , membre jusqu'au {{ user.membered.format('d/m/Y') }}
+                    {% endif %}
+                    {% if user.isAdmin() %}
+                        et administrateur du site web
+                    {% endif %}
+                    .
+                </small>
+            </p>
+        </div>
+    </div>
+</li>

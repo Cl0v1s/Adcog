@@ -1,0 +1,43 @@
+{% extends 'AdcogBloggerBundle:BloggerStaticContent:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':staticContent}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_static_content_read',{staticContent:staticContent.id},{},{vars:{'%entity%':staticContent }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_static_content_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_static_content_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_static_content_update',{staticContent:staticContent.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':staticContent }}) }}</li>
+        <li>{{ link('blogger_static_content_delete',{staticContent:staticContent.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':staticContent }}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ staticContent.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ staticContent.typeName }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ staticContent.title }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ staticContent.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ staticContent.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Contenu</h2>
+    <div>{{ staticContent.content|raw }}</div>
+{% endblock %}

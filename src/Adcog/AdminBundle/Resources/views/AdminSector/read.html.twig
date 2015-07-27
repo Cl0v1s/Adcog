@@ -1,0 +1,38 @@
+{% extends 'AdcogAdminBundle:AdminSector:index.html.twig' %}
+
+{% block title %}{{ sector }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_sector_read',{sector:sector.id},{name:sector,title:sector}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_sector_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_sector_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_sector_replace',{sector:sector.id},{class:'btn btn-xs btn-info',ficon:'random',name:sector,title:sector}) }}</li>
+        <li>{{ link('admin_sector_update',{sector:sector.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_sector_delete',{sector:sector.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ sector.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ sector.name }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ sector.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ sector.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

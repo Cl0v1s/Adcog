@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="adcog_default.event_listener.doctrine_schema_update_event_listener.class">Adcog\DefaultBundle\EventListener\DoctrineSchemaUpdateEventListener</parameter>
+        <parameter key="adcog_default.event_listener.doctrine_user_event_listener.class">Adcog\DefaultBundle\EventListener\DoctrineUserEventListener</parameter>
+        <parameter key="adcog_default.event_listener.exception_event_listener.class">Adcog\DefaultBundle\EventListener\ExceptionEventListener</parameter>
+        <parameter key="adcog_default.event_listener.term_of_user_event_listener.class">Adcog\DefaultBundle\EventListener\TermOfUseEventListener</parameter>
+        <!--<parameter key="adcog_default.payment.paypal.class">Adcog\DefaultBundle\Payment\Paypal</parameter>-->
+        <parameter key="adcog_default.twig.extension.user_extension.class">Adcog\DefaultBundle\Twig\Extension\UserExtension</parameter>
+        <parameter key="adcog_default.twig.extension.tag_extension.class">Adcog\DefaultBundle\Twig\Extension\TagExtension</parameter>
+        <parameter key="adcog_default.twig.extension.date_extension.class">Adcog\DefaultBundle\Twig\Extension\DateExtension</parameter>
+        <parameter key="adcog_default.event_listener.doctrine_alert_event_listener.class">Adcog\DefaultBundle\EventListener\DoctrineAlertEventListener</parameter>
+    </parameters>
+    <services>
+        <service id="adcog_default.event_listener.doctrine_schema_update_event_listener" class="%adcog_default.event_listener.doctrine_schema_update_event_listener.class%">
+            <argument id="service_container" type="service"/>
+            <tag name="kernel.event_listener" event="console.command"/>
+            <tag name="kernel.event_listener" event="console.terminate"/>
+        </service>
+        <service id="adcog_default.event_listener.doctrine_user_event_listener" class="%adcog_default.event_listener.doctrine_user_event_listener.class%">
+            <argument id="eb_email.mailer.mailer" type="service"/>
+            <tag name="doctrine.event_listener" event="postPersist"/>
+            <tag name="doctrine.event_listener" event="preUpdate"/>
+        </service>
+        <service id="adcog_default.event_listener.exception_event_listener" class="%adcog_default.event_listener.exception_event_listener.class%">
+            <argument id="templating" type="service"/>
+            <argument id="logger" type="service"/>
+            <argument>%kernel.debug%</argument>
+            <tag name="kernel.event_listener" event="kernel.exception"/>
+        </service>
+        <service id="adcog_default.event_listener.term_of_user_event_listener" class="%adcog_default.event_listener.term_of_user_event_listener.class%">
+            <argument id="security.token_storage" type="service"/>
+            <argument id="form.factory" type="service"/>
+            <argument id="router" type="service"/>
+            <argument id="doctrine.orm.default_entity_manager" type="service"/>
+            <argument id="templating" type="service"/>
+            <tag name="kernel.event_listener" event="kernel.request"/>
+        </service>
+        <service id="adcog_default.payment.paypal" class="Adcog\DefaultBundle\Payment\Paypal">
+            <argument type="service" id="router"/>
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument key="account">%paypal_account%</argument>
+            <argument key="endpoint">%paypal_endpoint%</argument>
+            <argument key="client_id">%paypal_client_id%</argument>
+            <argument key="secret">%paypal_secret%</argument>
+        </service>
+        <service id="adcog_default.twig.extension.user_extension" class="%adcog_default.twig.extension.user_extension.class%">
+            <argument>adcog_default.twig.extension.user_extension</argument>
+            <tag name="twig.extension"/>
+        </service>
+        <service id="adcog_default.twig.extension.tag_extension" class="%adcog_default.twig.extension.tag_extension.class%">
+            <argument>adcog_default.twig.extension.tag_extension</argument>
+            <argument type="service" id="eb_translation"/>
+            <tag name="twig.extension"/>
+        </service>
+        <service id="adcog_default.twig.extension.date_extension" class="%adcog_default.twig.extension.date_extension.class%">
+            <argument>adcog_default.twig.extension.date_extension</argument>
+            <argument type="service" id="translator"/>
+            <tag name="twig.extension"/>
+        </service>
+        <service id="adcog_default.event_listener.doctrine_alert_event_listener" class="%adcog_default.event_listener.doctrine_alert_event_listener.class%">
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine.event_listener" event="postPersist"/>
+        </service>
+    </services>
+</container>

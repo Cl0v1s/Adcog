@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="adcog.validator_bundle.form.comment_type" class="Adcog\ValidatorBundle\Form\CommentType">
+            <call method="setName">
+                <argument>adcog_validator_comment</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_comment"/>
+        </service>
+        <service id="adcog.validator_bundle.form.comment_filter_type" class="Adcog\ValidatorBundle\Form\CommentFilterType">
+            <call method="setName">
+                <argument>adcog_validator_comment_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_comment_filter"/>
+        </service>
+        <service id="adcog.validator_bundle.form.payment_type" class="Adcog\ValidatorBundle\Form\PaymentType">
+            <call method="setName">
+                <argument>adcog_validator_payment</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_payment"/>
+        </service>
+        <service id="adcog.validator_bundle.form.payment_filter_type" class="Adcog\ValidatorBundle\Form\PaymentFilterType">
+            <call method="setName">
+                <argument>adcog_validator_payment_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_payment_filter"/>
+        </service>
+        <service id="adcog.validator_bundle.form.user_type" class="Adcog\ValidatorBundle\Form\UserType">
+            <argument type="service" id="router"/>
+            <call method="setName">
+                <argument>adcog_validator_user</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_user"/>
+        </service>
+        <service id="adcog.validator_bundle.form.user_filter_type" class="Adcog\ValidatorBundle\Form\UserFilterType">
+            <call method="setName">
+                <argument>adcog_validator_user_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_user_filter"/>
+        </service>
+        <service id="adcog.validator_bundle.form.bookmark_filter_type" class="Adcog\ValidatorBundle\Form\BookmarkFilterType">
+            <call method="setName">
+                <argument>adcog_validator_bookmark_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_bookmark_filter"/>
+        </service>
+        <service id="adcog.validator_bundle.form.bookmark_type" class="Adcog\ValidatorBundle\Form\BookmarkType">
+            <argument type="service" id="eb_string"/>
+            <call method="setName">
+                <argument>adcog_validator_bookmark</argument>
+            </call>
+            <tag name="form.type" alias="adcog_validator_bookmark"/>
+        </service>
+    </services>
+</container>

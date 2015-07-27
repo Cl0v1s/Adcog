@@ -1,0 +1,37 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            {{ user }}, bienvenue sur le site de l'association des Anciens Diplômés en Cognitique.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            Vous pouvez dès maintenant :
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>Accéder au site en vous identifiant sur la page <a href="{{ url('default_connexion') }}" style="color:#000000;text-decoration:underline;">{{ 'page.default.connexion.name'|trans }}</a>,</li>
+                <li>Modifier vos informations sur la page <a href="{{ url('user_account_update') }}" style="color:#000000;text-decoration:underline;">{{ 'page.user.account.update.name'|trans }}</a>,</li>
+                <li>Modifier votre photo de profil sur la page <a href="{{ url('user_account_profile') }}" style="color:#000000;text-decoration:underline;">{{ 'page.user.account.profile.name'|trans }}</a>,</li>
+                <li>Modifier votre mot de passe sur la page <a href="{{ url('user_account_password') }}" style="color:#000000;text-decoration:underline;">{{ 'page.user.account.password.name'|trans }}</a>,</li>
+                <li>Compléter votre expérience professionnelle sur la page <a href="{{ url('user_experience_index') }}" style="color:#000000;text-decoration:underline;">{{ 'page.user.experience.index.name'|trans }}</a>,</li>
+                <li>Adhérer à l'association sur la page <a href="{{ url('user_subscribe_index') }}" style="color:#000000;text-decoration:underline;">{{ 'page.user.subscribe.index.name'|trans }}</a>,</li>
+            </ul>
+            <p>Si vous adhérez, vous pourrez aussi accéder aux fonctionnalités suivantes :</p>
+            <ul>
+                <li>Accéder à l'annuaire sur la page <a href="{{ url('member_yearbook_index') }}" style="color:#000000;text-decoration:underline;">{{ 'page.member.yearbook.index.name'|trans }}</a>.</li>
+                <li>Accéder aux statistiques sur la page <a href="{{ url('member_statistics_index') }}" style="color:#000000;text-decoration:underline;">{{ 'page.member.statistics.index.name'|trans }}</a>.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+{% endblock %}

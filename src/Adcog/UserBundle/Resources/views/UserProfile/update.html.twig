@@ -1,0 +1,22 @@
+{% extends 'AdcogUserBundle:UserAccount:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_profile_update') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('user_profile_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

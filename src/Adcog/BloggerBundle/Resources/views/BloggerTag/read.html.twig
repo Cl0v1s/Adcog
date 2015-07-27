@@ -1,0 +1,42 @@
+{% extends 'AdcogBloggerBundle:BloggerTag:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':tag}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_tag_read',{tag:tag.id},{},{vars:{'%entity%':tag }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_tag_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_tag_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_tag_replace',{tag:tag.id},{class:'btn btn-xs btn-info',ficon:'random'},{vars:{'%entity%':tag }}) }}</li>
+        <li>{{ link('blogger_tag_update',{tag:tag.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':tag }}) }}</li>
+        <li>{{ link('blogger_tag_delete',{tag:tag.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':tag }}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ tag.id }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ tag.content }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ tag.slug }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ tag.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ tag.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

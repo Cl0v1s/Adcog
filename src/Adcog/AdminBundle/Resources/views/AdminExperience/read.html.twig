@@ -1,0 +1,18 @@
+{% extends 'AdcogAdminBundle:AdminExperience:index.html.twig' %}
+
+{% block title %}{{ experience }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_experience_read',{experience:experience.id},{name:experience,title:experience}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_experience_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_experience_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_experience_update',{experience:experience.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_experience_delete',{experience:experience.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    {% include 'AdcogAdminBundle:AdminExperience/Read:' ~ experience.type ~ '.html.twig' %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'AdcogAdminBundle:AdminRole:index.html.twig' %}
+
+{% block title %}{{ role }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_role_read',{role:role.id},{name:role,title:role}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_role_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_role_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_role_update',{role:role.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_role_delete',{role:role.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ role.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ role.name }}</td>
+            </tr>
+            <tr>
+                <th>Bureau</th>
+                <td>{{ role.desk|yes_no_icon }}</td>
+            </tr>
+            <tr>
+                <th>Classement</th>
+                <td>{{ role.order }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ role.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ role.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

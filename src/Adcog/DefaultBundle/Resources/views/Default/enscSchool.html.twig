@@ -1,0 +1,40 @@
+{% extends 'AdcogDefaultBundle:Default:ensc.html.twig' %}
+
+{% block title %}Promotion ENSC {{ school.year }} - {{ school.name }}{% endblock %}
+
+{% block description %}Promotion {{ school.year }} de l'École Nationale Supérieure de Cognitique - {{ school.name }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_ensc_school',{year:school.year},{name:school,title:school}) }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="featurette">
+        <img class="featurette-image pull-right" alt="ADCOG" src="{{ school|school_profile|imagine_filter('default_400_300') }}">
+        <h1 class="featurette-heading">Promotion {{ school.year }}. {{ school.name }}.</h1>
+    </div>
+    {% if school.description %}
+        <h2>
+            Qui est {{ school.name }} ?
+            {% if school.wikipedia %}
+                <a class="btn btn-sm btn-default pull-right" href="{{ school.wikipedia }}" title="{{ school.name }}" target="_blank">Voir "{{ school.name }}" sur Wikipedia &raquo;</a>
+            {% endif %}
+        </h2>
+        <div class="description">{{ school.description|raw }}</div>
+    {% endif %}
+    {% if school.graduation %}
+        <h2>La promotion</h2>
+        <div class="description">{{ school.graduation|raw }}</div>
+    {% endif %}
+    <div class="clear"></div>
+    <h2 id="listes">Qui sont les diplômés {{ school.year }} ?</h2>
+    <ul class="colored-timeline square full">
+        {% for user in paginator %}
+            {% include 'AdcogDefaultBundle:Widget:_public.html.twig' %}
+        {% else %}
+            {% include 'AdcogDefaultBundle:Widget:_none.html.twig' with {none_text:'Aucun profil public trouvé.'} %}
+        {% endfor %}
+    </ul>
+    {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+{% endblock %}

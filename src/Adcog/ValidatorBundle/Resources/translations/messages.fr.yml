@@ -1,0 +1,14 @@
+page:
+  validator:
+    comment:
+      index: {name: Commentaires}
+      read: {name: '%entity%'}
+    payment:
+      index: {name: Paiements}
+      read: {name: '%entity%'}
+    user:
+      index: {name: Utilisateurs}
+      read: {name: '%entity%'}
+    bookmark:
+      index: {name: 'Bookmarks'}
+      read: {name: '%entity%'}

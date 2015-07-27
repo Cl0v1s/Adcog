@@ -1,0 +1,51 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_payment_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('admin_payment_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th class="sm"></th>
+                        <th>Utilisateur</th>
+                        <th class="sm">Type</th>
+                        <th>Paiement</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in paginator %}
+                        <tr>
+                            <td>{{ payment.id }}</td>
+                            <td class="sm"><img class="no-max" src="{{ payment.user|user_profile|imagine_filter('default_20_20') }}"/></td>
+                            <td>{{ link('admin_user_read',{user:payment.user.id},{name:payment.user,title:payment.user}) }}</td>
+                            <td>{{ payment.typeName }}</td>
+                            <td>{{ payment }}</td>
+                            <td>{{ link('admin_payment_read',{payment:payment.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:'',title:payment}) }}</td>
+                            <td>{{ link('admin_payment_update',{payment:payment.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:'',title:payment}) }}</td>
+                            <td>{{ link('admin_payment_delete',{payment:payment.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:'',title:payment}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

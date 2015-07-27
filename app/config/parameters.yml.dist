@@ -1,0 +1,23 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: adcog
+    database_user: root
+    database_password: ~
+    mailer_transport: gmail
+    mailer_host: 127.0.0.1
+    mailer_user: no-reply@adcog.fr
+    mailer_password: ~
+    locale: fr
+    secret: dfgkqjdgkqdgqnkbjqdgkljqbngklfnjkqdngqfb
+    router.request_context.host: adcog.fr
+    facebook_uri: 'https://www.facebook.com/groups/adcog/'
+    twitter_uri: 'https://twitter.com/AssoAdcog/'
+    youtube_uri: 'http://www.youtube.com/user/AdCogOfficial'
+    mail_ca: ca@adcog.fr
+    mail_cpi: cpi@adcog.fr
+    paypal_account: ''
+    paypal_endpoint: ''
+    paypal_client_id: ''
+    paypal_secret: ''

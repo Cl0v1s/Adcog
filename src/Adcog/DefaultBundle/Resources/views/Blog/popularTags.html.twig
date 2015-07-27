@@ -1,0 +1,8 @@
+{% if tags|length > 0 %}
+    <div class="tags">
+        <h3>Tags populaires</h3>
+        {% for tag in tags %}
+            {{ tag_render(tag) }}
+        {% endfor %}
+    </div>
+{% endif %}

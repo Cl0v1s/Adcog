@@ -1,0 +1,23 @@
+{% extends 'AdcogUserBundle:UserAccount:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_account_delete') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {{ form_start(form) }}
+    <p class="alert alert-danger">Êtes-vous sûr de vouloir supprimer définitivement votre compte adcog.fr ?</p>
+    {{ form_rest(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('user_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-danger"><span class="fa fa-trash-o"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

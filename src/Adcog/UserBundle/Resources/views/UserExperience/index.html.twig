@@ -1,0 +1,40 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_experience_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="colored-timeline full">
+        <li class="timeline-inverted">
+            <div class="timeline-badge">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Ajouter une expérience</h4>
+                    <ul class="actions pull-right list-inline list-unstyled">
+                        <li class="dropdown">
+                            <a class="btn btn-xs btn-default dropdown-toggle dropdown-toggle-user" data-toggle="dropdown" href="#">
+                                <i class="fa fa-plus"></i> Créer
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>{{ link('user_experience_create_work',{},{'class':'btn-xs',ficon:'plus',name:'Expérience professionnelle'}) }}</li>
+                                <li>{{ link('user_experience_create_study',{},{'class':'btn-xs',ficon:'plus',name:'Diplôme'}) }}</li>
+                                <li>{{ link('user_experience_create_thesis',{},{'class':'btn-xs',ficon:'plus',name:'Thèse'}) }}</li>
+                                <li>{{ link('user_experience_create_internship',{},{'class':'btn-xs',ficon:'plus',name:'Stage'}) }}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        {% for experience in paginator %}
+            {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
+        {% else %}
+            {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+        {% endfor %}
+    </ul>
+{% endblock %}

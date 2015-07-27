@@ -1,0 +1,60 @@
+{% extends 'AdcogValidatorBundle:Validator:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('validator_comment_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th class="sm"></th>
+                        <th>Auteur</th>
+                        <th>Article</th>
+                        <th>Date</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comment in paginator %}
+                        <tr>
+                            <td>{{ comment.id }}</td>
+                            <td><img class="no-max" src="{{ comment.author|user_profile|imagine_filter('default_20_20') }}"/></td>
+                            <td>
+                                {% if is_granted(USER_ROLE_ADMIN) %}
+                                    {{ link('admin_user_read',{user:comment.author.id},{name:comment.author,title:comment.author}) }}
+                                {% else %}
+                                    {{ comment.author }}
+                                {% endif %}
+                            </td>
+                            <td>{{ link('blog_read',{post:comment.post.id,slug:comment.post.slug},{name:comment.post,title:comment.post}) }}</td>
+                            <td>{{ comment.created|dateago }}</td>
+                            <td>
+                                {% if comment.hasBeenValidated() %}
+                                    {{ comment.isValid()|yes_no_icon }}
+                                {% else %}
+                                    <span class="text-info">
+                                        <span class="fa fa-question"></span>
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>{{ link('validator_comment_read',{comment:comment.id},{class:'btn btn-xs btn-default',ficon:'comment',name:''},{vars:{'%entity%':comment }}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

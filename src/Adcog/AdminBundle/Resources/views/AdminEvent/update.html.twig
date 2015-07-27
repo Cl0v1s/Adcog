@@ -1,0 +1,33 @@
+{% extends 'AdcogAdminBundle:AdminEvent:read.html.twig' %}
+
+{% block title %}Modifier {{ event }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_event_update',{event:event.id}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_event_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_event_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_event_read',{event:event.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:event,title:event}) }}</li>
+        <li>{{ link('admin_event_delete',{event:event.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('admin_event_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('admin_event_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('admin_event_read',{event:event.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:event,title:event}) }}</li>
+                <li>{{ link('admin_event_delete',{event:event.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

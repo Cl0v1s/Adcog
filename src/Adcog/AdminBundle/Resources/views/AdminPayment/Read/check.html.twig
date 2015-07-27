@@ -1,0 +1,40 @@
+<table class="{{ table_class }}">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <td>{{ payment.id }}</td>
+        </tr>
+        <tr>
+            <th>Numéro du chèque</th>
+            <td>{{ payment.checkNumber }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ payment.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ payment.description }}</td>
+        </tr>
+        <tr>
+            <th>Montant</th>
+            <td>{{ payment.amount }}</td>
+        </tr>
+        <tr>
+            <th>Durée</th>
+            <td>{{ payment.duration }}</td>
+        </tr>
+        <tr>
+            <th>Utilisateur</th>
+            <td>{{ link('admin_user_read',{user:payment.user.id},{name:payment.user,title:payment.user}) }}</td>
+        </tr>
+        <tr>
+            <th>Création</th>
+            <td>{{ payment.created|timeago }}</td>
+        </tr>
+        <tr>
+            <th>Modification</th>
+            <td>{{ payment.updated|timeago }}</td>
+        </tr>
+    </tbody>
+</table>

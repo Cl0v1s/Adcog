@@ -1,0 +1,53 @@
+page:
+  blogger:
+    index: {name: Blogger}
+    slider:
+      index: {name: Sliders}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    comment:
+      index: {name: Commentaires}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    file:
+      index: {name: Fichiers}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    post:
+      index: {name: Articles}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    tag:
+      index: {name: Tags}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+      replace: {name: Remplacer}
+    faq:
+      index: {name: 'FAQs'}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+      category:
+        index: {name: 'Catégories FAQ'}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}
+    static:
+      content:
+        index: {name: 'Contenus'}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}

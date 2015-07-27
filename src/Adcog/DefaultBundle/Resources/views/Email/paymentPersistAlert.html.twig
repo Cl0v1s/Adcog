@@ -1,0 +1,49 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            L'adhésion {{ payment }} vient d'être demandée sur le site de l'association des Anciens Diplômés en Cognitique.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Utilisateur</th>
+                        <td>{{ payment.user }}</td>
+                    </tr>
+                    <tr>
+                        <th>Titre</th>
+                        <td>{{ payment.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ payment.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Montant</th>
+                        <td>{{ payment.amount }}€</td>
+                    </tr>
+                    <tr>
+                        <th>Durée</th>
+                        <td>{{ payment.duration }} an{{ payment.duration > 1 ? 's' : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            Si vous êtes validateur, vous pouvez dès maintenant <a href="{{ url('validator_payment_read',{payment:payment.id}) }}" style="color:#000000;text-decoration:underline;">consulter</a>
+            cette facture pour la valider.
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+{% endblock %}

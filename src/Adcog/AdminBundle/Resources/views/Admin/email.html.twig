@@ -1,0 +1,10 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_email',{templateName:templateName}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <iframe src="{{ src }}" style="width:100%;height:800px;"></iframe>
+{% endblock %}

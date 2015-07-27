@@ -1,0 +1,30 @@
+{% extends 'AdcogUserBundle:UserSubscribe:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_subscribe_confirmation',{price:price.id,slug:price.slug,type:type}) }}</li>
+{% endblock %}
+
+{% block boardcontent %}
+    <h2>3 - Récapitulatif</h2>
+    <h3>Instructions</h3>
+    {% include 'AdcogUserBundle:UserSubscribe/Read:' ~ type ~ '.html.twig' %}
+    <h3>Paiement</h3>
+    <ul class="colored-timeline full">
+        {% include 'AdcogDefaultBundle:Widget:_payment.html.twig' %}
+    </ul>
+    {{ form_start(form) }}
+    <div class="text-center">
+        {{ form_rest(form) }}
+        <div class="row form-group">
+            <div class="col-lg-12">
+                <ul class="list-inline">
+                    <li class="pull-right">
+                        <button type="submit" class="btn btn-success"><span class="fa fa-thumbs-up"></span> Je confirme vouloir adhérer à l'association !</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

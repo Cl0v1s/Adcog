@@ -1,0 +1,85 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_start %}
+    {% set attr = attr|merge({class:'form-horizontal'}) %}
+    {{ parent() }}
+{% endblock form_start %}
+
+{% block form_row %}
+    {% spaceless %}
+        <div class="row form-group{% if errors|length > 0 %} error{% endif %}">
+            {{ form_label(form,null,{label_attr:{class:'col-lg-3 control-label' }}) }}
+            <div class="col-lg-9">
+                {{ form_widget(form,{attr:{class:'form-control'}}) }}
+                {% if help is defined and help is not empty %}
+                    <span class="help-block">{{ help }}</span>
+                {% endif %}
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <p class="label label-danger">
+                    {% if error.messagePluralization is null %}
+                        {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+                    {% else %}
+                        {{ error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators') }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block adcog_wysiwyg_field_row %}
+    <h3>{{ form_label(form) }}</h3>
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block adcog_wysiwyg_field_widget %}
+    {% set attr = attr|merge({class:attr.class|default('')~' wysiwyg'}) %}
+    {{ block('textarea_widget') }}
+{% endblock %}
+
+{% block adcog_experience_row %}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block adcog_payment_row %}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block adcog_employer_row %}
+    <h2>{{ form_label(form) }}</h2>
+    <div class="employer">
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endblock %}
+
+{% block adcog_date_field_widget %}
+    {% set attr = attr|merge({class:attr.class|default('')~' datepicker'}) %}
+    {{ block('date_widget') }}
+{% endblock %}
+
+{% block _adcog_user_register_acceptTermsOfUse_widget %}
+    {{ block('checkbox_widget') }}
+    <p class="pull-left">
+        En cochant, j'accepte les {{ link('default_mentions',{},{name:'conditions d\'utilisation'}) }} du site {{ link('default_index',{},{name:'adcog.fr',title:'adcog.fr'}) }}.
+    </p>
+{% endblock %}
+
+{% block _adcog_user_terms_acceptTermsOfUse_widget %}
+    {{ block('checkbox_widget') }}
+    <p class="pull-left">
+        En cochant, j'accepte les {{ link('default_mentions',{},{name:'conditions d\'utilisation'}) }} du site {{ link('default_index',{},{name:'adcog.fr',title:'adcog.fr'}) }}.
+    </p>
+{% endblock %}

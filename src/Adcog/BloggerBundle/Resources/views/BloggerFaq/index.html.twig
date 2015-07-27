@@ -1,0 +1,47 @@
+{% extends 'AdcogBloggerBundle:Blogger:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_faq_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_faq_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th>Nom</th>
+                        <th>Catégorie</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faq in paginator %}
+                        <tr>
+                            <td>{{ faq.id }}</td>
+                            <td>{{ faq }}</td>
+                            <td>{{ link('blogger_faq_category_read',{faqCategory:faq.category.id},{name:faq.category,title:faq.category}) }}</td>
+                            <td>{{ link('blogger_faq_read',{faq:faq.id},{class:'btn btn-xs btn-default',ficon:'comment',name:''},{vars:{'%entity%':faq }}) }}</td>
+                            <td>{{ link('blogger_faq_update',{faq:faq.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:''},{vars:{'%entity%':faq }}) }}</td>
+                            <td>{{ link('blogger_faq_delete',{faq:faq.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:''},{vars:{'%entity%':faq }}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

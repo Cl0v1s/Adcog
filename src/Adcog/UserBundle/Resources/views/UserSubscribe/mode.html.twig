@@ -1,0 +1,26 @@
+{% extends 'AdcogUserBundle:UserSubscribe:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_subscribe_mode',{price:price.id,slug:price.slug}) }}</li>
+{% endblock %}
+
+{% block boardcontent %}
+    <h2>2 - Choix du mode de réglement</h2>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <td>{{ link('user_subscribe_confirmation',{price:price.id,slug:price.slug,type:PAYMENT_TYPE_PAYPAL},{class:'btn btn-primary btn-block',name:'Je règle via Paypal !',title:'Je règle via Paypal !'}) }}</td>
+            </tr>
+            <tr>
+                <td>{{ link('user_subscribe_confirmation',{price:price.id,slug:price.slug,type:PAYMENT_TYPE_TRANSFER},{class:'btn btn-primary btn-block',name:'Je règle par virement !',title:'Je règle par virement !'}) }}</td>
+            </tr>
+            <tr>
+                <td>{{ link('user_subscribe_confirmation',{price:price.id,slug:price.slug,type:PAYMENT_TYPE_CHECK},{class:'btn btn-primary btn-block',name:'Je règle par chèque !',title:'Je règle par chèque !'}) }}</td>
+            </tr>
+            <tr>
+                <td>{{ link('user_subscribe_confirmation',{price:price.id,slug:price.slug,type:PAYMENT_TYPE_CASH},{class:'btn btn-primary btn-block',name:'Je règle en espèces !',title:'Je règle en espèces !'}) }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

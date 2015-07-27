@@ -1,0 +1,33 @@
+{% extends 'AdcogBloggerBundle:BloggerFaq:read.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':faq}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_faq_update',{faq:faq.id},{},{vars:{'%entity%':faq }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_faq_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_faq_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_faq_read',{faq:faq.id},{class:'btn btn-xs btn-default',ficon:'comment'},{vars:{'%entity%':faq }}) }}</li>
+        <li>{{ link('blogger_faq_delete',{faq:faq.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':faq }}) }}</li>
+    </ul>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('blogger_faq_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('blogger_faq_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('blogger_faq_read',{faq:faq.id},{class:'btn btn-xs btn-default',ficon:'comment'},{vars:{'%entity%':faq }}) }}</li>
+                <li>{{ link('blogger_faq_delete',{faq:faq.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':faq }}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block title %}Compte en attente de validation ...{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Compte non validé</li>
+{% endblock %}
+
+{% block subcontent %}
+    <p class="alert alert-warning">
+        Votre compte n'a pas encore été validé par un administrateur. Vos actions
+        sont volontairement limitées. Vous souhaitez en parler ? N'hésitez pas à entrer en {{ link('default_contact') }} avec
+        nous !
+    </p>
+    <div class="text-center">
+        <span class="fa fa-cog fa-4x fa-spin"></span>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'AdcogBloggerBundle:Blogger:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_file_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_file_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th>Fichier</th>
+                        <th>Mime</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in paginator %}
+                        <tr>
+                            <td>{{ file.id }}</td>
+                            <td>{{ file }}</td>
+                            <td>{{ file.mime }}</td>
+                            <td>{{ link('blogger_file_read',{file:file.id},{class:'btn btn-xs btn-default',ficon:'comment',name:''},{vars:{'%entity%':file }}) }}</td>
+                            <td>{{ link('blogger_file_delete',{file:file.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:''},{vars:{'%entity%':file }}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

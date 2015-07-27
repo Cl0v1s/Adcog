@@ -1,0 +1,32 @@
+adcog_member:
+  resource: '@AdcogMemberBundle/Controller/'
+  type: annotation
+  prefix: /membre
+adcog_user:
+  resource: '@AdcogUserBundle/Controller/'
+  type: annotation
+  prefix: /utilisateur
+adcog_blogger:
+  resource: '@AdcogBloggerBundle/Controller/'
+  type: annotation
+  prefix: /blogger
+adcog_validator:
+  resource: '@AdcogValidatorBundle/Controller/'
+  type: annotation
+  prefix: /validator
+adcog_admin:
+  resource: '@AdcogAdminBundle/Controller/'
+  type: annotation
+  prefix: /admin
+adcog_default:
+  resource: '@AdcogDefaultBundle/Controller/'
+  type: annotation
+  prefix: /
+
+default_check:
+  pattern: /connexion-en-cours
+default_logout:
+  pattern: /deconnexion
+
+_liip_imagine:
+  resource: '@LiipImagineBundle/Resources/config/routing.xml'

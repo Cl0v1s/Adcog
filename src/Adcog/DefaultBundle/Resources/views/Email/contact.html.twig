@@ -1,0 +1,38 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            Veuillez trouver ci-dessous un message reçu depuis le site internet
+            de l'association ADCOG.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <hr>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><strong>Nom</strong> : {{ mail.name }}</td>
+    </tr>
+    <tr>
+        <td><strong>Email</strong> : <a href="mailto:{{ mail.email }}">{{ mail.email }}</a></td>
+    </tr>
+    <tr>
+        <td><strong>Sujet</strong> : {{ mail.subject }}</td>
+    </tr>
+    <tr>
+        <td><strong>Message</strong></td>
+    </tr>
+    <tr>
+        <td>
+            <blockquote>{{ mail.message|nl2br }}</blockquote>
+        </td>
+    </tr>
+{% endblock %}

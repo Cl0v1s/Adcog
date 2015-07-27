@@ -1,0 +1,77 @@
+{% extends 'AdcogMemberBundle:Member:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_statistics_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="nav nav-tabs" id="graph-nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Promotions <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('member_statistics_api_schools',{empty:1}) }}">Toutes</a></li>
+                <li><a href="{{ path('member_statistics_api_schools') }}">Toutes (renseignés)</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Villes <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('member_statistics_api_city_member',{empty:1}) }}">Villes des membres</a></li>
+                <li><a href="{{ path('member_statistics_api_city_member') }}">Villes des membres (renseignées)</a></li>
+                <li><a href="{{ path('member_statistics_api_city_employer',{empty:1}) }}">Villes des établissements</a></li>
+                <li><a href="{{ path('member_statistics_api_city_employer') }}">Villes des établissements (renseignées)</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pays <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('member_statistics_api_country_member',{empty:1}) }}">Pays des membres</a></li>
+                <li><a href="{{ path('member_statistics_api_country_member') }}">Pays des membres (renseignés)</a></li>
+                <li><a href="{{ path('member_statistics_api_country_employer',{empty:1}) }}">Pays des établissements</a></li>
+                <li><a href="{{ path('member_statistics_api_country_employer') }}">Pays des établissements (renseignés)</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Salaires <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('member_statistics_api_salary_first') }}">Premier salaire</a></li>
+                <li><a href="{{ path('member_statistics_api_salary_last') }}">Dernier salaire</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            {{ block('tab') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block tab %}
+    <div id="graph">
+        <div class="well well-lg">
+            <ul>
+                <li>
+                    Il y a {{ userCount }} personne{{ userCount > 1 ? 's' : '' }}, {{ experienceCount }}
+                    expérience{{ experienceCount > 1 ? 's' : '' }} et {{ employerCount }} société{{ employerCount > 1 ? 's' : '' }}
+                    sur le site !
+                </li>
+                <li>{{ userWithExperiences }} personne{{ userWithExperiences > 1 ? 's ont' : ' a' }} partagé au moins une éxpérience de leur cursus.</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#graph-nav').on('click', 'a', function (e) {
+                e.preventDefault();
+                $.get($(this).attr('href'), {}, function (data) {
+                    $('#graph').highcharts(data);
+                });
+            });
+        });
+    </script>
+{% endblock %}

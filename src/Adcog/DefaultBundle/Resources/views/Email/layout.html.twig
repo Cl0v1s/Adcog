@@ -1,0 +1,152 @@
+{% spaceless %}
+    {% set email_width = 600 %}
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+    <html>
+        <head>
+            <title>{{ subject }}</title>
+            <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        </head>
+        <body style="padding:0;margin:0;">
+            <div style="font-size:16px;font-family:Tahoma,Arial,Sans-Serif;color:#374953;">
+                <table style="width:100%;border-spacing:0;">
+                    <tbody>
+                        <tr style="background-color:#009fe3;">
+                            <td align="center" style="padding:20px 0;">
+                                <a style="display:block;width:451px;height:142px;margin:0 auto;color:#3679CB;" href="{{ url('default_index') }}" title="ADCOG">
+                                    <img alt="ADCOG" src="{{ header }}" style="border:none;" width="451" height="142">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="width:{{ email_width }}px;margin:20px auto;border-spacing:0;">
+                    <tbody>
+                        <tr>
+                            <td>Bonjour,</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        {% block content %}{% endblock %}
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Cordialement,</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Le site de l'ADCOG</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="width:100%;margin:20px 0 0;border-spacing:0;">
+                    <tbody>
+                        <tr style="background-color:#f3f3f3;">
+                            <td style="padding:20px 0;">
+                                <table style="width:{{ email_width }}px;margin:0 auto;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:50%;">
+                                                <a style="display:block;width:259px;height:194px;margin:0 auto;color:#3679CB;" href="{{ url('default_index') }}" title="ADCOG">
+                                                    <img alt="ADCOG" src="{{ footer }}" style="border:none;" width="259" height="194">
+                                                </a>
+                                            </td>
+                                            <td style="width:50%;">
+                                                <p>Retrouvez l'ADCOG sur les réseaux sociaux !</p>
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="{{ facebook_uri }}" title="ADCOG - Facebook">
+                                                                    <img src="{{ facebook }}" alt="ADCOG - Facebook" height="40" width="40"/>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ twitter_uri }}" title="ADCOG - Twitter">
+                                                                    <img src="{{ twitter }}" alt="ADCOG - Twitter" height="40" width="40"/>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ youtube_uri }}" title="ADCOG - Youtube">
+                                                                    <img src="{{ youtube }}" alt="ADCOG - Youtube" height="40" width="40"/>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ url('blog_rss') }}" title="ADCOG - RSS">
+                                                                    <img src="{{ rss }}" alt="ADCOG - RSS" height="40" width="40"/>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="font-size:14px;width:100%;margin:0;border-spacing:0;color:#ffffff;">
+                    <tbody>
+                        <tr style="background-color:#009fe3;">
+                            <td align="center" style="padding:10px;">
+                                <table style="width:{{ email_width }}px;margin:0 auto;">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h3>Cognitiliste</h3>
+                                                <p>
+                                                    L'association mets à disposition une liste de diffusion par emails.
+                                                </p>
+                                                <ul>
+                                                    <li>Pour vous inscrire, envoyez un email à <a href="mailto:cogniticiens-subscribe@adcog.fr" style="color:#ffffff;text-decoration:underline;">cogniticiens-subscribe@adcog.fr</a></li>
+                                                    <li>Pour communiquer, envoyer un email à <a href="mailto:cogniticiens@adcog.fr" style="color:#ffffff;text-decoration:underline;">cogniticiens@adcog.fr</a></li>
+                                                    <li>Pour vous désinscrire, envoyer un email à <a href="mailto:cogniticiens-unsubscribe@adcog.fr" style="color:#ffffff;text-decoration:underline;">cogniticiens-unsubscribe@adcog.fr</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table style="width:100%;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="width:40%;">
+                                                                <p style="text-align:center;">
+                                                                    ADCOG<br>
+                                                                    109 Avenue Roul<br>
+                                                                    Talence 33400 - France
+                                                                </p>
+                                                            </td>
+                                                            <td style="width:60%;">
+                                                                <p style="text-align:center;">
+                                                                    Par email à l'adresse <a href="mailto:contact@adcog.fr" title="Contact" style="color:#ffffff;text-decoration:underline;">contact@adcog.fr</a><br>
+                                                                    <br>
+                                                                    Ajouter <a href="mailto:{{ mailer_user }}" style="color:#ffffff;text-decoration:underline;">{{ mailer_user }}</a> à vos contacts
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center;padding:20px 0;font-size:12px;">
+                                                Copyright © {{ 'now'|date('Y') }} -
+                                                Tous droits réservés <a href="{{ url('default_index',{},{'name':'adcog.fr'}) }}" style="color:#ffffff;text-decoration:underline;">adcog.fr</a> -
+                                                <a href="{{ url('default_mentions',{},{name:'mentions légales'}) }}" style="color:#ffffff;text-decoration:underline;">Mentions légales</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </body>
+    </html>
+{% endspaceless %}

@@ -1,0 +1,75 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_event') }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Les événements de l'association</h1>
+    <div class="timeline">
+        <ol class="list-unstyled">
+            {% for event in events %}
+                <li class="line">
+                    <div class="icon">
+                        <span class="fa fa-glass"></span>
+                    </div>
+                    <div class="title">
+                        <h2>{{ link('user_event_read',{event:event.id,slug:event.slug},{name:event,title:event}) }}</h2>
+                        <small class="text-muted">{{ event.date.format('d/m/Y') }}</small>
+                    </div>
+                    <div class="content">
+                        <div>{{ event.description|raw }}</div>
+                        {% if is_future(event.date) %}
+                            <p>
+                                {% if is_granted(USER_ROLE_USER) and event.userParticipation(app.user) %}
+                                    <span class="label label-success"><span class="fa fa-thumbs-up"></span></span> Vous êtes des notres pour cet événement !
+                                {% else %}
+                                    <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span> Vous ne participez pas encore, mais il est encore temps ...
+                                {% endif %}
+                            </p>
+
+                            <ul class="pull-right footer list-inline list-unstyled">
+                                {% if is_granted(USER_ROLE_USER) and event.userParticipation(app.user) %}
+                                    <li>{{ link('user_event_cancel',{event:event.id},{ficon:'thumbs-down',class:'btn btn-xs btn-danger'}) }}</li>
+                                {% else %}
+                                    <li>{{ link('user_event_participate',{event:event.id},{ficon:'thumbs-up',class:'btn btn-xs btn-success'}) }}</li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+            {% else %}
+                <li class="line">
+                    <div class="content">
+                        <p>Aucun événement trouvé.</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+    <h2>Nos événements</h2>
+    <div class="row">
+        <div class="feature col-sm-4">
+            <img class="no-resize" src="{{ asset('bundles/adcogdefault/img/picognitique.png') }}" alt="Picognitique">
+            <div class="inner">
+                <h3 class="text-center">{{ picognitique.title }}</h3>
+                <div>{{ picognitique.content|raw }}</div>
+            </div>
+        </div>
+        <div class="feature col-sm-4">
+            <img class="no-resize" src="{{ asset('bundles/adcogdefault/img/cognitoconf.png') }}" alt="Cognito'Conf">
+            <div class="inner">
+                <h3 class="text-center">{{ cognitoconf.title }}</h3>
+                <div>{{ cognitoconf.content|raw }}</div>
+            </div>
+        </div>
+        <div class="feature col-sm-4">
+            <img class="no-resize" src="{{ asset('bundles/adcogdefault/img/cogout.png') }}" alt="Cog'Out">
+            <div class="inner">
+                <h3 class="text-center">{{ cogout.title }}</h3>
+                <div>{{ cogout.content|raw }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

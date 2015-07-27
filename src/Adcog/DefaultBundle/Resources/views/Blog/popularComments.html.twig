@@ -1,0 +1,12 @@
+{% if comments|length > 0 %}
+    <h3>Commentaires récents</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                {{ comment.author }}
+                sur
+                {{ link('blog_read',{post:comment.post.id,slug:comment.post.slug},{name:comment.post,title:comment.post,tag:'comment-%u'|format(comment.id)}) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

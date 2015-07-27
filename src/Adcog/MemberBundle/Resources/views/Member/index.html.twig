@@ -1,0 +1,6 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_index') }}</li>
+{% endblock %}

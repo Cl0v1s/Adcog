@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="adcog.member_bundle.form.member_filter_type" class="Adcog\MemberBundle\Form\MemberFilterType">
+            <call method="setName">
+                <argument>adcog_member_member_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_member_member_filter"/>
+        </service>
+        <service id="adcog.member_bundle.form.employer_filter_type" class="Adcog\MemberBundle\Form\EmployerFilterType">
+            <call method="setName">
+                <argument>adcog_member_employer_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_member_employer_filter"/>
+        </service>
+        <service id="adcog.member_bundle.form.adcog_member_experience_filter" class="Adcog\MemberBundle\Form\ExperienceFilterType">
+            <call method="setName">
+                <argument>adcog_member_experience_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_member_experience_filter"/>
+        </service>
+    </services>
+</container>

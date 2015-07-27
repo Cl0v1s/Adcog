@@ -1,0 +1,65 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_mentions') }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Gestion des informations</h2>
+            <p>
+                Le site {{ link('default_index',{},{'name':'adcog.fr'}) }} est édité par l'association loi 1901 "Association
+                des Anciens élèves de l'{{ link('default_ensc') }} – ADCOG". Conformément à la Loi n°
+                78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, les informations vous
+                concernant sont uniquement destinées à l'association "Adcog", responsable du traitement.
+            </p>
+            <p class="text-center">
+                <a href="http://www.cnil.fr/en-savoir-plus/textes-fondateurs/loi78-17/">Loi n° 78-17 du 6 janvier 1978</a>
+            </p>
+            <hr>
+            <h2>Droits des utilisateurs</h2>
+            <p>
+                Vous disposez d'un droit d'accès, de rectification et de suppression des données qui vous concernent que
+                vous pouvez exercer en utilisant les différents moyens de contact mis à votre disposition sur la
+                page {{ link('default_contact') }} de ce site mais aussi directemment via votre compte en cliquant sur "Supprimer mon compte".
+            </p>
+            <p class="alert alert-danger text-center">
+                Aucune utilisation commerciale des données ne sera réalisée.
+            </p>
+            <p>
+                Seules seront enregistrées les données relatives à votre identité et à votre vie professionnelle. Elles seront mises à
+                disposition des membres de l'association au sein de l'Annuaire des Anciens et utilisées à des fin de statistique anonymes (la réalisation
+                de graphique par exemple).
+            </p>
+            <hr>
+            <h2>Droits et reproduction</h2>
+            <p>Toute reproduction partielle ou totale de ce site est expressément interdite.</p>
+        </div>
+        <div class="col-lg-6">
+            <h2>Déclaration du site</h2>
+            <p>
+                Ce site est dispensé de déclaration auprès de la CNIL en vertu de la délibération n°2006-138 du
+                09/05/2006 comme précisé dans le document suivant :
+            </p>
+            <p class="text-center">
+                <a href="http://www.cnil.fr/documentation/deliberations/deliberation/delib/107/">http://www.cnil.fr/documentation/deliberations/deliberation/delib/107/</a>.
+            </p>
+            <h3>CNIL</h3>
+            <ul>
+                <li><strong>Secteur</strong> : Association</li>
+                <li><strong>Thèmes</strong> : Activité de l'Association</li>
+                <li><strong>Dispense</strong> : Fichiers de communication non commerciale</li>
+                <li><strong>Numérotation spéciale</strong> : DI-007</li>
+                <li><strong>Titre complet</strong> : <a href="http://www.legifrance.gouv.fr/jopdf/common/jo_pdf.jsp?numJO=0&dateJO=20060603&numTexte=80&pageDebut=&pageFin=">Délibération n°2006-138 du 09/05/2006 décidant de la dispense de déclaration des traitements constitués à des fins d'information ou de communication externe</a></li>
+            </ul>
+            <h3>Résumé</h3>
+            <blockquote>
+                La dispense n°7 (ancienne norme simplifiée n°15) concerne les traitements de données personnelles mis en oeuvre par tout organisme privé ou public à des fins d'information et de communication externe. Elle s'applique aux sites internet institutionnels et aux fichiers de contacts.
+                Elle exclut toute utilisation commerciale ou politique des données traitées. La dispense prévoit que seules peuvent être enregistrées les données relatives à l'identité, la vie professionnelle, les centres d'intérêts de la personne concernée, à l'exception des données dites sensibles telles que les origines raciales ou ethniques, les opinions politiques, philosophiques ou religieuses, l'appartenance syndicale, l'état de santé ou la vie sexuelle des personnes. Ces données peuvent être conservées pendant toute la durée nécessaire à la réalisation des finalités prévues et une mise à jour annuelle doit être prévue.
+                Les personnes concernées doivent être informées lors de la collecte des données de l'utilisation ultérieure de ces données à des fins de communication ou d'information, et mises en mesure de s'y opposer.
+            </blockquote>
+        </div>
+    </div>
+{% endblock %}

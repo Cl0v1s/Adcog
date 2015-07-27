@@ -1,0 +1,38 @@
+page:
+  user:
+    index: {name: 'Mon compte'}
+    subscribe:
+      index: {name: 'Mon adhésion'}
+      mode: {name: 'Mon adhésion'}
+      confirmation: {name: 'Mon adhésion'}
+    bill:
+      index: {name: 'Mes factures'}
+    account:
+      index: {name: 'Mon compte'}
+      update: {name: 'Modifier mon compte'}
+      delete: {name: 'Supprimer mon compte'}
+      profile: {name: 'Modifier ma photo'}
+      password: {name: 'Modifier mon mot de passe'}
+    profile:
+      index: {name: Mon profil public}
+      create: {name: Créer mon profil public}
+      update: {name: Modifier mon profil public}
+      delete: {name: Supprimer mon profil public}
+    event:
+      index: {name: Événements}
+      participate: {name: Participer}
+      cancel: {name: 'Annuler ma participation'}
+    experience:
+      index: {name: 'Mon cursus'}
+      create:
+        work: {name: 'Ajouter une expérience professionnelle'}
+        thesis: {name: 'Ajouter une thèse'}
+        study: {name: 'Ajouter un diplôme'}
+        internship: {name: 'Ajouter un stage'}
+      read: {name: Consulter}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    bookmark:
+      index: {name: Bookmarks}
+      create: {name: Créer}
+      upload: {name: Créer}

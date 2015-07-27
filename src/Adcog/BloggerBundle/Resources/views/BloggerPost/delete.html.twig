@@ -1,0 +1,34 @@
+{% extends 'AdcogBloggerBundle:BloggerPost:read.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':post}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_post_delete',{post:post.id},{},{vars:{'%entity%':post }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_post_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_post_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_post_read',{post:post.id},{class:'btn btn-xs btn-default',ficon:'comment'},{vars:{'%entity%':post }}) }}</li>
+        <li>{{ link('blogger_post_update',{post:post.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':post }}) }}</li>
+    </ul>
+    <p class="alert alert-danger">Êtes-vous certain de voulois supprimer {{ post }} ?</p>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('blogger_post_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('blogger_post_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('blogger_post_read',{post:post.id},{class:'btn btn-xs btn-default',ficon:'comment'},{vars:{'%entity%':post }}) }}</li>
+                <li>{{ link('blogger_post_update',{post:post.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':post }}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-danger"><span class="fa fa-trash-o"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

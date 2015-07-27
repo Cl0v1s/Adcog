@@ -1,0 +1,42 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            Nous avons bien enregistré votre facture #{{ payment.id }} pour votre adhésion à l'Association
+            des anciens Diplômés en Cognitique. Cette facture doit être revue par un administrateur
+            avant d'être validée.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <hr>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><strong>Facture</strong> : #{{ payment.id }}</td>
+    </tr>
+    <tr>
+        <td><strong>Intitulé</strong> : {{ payment.title }}</td>
+    </tr>
+    <tr>
+        <td><strong>Montant</strong> : {{ payment.amount }}€</td>
+    </tr>
+    <tr>
+        <td><strong>Durée</strong> : {{ payment.duration }} an{{ payment.duration > 1 ? 's' : '' }}</td>
+    </tr>
+    <tr>
+        <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+        <td>
+            <blockquote>{{ payment.description|nl2br }}</blockquote>
+        </td>
+    </tr>
+{% endblock %}

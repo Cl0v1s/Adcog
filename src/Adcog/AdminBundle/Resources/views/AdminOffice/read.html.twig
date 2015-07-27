@@ -1,0 +1,49 @@
+{% extends 'AdcogAdminBundle:AdminOffice:index.html.twig' %}
+
+{% block title %}{{ office }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_office_read',{office:office.id},{name:office,title:office}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_office_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_office_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_office_update',{office:office.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_office_delete',{office:office.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ office.id }}</td>
+            </tr>
+            <tr>
+                <th>Utilisateur</th>
+                <td>{{ link('admin_user_read',{user:office.user.id},{name:office.user,title:office.user}) }}</td>
+            </tr>
+            <tr>
+                <th>Rôle</th>
+                <td>{{ link('admin_role_read',{role:office.role.id},{name:office.role,title:office.role}) }}</td>
+            </tr>
+            <tr>
+                <th>Date de début</th>
+                <td>{{ office.started|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Date de fin</th>
+                <td>{{ office.ended?office.ended|timeago:'-' }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ office.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ office.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

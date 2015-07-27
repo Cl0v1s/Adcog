@@ -1,0 +1,53 @@
+{% extends 'AdcogValidatorBundle:Validator:index.html.twig' %}
+
+{% block title %}{{ payment }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('validator_payment_read',{payment:payment.id},{name:payment,title:payment}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <div class="alert alert-warning">
+        <strong>Rappel des consignes de validation</strong> : un paiement en éspèces, par chèque ou par virement
+        ne peux être validé que lorsque le trésorier à enregistré le crédit sur le compte en banque de l'association.
+        Un paiement par Paypal est quant à lui automatiquement validé.
+        <br>
+        <strong>Les tarifs en vigueurs actuellement sont les suivants :</strong>
+        <ul>
+            {% for price in prices %}
+                <li>{{ price }}</li>
+            {% else %}
+                <li>Aucun</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if payment.hasBeenValidated() %}
+        {% if payment.isValid() %}
+            <p class="alert alert-success">Ce paiement a déjà été validé {{ payment.validated|dateago }} !</p>
+        {% else %}
+            <p class="alert alert-danger">Ce paiement a déjà été invalidé {{ payment.invalidated|dateago }} !</p>
+        {% endif %}
+    {% endif %}
+    <p>{{ payment.user }} a réalisé un {{ payment.typeName|lower }} de {{ payment.amount }}€ {{ payment.created|dateago }} :</p>
+    {{ form_start(form) }}
+    {{ form_row(form.user) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.amount) }}
+    {{ form_row(form.duration) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('validator_payment_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </li>
+                <li class="pull-right">
+                    {{ form_widget(form.invalidate,{attr:{class:'btn btn-danger'}}) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

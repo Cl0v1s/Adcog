@@ -1,0 +1,15 @@
+{% spaceless %}
+    {% if filter is defined %}
+        <div id="filter">
+            {{ form_start(filter) }}
+            {{ form_widget(filter) }}
+            <div class="row form-group">
+                <div class="col-lg-9 col-lg-offset-3">
+                    <a href="{{ app.request.pathInfo }}" class="btn btn-xs btn-default"><span class="fa fa-times"></span> RAZ</a>
+                    <button type="submit" class="btn btn-xs btn-default"><span class="fa fa-filter"></span> Filtrer</button>
+                </div>
+            </div>
+            {{ form_end(filter) }}
+        </div>
+    {% endif %}
+{% endspaceless %}

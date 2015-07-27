@@ -1,0 +1,21 @@
+<li class="timeline-inverted school">
+    <div class="timeline-badge">
+        <img src="{{ school|school_profile|imagine_filter('default_40_40') }}" alt="{{ school }}"/>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">
+                {{ link('default_ensc_school',{year:school.year},{name:'Promotion %u / %s'|format(school.year,school.name),title:school.name}) }}
+            </h4>
+            <p>
+                <small class="text-muted">
+                    Diplômée {{ '0109%u'|format(school.year)|timeago('dmY') }}
+                    {%- if school.graduates -%}
+                        , {{ '%u diplômé%s'|format(school.graduates,school.graduates > 1 ? 's' : '') }}
+                    {%- endif -%}
+                    .
+                </small>
+            </p>
+        </div>
+    </div>
+</li>

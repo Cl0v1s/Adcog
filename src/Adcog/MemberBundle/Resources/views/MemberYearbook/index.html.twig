@@ -1,0 +1,19 @@
+{% extends 'AdcogMemberBundle:Member:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_yearbook_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="nav nav-tabs">
+        <li{{ current('member_yearbook_members') }}>{{ link('member_yearbook_members') }}</li>
+        <li{{ current('member_yearbook_experiences') }}>{{ link('member_yearbook_experiences') }}</li>
+        <li{{ current('member_yearbook_employers') }}>{{ link('member_yearbook_employers') }}</li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            {{ block('tab') }}
+        </div>
+    </div>
+{% endblock %}

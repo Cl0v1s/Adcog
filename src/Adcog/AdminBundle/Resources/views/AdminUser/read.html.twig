@@ -1,0 +1,157 @@
+{% extends 'AdcogAdminBundle:AdminUser:index.html.twig' %}
+
+{% block title %}{{ user }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_user_read',{user:user.id},{name:user,title:user}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_user_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_user_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_user_update',{user:user.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_user_delete',{user:user.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Date dernière connexion</th>
+                <td>{{ user.currentLoginDate?user.currentLoginDate|timeago:'-' }}</td>
+            </tr>
+            <tr>
+                <th>Date de mise à jour du mot de passe</th>
+                <td>{{ user.passwordUpdated?user.passwordUpdated|timeago:'-' }}</td>
+            </tr>
+            <tr>
+                <th>Activé</th>
+                <td>{{ user.enabled?'Oui':'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Compte expiré</th>
+                <td>{{ user.accountExpired?user.accountExpired|timeago:'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Compte bloqué</th>
+                <td>{{ user.accountLocked?user.accountLocked|timeago:'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Identifiants expirés</th>
+                <td>{{ user.credentialsExpired?user.credentialsExpired|timeago:'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Membre</th>
+                <td>{{ user.isMember()|yes_no_icon }}</td>
+            </tr>
+            <tr>
+                <th>Administrateur</th>
+                <td>{{ user.isAdmin()|yes_no_icon }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.address|default('-')|nl2br }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ user.zip|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ user.city|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ user.country|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ user.phone|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Site web</th>
+                <td>{{ user.website|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Promotion</th>
+                <td>
+                    {% if user.school %}
+                        {{ link('admin_school_read',{school:user.school.id},{name:user.school,title:user.school}) }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Profil</th>
+                <td>
+                    {% if user.uri %}
+                        <a href="{{ user.uri }}">{{ user.uri }}</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Expériences</th>
+                <td>
+                    <ul>
+                        {% for experience in user.experiences %}
+                            <li>{{ link('admin_experience_read',{experience:experience.id},{name:experience,title:experience}) }}</li>
+                        {% else %}
+                            <li>Aucune</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Paiements</th>
+                <td>
+                    <ul>
+                        {% for payment in user.payments %}
+                            <li>{{ link('admin_payment_read',{payment:payment.id},{name:payment,title:payment}) }}</li>
+                        {% else %}
+                            <li>Aucun</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Commentaires</th>
+                <td>
+                    <ul>
+                        {% for comment in user.comments %}
+                            <li>{{ link('validator_comment_read',{comment:comment.id},{name:comment,title:comment}) }}</li>
+                        {% else %}
+                            <li>Aucun</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ user.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ user.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

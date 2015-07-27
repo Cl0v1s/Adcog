@@ -1,0 +1,26 @@
+{% extends 'AdcogUserBundle:UserAccount:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_account_update') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <p class="alert alert-info">
+        Vos coordonnées ne seront pas diffusées sur le site public à l'exception de votre nom et de votre prénom (pour les commentaires par exemple).
+        Une confirmation vous sera transmise si vous modifiez votre email.
+    </p>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('user_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

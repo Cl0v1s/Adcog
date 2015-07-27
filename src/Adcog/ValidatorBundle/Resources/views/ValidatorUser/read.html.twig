@@ -1,0 +1,44 @@
+{% extends 'AdcogValidatorBundle:Validator:index.html.twig' %}
+
+{% block title %}{{ user }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('validator_user_read',{user:user.id},{name:user,title:user}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% if user.hasBeenValidated() %}
+        {% if user.isValid() %}
+            <p class="alert alert-success">Ce compte a déjà été validé {{ user.validated|dateago }} !</p>
+        {% else %}
+            <p class="alert alert-danger">Ce compte a déjà été invalidé {{ user.invalidated|dateago }} !</p>
+        {% endif %}
+    {% endif %}
+    <p>{{ user }} a créé un compte {{ user.created|dateago }} :</p>
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.school) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.zip) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.website) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('validator_user_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </li>
+                <li class="pull-right">
+                    {{ form_widget(form.invalidate,{attr:{class:'btn btn-danger'}}) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

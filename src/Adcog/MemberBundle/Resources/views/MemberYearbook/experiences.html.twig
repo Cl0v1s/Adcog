@@ -1,0 +1,26 @@
+{% extends 'AdcogMemberBundle:MemberYearbook:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_yearbook_experiences') }}</li>
+{% endblock %}
+
+{% block tab %}
+    <div class="filter">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_rest(form) }}
+        <div class="controls pull-right">
+            <a href="{{ app.request.pathInfo }}" class="btn btn-xs btn-default"><span class="fa fa-times"></span> RAZ</a>
+            <button type="submit" class="btn btn-xs btn-default"><span class="fa fa-filter"></span> Filtrer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <ul class="colored-timeline full">
+        {% for experience in paginator %}
+            {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
+        {% else %}
+            {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+        {% endfor %}
+    </ul>
+{% endblock %}

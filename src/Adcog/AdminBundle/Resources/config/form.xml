@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="adcog.admin_bundle.form.field.emails_fields" class="Adcog\AdminBundle\Form\Field\EmailsType">
+            <argument type="service" id="adcog.default_bundle.transformer.email_transformer"/>
+            <call method="setName">
+                <argument>adcog_admin_emails_field</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_emails_field"/>
+        </service>
+        <service id="adcog.admin_bundle.form.email_fields" class="Adcog\AdminBundle\Form\EmailType">
+            <call method="setName">
+                <argument>adcog_admin_email</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_email"/>
+        </service>
+        <service id="adcog.admin_bundle.form.payment_type" class="Adcog\AdminBundle\Form\PaymentType">
+            <call method="setName">
+                <argument>adcog_admin_payment</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_payment"/>
+        </service>
+        <service id="adcog.admin_bundle.form.payment_filter_type" class="Adcog\AdminBundle\Form\PaymentFilterType">
+            <argument type="service" id="router"/>
+            <call method="setName">
+                <argument>adcog_admin_payment_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_payment_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.user_type" class="Adcog\AdminBundle\Form\UserType">
+            <argument type="service" id="router"/>
+            <call method="setName">
+                <argument>adcog_admin_user</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_user"/>
+        </service>
+        <service id="adcog.admin_bundle.form.user_filter_type" class="Adcog\AdminBundle\Form\UserFilterType">
+            <call method="setName">
+                <argument>adcog_admin_user_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_user_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.school_type" class="Adcog\AdminBundle\Form\SchoolType">
+            <call method="setName">
+                <argument>adcog_admin_school</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_school"/>
+        </service>
+        <service id="adcog.admin_bundle.form.school_filter_type" class="Adcog\AdminBundle\Form\SchoolFilterType">
+            <call method="setName">
+                <argument>adcog_admin_school_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_school_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.role_type" class="Adcog\AdminBundle\Form\RoleType">
+            <call method="setName">
+                <argument>adcog_admin_role</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_role"/>
+        </service>
+        <service id="adcog.admin_bundle.form.role_filter_type" class="Adcog\AdminBundle\Form\RoleFilterType">
+            <call method="setName">
+                <argument>adcog_admin_role_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_role_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.office_type" class="Adcog\AdminBundle\Form\OfficeType">
+            <call method="setName">
+                <argument>adcog_admin_office</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_office"/>
+        </service>
+        <service id="adcog.admin_bundle.form.office_filter_type" class="Adcog\AdminBundle\Form\OfficeFilterType">
+            <call method="setName">
+                <argument>adcog_admin_office_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_office_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.price_type" class="Adcog\AdminBundle\Form\PriceType">
+            <call method="setName">
+                <argument>adcog_admin_price</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_price"/>
+        </service>
+        <service id="adcog.admin_bundle.form.price_filter_type" class="Adcog\AdminBundle\Form\PriceFilterType">
+            <call method="setName">
+                <argument>adcog_admin_price_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_price_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.event_type" class="Adcog\AdminBundle\Form\EventType">
+            <call method="setName">
+                <argument>adcog_admin_event</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_event"/>
+        </service>
+        <service id="adcog.admin_bundle.form.event_filter_type" class="Adcog\AdminBundle\Form\EventFilterType">
+            <call method="setName">
+                <argument>adcog_admin_event_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_event_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.event_participation_type" class="Adcog\AdminBundle\Form\EventParticipationType">
+            <call method="setName">
+                <argument>adcog_admin_event_participation</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_event_participation"/>
+        </service>
+        <service id="adcog.admin_bundle.form.event_participation_filter_type" class="Adcog\AdminBundle\Form\EventParticipationFilterType">
+            <call method="setName">
+                <argument>adcog_admin_event_participation_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_event_participation_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.sector_type" class="Adcog\AdminBundle\Form\SectorType">
+            <call method="setName">
+                <argument>adcog_admin_sector</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_sector"/>
+        </service>
+        <service id="adcog.admin_bundle.form.sector_filter_type" class="Adcog\AdminBundle\Form\SectorFilterType">
+            <call method="setName">
+                <argument>adcog_admin_sector_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_sector_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.employer_type" class="Adcog\AdminBundle\Form\EmployerType">
+            <argument type="service" id="router"/>
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <call method="setName">
+                <argument>adcog_admin_employer</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_employer"/>
+        </service>
+        <service id="adcog.admin_bundle.form.employer_filter_type" class="Adcog\AdminBundle\Form\EmployerFilterType">
+            <call method="setName">
+                <argument>adcog_admin_employer_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_employer_filter"/>
+        </service>
+        <service id="adcog.admin_bundle.form.experience_filter_type" class="Adcog\AdminBundle\Form\ExperienceFilterType">
+            <call method="setName">
+                <argument>adcog_admin_experience_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_experience_filter"/>
+        </service>
+    </services>
+</container>

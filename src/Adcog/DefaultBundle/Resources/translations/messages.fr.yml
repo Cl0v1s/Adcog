@@ -1,0 +1,158 @@
+'Bad credentials': 'Identifiants incorrects'
+admin:
+  previous: Précédente
+  page: Page
+  next: Suivante
+level:
+  info: Information
+  success: OK
+  warning: Attention
+  error: Erreur
+payments:
+  - Créé
+  - 'En cours'
+  - 'Validation en attente'
+  - Terminé
+  - Annulé
+eb:
+  filter:
+    cancel: Annuler
+    filter: Filtrer
+  pager:
+    first: Première
+    previous: Précédente
+    page: Page
+    next: Suivante
+    last: Dernière
+    found: 'élément trouvé|éléments trouvés'
+  ternary:
+    none: Oui et Non
+    yes: Oui
+    no: Non
+  date:
+    never: jamais
+    none: aucune
+    during: pendant
+    and: et
+    year: année|années
+    month: mois|mois
+    months:
+      1: Janvier
+      2: Février
+      3: Mars
+      4: Avril
+      5: Mai
+      6: Juin
+      7: Juillet
+      8: Août
+      9: Septembre
+      10: Octobre
+      11: Novembre
+      12: Décembre
+    hour: heure|heures
+    minute: minute|minutes
+    second: seconde|secondes
+paymentstype:
+  paypal: Paypal
+  check: Chèque
+  cash: Espèces
+  transfer: Virement
+participation:
+  ORG: Organisateur
+  SPEAKER: Présentateur
+  SPECTATOR: Spectateur
+page:
+  blog:
+    index:
+      name: Blog
+      title: 'Le BAC: Blog des Anciens diplômés en Cognitique'
+      description: 'Le BAC: Blog des Anciens diplômés en Cognitique'
+  default:
+    index:
+      name: Accueil
+      title: 'Association des Diplômés en Cognitique'
+      description: 'Développer le réseau des Cogniticiens'
+    event:
+      name: Événements
+      title: Événements
+      description: Événements
+    faq:
+      name: FAQ
+      title: Foire aux questions
+      description: Foire aux questions
+    connexion:
+      name: Connexion
+      title: 'Connexion sur le site de l''ADCOG'
+      description: 'Connexion sur le site de l''ADCOG'
+    contact:
+      name: Contact
+      title: 'Nous contacter'
+      description: 'Nous contacter'
+    presentation:
+      name: Présentation
+      title: 'L''Association des Diplômés en Cognitique'
+      description: 'L''Association des Diplômés en Cognitique'
+    ensc:
+      name: École Nationale Supérieure de Cognitique
+      title: École Nationale Supérieure de Cognitique
+      description: École Nationale Supérieure de Cognitique
+    ipb:
+      name: Institut Polytechnique de Bordeaux
+      title: Institut Polytechnique de Bordeaux
+      description: Institut Polytechnique de Bordeaux
+    adhesion:
+      name: Adhésion
+      title: 'Adhésion à l''ADCOG'
+      description: Inscription
+    register:
+      name: Inscription
+      title: 'Inscription à l''ADCOG'
+      description: Inscription
+    mentions:
+      name: 'Mentions légales'
+      title: 'Mentions légales du site web de l''ADCOG'
+      description: 'Mentions légales'
+    passe:
+      name: 'Mot de passe oublié ?'
+      title: 'Vous avez oublié votre mot de passe ?'
+      description: 'Mot de passe oublié'
+      help:
+        name: 'Récupérer son mot de passe'
+        title: 'Récupérer son mot de passe'
+        description: 'Récupérer son mot de passe'
+    logout:
+      name: Déconnexion
+      title: Déconnexion
+      description: Déconnexion
+  member:
+    index:
+      name: 'Zone membre'
+      title: 'Zone membre'
+      description: 'Zone membre'
+    yearbook:
+      index:
+        name: Annuaire
+        title: Annuaire
+        description: Annuaire
+      members:
+        name: 'Annuaire des membres'
+        title: 'Annuaire des membres'
+        description: 'Annuaire des membres'
+      experiences:
+        name: 'Annuaire des expériences'
+        title: 'Annuaire des expériences'
+        description: 'Annuaire des expériences'
+      employers:
+        name: 'Annuaire des établissements'
+        title: 'Annuaire des établissements'
+        description: 'Annuaire des établissements'
+    school:
+      index:
+        name: Ma promotion
+        title: Ma promotion
+        description: Ma promotion
+    statistics:
+      index:
+        name: Statistiques
+        title: Statistiques
+        description: Statistiques

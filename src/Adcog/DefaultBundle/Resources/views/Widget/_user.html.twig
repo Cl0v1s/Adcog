@@ -1,0 +1,58 @@
+<li class="timeline-inverted user">
+    <div class="timeline-badge">
+        <img src="{{ user|user_profile|imagine_filter('default_40_40') }}" alt="{{ user }}"/>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">
+                {{ link('member_yearbook_member',{user:user.id,slug:user.slug},{name:user,title:user}) }}
+            </h4>
+            <p>
+                <small class="text-muted">
+                    Inscrit depuis le {{ user.created.format('d/m/Y à H\\hi') -}}
+                    {% if user.isMember() %}, membre jusqu'au {{ user.membered.format('d/m/Y') }}{% endif -%}
+                    {% if user.isValidator() %}, validateur de l'association{% endif -%}
+                    {% if user.isBlogger() %}, blogger{% endif -%}
+                    {% if user.isAdmin() %}, administrateur du site web{% endif -%}
+                    .
+                </small>
+            </p>
+        </div>
+        <div class="timeline-body">
+            {% if user.address is not empty or user.zip is not empty or user.city is not empty %}
+                <h3>Contact</h3>
+                <address>
+                    {% if user.address is not empty %}
+                        {{ user.address|nl2br }}<br>
+                    {% endif %}
+                    {% if user.zip is not empty or user.city is not empty or user.country is not empty %}
+                        {{ user.zip }} {{ user.city }} {{ user.country ? '(' ~ user.country ~ ')' : '' }}
+                    {% endif %}
+                </address>
+            {% endif %}
+            <ul>
+                {% if user.phone %}
+                    <li><strong>Téléphone</strong> : <a href="tel:{{ user.phone }}">{{ user.phone }}</a></li>
+                {% endif %}
+                {% if user.website %}
+                    <li><strong>Site web</strong> : <a href="{{ user.website }}">{{ user.website }}</a></li>
+                {% endif %}
+                {% if user.school %}
+                    <li><strong>Promotion</strong> : {{ user.school }}</li>
+                {% endif %}
+            </ul>
+            {% if user.experiences.count > 0 %}
+                <h3>Expériences</h3>
+                <ul>
+                    {% for experience in user.experiences %}
+                        <li>
+                            {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+                            chez
+                            {{ link('member_yearbook_employer',{employer:experience.employer.id,slug:experience.employer.slug},{name:experience.employer,title:experience.employer}) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</li>

@@ -1,0 +1,37 @@
+{% extends 'AdcogValidatorBundle:Validator:index.html.twig' %}
+
+{% block title %}{{ comment }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('validator_comment_read',{comment:comment.id},{name:comment,title:comment}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% if comment.hasBeenValidated() %}
+        {% if comment.isValid() %}
+            <p class="alert alert-success">Ce commentaire a déjà été validé {{ comment.validated|dateago }} !</p>
+        {% else %}
+            <p class="alert alert-danger">Ce commentaire a déjà été invalidé {{ comment.invalidated|dateago }} !</p>
+        {% endif %}
+    {% endif %}
+    <p>{{ comment.author }} a commenté {{ link('blog_read',{post:comment.post.id,slug:comment.post.slug},{name:comment.post,title:comment.post}) }} {{ comment.created|dateago }} :</p>
+    {{ form_start(form) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.post) }}
+    {{ form_row(form.text) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('validator_comment_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </li>
+                <li class="pull-right">
+                    {{ form_widget(form.invalidate,{attr:{class:'btn btn-danger'}}) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

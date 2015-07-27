@@ -1,0 +1,41 @@
+<li class="timeline-inverted payment">
+    <div class="timeline-badge">
+        <i class="fa"></i>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">{{ payment }}</h4>
+            <p>{{ payment.created|timeago }}</p>
+            <ul class="actions pull-right list-inline list-unstyled">
+                <li title="{{ payment.hasBeenValidated() ? (payment.isValid() ? 'Valide' : 'Invalide') : 'En attente de validation ...' }}">
+                    {% if payment.hasBeenValidated() and payment.isValid() %}
+                        <span class="text-success"><span class="fa fa-circle"></span></span>
+                    {% elseif payment.hasBeenValidated() %}
+                        <span class="text-danger"><span class="fa fa-circle-o"></span></span>
+                    {% else %}
+                        <span class="text-info"><span class="fa fa-question"></span></span>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+        <div class="timeline-body">
+            <ul class="list-unstyled">
+                <li><strong>Intitulé</strong> : {{ payment.title }}</li>
+                <li><strong>Description</strong> : {{ payment.description }}</li>
+                <li><strong>Montant</strong> : {{ payment.amount }}€</li>
+                <li><strong>Durée</strong> : {{ payment.duration }} an{{ payment.duration>1?'s':'' }}</li>
+                <li>
+                    {% if payment.hasBeenValidated() and payment.isValid() %}
+                        <strong>Validé</strong> {{ payment.validated|dateago }}
+                        <br>
+                        <strong>Date de fin</strong> : {{ payment.ended|dateago }}
+                    {% elseif payment.hasBeenValidated() %}
+                        <strong>Invalidé</strong> {{ payment.invalidated|dateago }}
+                    {% else %}
+                        <strong>En attente de validation ...</strong>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</li>

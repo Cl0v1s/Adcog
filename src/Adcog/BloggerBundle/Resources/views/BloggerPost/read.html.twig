@@ -1,0 +1,99 @@
+{% extends 'AdcogBloggerBundle:BloggerPost:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':post}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_post_read',{post:post.id},{},{vars:{'%entity%':post }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_post_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_post_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_post_update',{post:post.id},{class:'btn btn-xs btn-warning',ficon:'pencil'},{vars:{'%entity%':post }}) }}</li>
+        <li>{{ link('blogger_post_delete',{post:post.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':post }}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>
+                    {% if is_granted(USER_ROLE_ADMIN) %}
+                        {{ link('admin_user_read',{user:post.author.id},{name:post.author,title:post.author}) }}
+                    {% else %}
+                        {{ post.author }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Lien</th>
+                <td>{{ link('blog_read',{post:post.id,slug:post.slug},{name:path('blog_read',{post:post.id,slug:post.slug}),title:post}) }}</td>
+            </tr>
+            <tr>
+                <th>Validé</th>
+                <td>{{ post.validated|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ post.title }}</td>
+            </tr>
+            <tr>
+                <th>Commentaires</th>
+                <td>
+                    <ul>
+                        {% for comment in post.comments %}
+                            <li>{{ link('validator_comment_read',{comment:comment.id},{name:comment,title:comment}) }}</li>
+                        {% else %}
+                            <li>Aucun commentaire</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Image(lien)</th>
+                <td>
+                    {% if post.uri %}
+                        <a href="{{ post.uri }}">{{ post.uri }}</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    {% if post.uri %}
+                        <img src="{{ post.uri }}"/>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>
+                    <ul>
+                        {% for tag in post.tags %}
+                            <li>{{ link('blogger_tag_read',{tag:tag.id},{name:tag,title:tag}) }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ post.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ post.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Texte</h2>
+    <div>{{ post.text|raw }}</div>
+{% endblock %}

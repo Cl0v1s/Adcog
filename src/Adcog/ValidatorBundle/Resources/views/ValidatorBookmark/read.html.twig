@@ -1,0 +1,37 @@
+{% extends 'AdcogValidatorBundle:ValidatorBookmark:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':bookmark}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('validator_bookmark_read',{bookmark:bookmark.id},{},{vars:{'%entity%':bookmark }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% if bookmark.hasBeenValidated() %}
+        {% if bookmark.isValid() %}
+            <p class="alert alert-success">Ce bookmark a déjà été validé {{ bookmark.validated|dateago }} !</p>
+        {% else %}
+            <p class="alert alert-danger">Ce bookmark a déjà été invalidé {{ bookmark.invalidated|dateago }} !</p>
+        {% endif %}
+    {% endif %}
+    <p>{{ bookmark.author }} a créé ce bookmark {{ bookmark.created|dateago }} :</p>
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.href) }}
+    {{ form_row(form.tags) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('validator_bookmark_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </li>
+                <li class="pull-right">
+                    {{ form_widget(form.invalidate,{attr:{class:'btn btn-danger' }}) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

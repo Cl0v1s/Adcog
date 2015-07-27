@@ -1,0 +1,49 @@
+{% extends 'AdcogAdminBundle:AdminEventParticipation:index.html.twig' %}
+
+{% block title %}{{ eventParticipation }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_event_participation_read',{eventParticipation:eventParticipation.id},{name:eventParticipation,title:eventParticipation}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_event_participation_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_event_participation_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_event_participation_update',{eventParticipation:eventParticipation.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_event_participation_delete',{eventParticipation:eventParticipation.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ eventParticipation.id }}</td>
+            </tr>
+            <tr>
+                <th>Utilisateur</th>
+                <td>{{ link('admin_user_read',{user:eventParticipation.user.id},{name:eventParticipation.user,title:eventParticipation.user}) }}</td>
+            </tr>
+            <tr>
+                <th>Evènement</th>
+                <td>{{ link('admin_event_read',{event:eventParticipation.event.id},{name:eventParticipation.event,title:eventParticipation.event}) }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ eventParticipation.typeName }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ eventParticipation.comment|nl2br }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ eventParticipation.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ eventParticipation.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,71 @@
+<li class="timeline-inverted experience {{ experience.type }} {{ experience.ended ? 'ended' : 'not-ended' }}">
+    <div class="timeline-badge">
+        <i class="fa"></i>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">
+                {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+            </h4>
+            <p>
+                <small class="text-muted">
+                    <i class="fa fa-clock-o"></i> {{ experience.started|timeago }}
+                    {% if experience.ended %}
+                        {{ experience.started|timediff(experience.ended) }}
+                    {% endif %}
+                </small>
+            </p>
+            {% if is_granted(USER_ROLE_USER) and experience.user.id == app.user.id %}
+                <ul class="actions pull-right list-inline list-unstyled">
+                    <li class="dropdown">
+                        <a class="btn btn-xs btn-default dropdown-toggle dropdown-toggle-user" data-toggle="dropdown" href="#">
+                            <i class="fa fa-cog"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>{{ link('user_experience_update',{experience:experience.id},{class:'btn-xs',ficon:'pencil'}) }}</li>
+                            <li>{{ link('user_experience_delete',{experience:experience.id},{class:'btn-xs',ficon:'trash-o'}) }}</li>
+                        </ul>
+                    </li>
+                    <li title="{{ experience.isPublic ? 'Public' : 'Privé' }}">{{ experience.isPublic|yes_no_icon }}</li>
+                </ul>
+            {% endif %}
+        </div>
+        <div class="timeline-body">
+            <div class="tags pull-right">
+                {% for sector in experience.sectors %}
+                    <span class="tag">{{ sector }}</span>
+                {% endfor %}
+            </div>
+            <ul class="list-unstyled">
+                <li><strong>Membre</strong> : {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}</li>
+                {% if experience.salary %}
+                    <li><strong>Salaire</strong> : {{ experience.salaryName }}</li>
+                {% endif %}
+                <li><strong>Établissement/Employeur</strong> : {{ link('member_yearbook_employer',{employer:experience.employer.id,slug:experience.employer.slug},{name:experience.employer,title:experience.employer}) }}</li>
+                {% if experience.employer.address %}
+                    <li><strong>Adresse</strong> : {{ experience.employer.address }}</li>
+                {% endif %}
+                {% if experience.employer.zip %}
+                    <li><strong>Code postal</strong> : {{ experience.employer.zip }}</li>
+                {% endif %}
+                {% if experience.employer.city %}
+                    <li><strong>Ville</strong> : {{ experience.employer.city }}</li>
+                {% endif %}
+                {% if experience.employer.country %}
+                    <li><strong>Pays</strong> : {{ experience.employer.country }}</li>
+                {% endif %}
+                {% if experience.employer.phone %}
+                    <li><strong>Téléphone</strong> : <a href="tel:{{ experience.employer.phone }}">{{ experience.employer.phone }}</a></li>
+                {% endif %}
+                {% if experience.employer.website %}
+                    <li><strong>Site web</strong> : <a href="{{ experience.employer.website }}">{{ experience.employer.website }}</a></li>
+                {% endif %}
+                {% if experience.employer.email %}
+                    <li><strong>Email</strong> : <a href="mailto:{{ experience.employer.email }}">{{ experience.employer.email }}</a></li>
+                {% endif %}
+            </ul>
+            <p>{{ experience.description|nl2br }}</p>
+        </div>
+    </div>
+</li>

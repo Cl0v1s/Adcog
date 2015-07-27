@@ -1,0 +1,43 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            Votre facture #{{ payment.id }} a été refusée par un administrateur de l'Association
+            des anciens Diplômés en Cognitique. Votre statut de membre n'a pas été prolongé. Pour
+            plus de détails, merci de prendre <a href="{{ url('default_contact') }}" title="Contact">contact</a>
+            avec un administrateur.
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <hr>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><strong>Facture</strong> : #{{ payment.id }}</td>
+    </tr>
+    <tr>
+        <td><strong>Intitulé</strong> : {{ payment.title }}</td>
+    </tr>
+    <tr>
+        <td><strong>Montant</strong> : {{ payment.amount }}€</td>
+    </tr>
+    <tr>
+        <td><strong>Durée</strong> : {{ payment.duration }} an{{ payment.duration>1?'s':'' }}</td>
+    </tr>
+    <tr>
+        <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+        <td>
+            <blockquote>{{ payment.description|nl2br }}</blockquote>
+        </td>
+    </tr>
+{% endblock %}

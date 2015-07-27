@@ -1,0 +1,13 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block title %}Erreur {{ code }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="#">Erreur {{ code }}</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Erreur {{ code }}</h1>
+    <p class="well">Désolé, une erreur s'est produite.</p>
+{% endblock %}

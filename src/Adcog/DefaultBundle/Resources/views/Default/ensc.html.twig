@@ -1,0 +1,25 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_ensc') }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="featurette-heading">{{ ensc.title }}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            {{ ensc.content|raw }}
+        </div>
+        <div class="col-md-6">
+            <ul class="colored-timeline full square">
+                {% for school in paginator %}
+                    {% include 'AdcogDefaultBundle:Widget:_school.html.twig' %}
+                {% else %}
+                    {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+                {% endfor %}
+            </ul>
+            {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

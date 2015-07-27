@@ -1,0 +1,17 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        {% for file in paginator %}
+            <div class="col-xs-2">
+                <div class="thumbnail">
+                    {% set jsLink = "window.opener.CKEDITOR.tools.callFunction(" ~ app.request.query.get('CKEditorFuncNum') ~ ",'" ~ file.uri ~ "');window.close();" %}
+                    <a class="btn btn-default" href="javascript:{{ jsLink|raw }}">
+                        <img src="{{ file.uri|imagine_filter('default_300_200') }}" alt="{{ file.filename }}">
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+{% endblock %}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="app"/>
+	<buildpathentry kind="src" path="src/Adcog/AdminBundle"/>
+	<buildpathentry kind="src" path="src/Adcog/BloggerBundle"/>
+	<buildpathentry kind="src" path="src/Adcog/DefaultBundle"/>
+	<buildpathentry kind="src" path="src/Adcog/MemberBundle"/>
+	<buildpathentry kind="src" path="src/Adcog/UserBundle"/>
+	<buildpathentry kind="src" path="src/Adcog/ValidatorBundle"/>
+	<buildpathentry kind="src" path="web"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>

@@ -1,0 +1,69 @@
+{% extends 'AdcogDefaultBundle:Blog:index.html.twig' %}
+
+{% block title %}
+    {{ title('blog_index') }} - {{ tag }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ tag_render(tag) }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ tag }}</h1>
+    <div id="articles" class="row">
+        <div class="col-lg-8">
+            {% for post in paginator %}
+                <article class="article row">
+                    <div class="col-lg-2">
+                        <div class="date">{{ post.created.format('d') }} {{ post.created.format('F')|cut(3,'')|upper }} <br>{{ post.created.format('Y') }}</div>
+                        <div class="type"><span class="fa fa-asterisk"></span></div>
+                    </div>
+                    <div class="col-lg-10">
+                        {% if post.uri is not empty %}
+                            <div class="img">
+                                <img src="{{ post.uri }}" alt="{{ post.title }}"/>
+                            </div>
+                        {% endif %}
+                        <header class="header">
+                            <h3>
+                                {{ link('blog_read',{post:post.id,slug:post.slug},{name:post.title,title:post.title}) }}
+                            </h3>
+                        </header>
+                        <div class="content">{{ post.text|cut(500) }}</div>
+                        <footer class="footer">
+                            <ul class="list-inline list-unstyled">
+                                <li class="pull-left"><span class="fa fa-user"></span> {{ post.author }}</li>
+                                {% if post.tags|length > 0 %}
+                                    <li class="pull-left">
+                                        <span class="fa fa-tags"></span>
+                                        {% for tag in post.tags -%}
+                                            {{ tag_render(tag) }}{{ loop.last?'':', ' }}
+                                        {%- endfor %}
+                                    </li>
+                                {% endif %}
+                                {% if post.comments|length > 0 %}
+                                    <li class="pull-left">
+                                        <span class="fa fa-comment"></span>
+                                        {{ post.comments|length }} réponse{{ post.comments|length>1?'s':'' }}
+                                    </li>
+                                {% endif %}
+                                <li class="pull-right">
+                                    <a href="#" class="pull-right">{{ link('blog_read',{post:post.id,slug:post.slug},{name:'Lire l\'article &raquo;',title:post.title}) }}</a>
+                                </li>
+                            </ul>
+                        </footer>
+                    </div>
+                </article>
+            {% else %}
+                <p class="alert alert-info">Aucun article dans le blog.</p>
+            {% endfor %}
+            {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+        </div>
+        <div class="col-lg-4">
+            {{ render(controller('AdcogDefaultBundle:Blog:popularTags')) }}
+            {{ render(controller('AdcogDefaultBundle:Blog:popularComments')) }}
+            {{ render(controller('AdcogDefaultBundle:Blog:recentArticles')) }}
+        </div>
+    </div>
+{% endblock %}

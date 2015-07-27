@@ -1,0 +1,144 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block form_result %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_index',{},{name:app.security.token.user}) }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div id="subnav" class="col-md-3">
+            <div class="affixer">
+                <h3>Informations</h3>
+                <ul class="nav">
+                    <li{{ current('user_account', 'active', 'user_account') }}>{{ link('user_account_index') }}</li>
+                    <li{{ current('user_profile', 'active', 'user_profile') }}>{{ link('user_profile_index') }}</li>
+                    <li{{ current('user_subscribe', 'active', 'user_subscribe') }}>{{ link('user_subscribe_index') }}</li>
+                    <li{{ current('user_bill', 'active', 'user_bill') }}>{{ link('user_bill_index') }}</li>
+                    <li{{ current('user_experience', 'active', 'user_experience') }}>{{ link('user_experience_index') }}</li>
+                    <li{{ current('user_event', 'active', 'user_event') }}>{{ link('user_event_index') }}</li>
+                    <li{{ current('user_bookmark', 'active', 'user_bookmark') }}>{{ link('user_bookmark_index') }}</li>
+                </ul>
+                <h3>Zone membre</h3>
+                {% if is_granted(USER_ROLE_MEMBER) %}
+                    <ul class="nav">
+                        <li{{ current('member_school', 'active', 'member_school') }}>{{ link('member_school_index') }}</li>
+                        <li{{ current('member_yearbook', 'active', 'member_yearbook') }}>{{ link('member_yearbook_index') }}</li>
+                        <li{{ current('member_statistics', 'active', 'member_statistics') }}>{{ link('member_statistics_index') }}</li>
+                    </ul>
+                {% else %}
+                    <p>
+                        <small>
+                            Vous n'êtes pas membre de l'association. Si vous désirez profiter des avantages du
+                            réseau des anciens diplômés en Cognitique, il vous est possible de gérer votre
+                            abonnement sur la page suivante : <strong>{{ link('user_subscribe_index') }}</strong>.
+                        </small>
+                    </p>
+                {% endif %}
+                {% if is_granted(USER_ROLE_VALIDATOR) %}
+                    <h3>Zone validateur</h3>
+                    <ul class="nav">
+                        <li{{ current('validator_comment') }}>
+                            <a href="{{ path('validator_comment_index') }}" title="{{ title('validator_comment_index') }}">
+                                {{ name('validator_comment_index') }}
+                                <span class="badge pull-right">{{ validator_count('comment') }}</span>
+                            </a>
+                        </li>
+                        <li{{ current('validator_payment') }}>
+                            <a href="{{ path('validator_payment_index') }}" title="{{ title('validator_payment_index') }}">
+                                {{ name('validator_payment_index') }}
+                                <span class="badge pull-right">{{ validator_count('payment') }}</span>
+                            </a>
+                        </li>
+                        <li{{ current('validator_user') }}>
+                            <a href="{{ path('validator_user_index') }}" title="{{ title('validator_user_index') }}">
+                                {{ name('validator_user_index') }}
+                                <span class="badge pull-right">{{ validator_count('user') }}</span>
+                            </a>
+                        </li>
+                        <li{{ current('validator_bookmark') }}>
+                            <a href="{{ path('validator_bookmark_index') }}" title="{{ title('validator_bookmark_index') }}">
+                                {{ name('validator_bookmark_index') }}
+                                <span class="badge pull-right">{{ validator_count('bookmark') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% if is_granted(USER_ROLE_BLOGGER) %}
+                    <h3>Zone blogger</h3>
+                    <ul class="nav">
+                        <li{{ current('blogger_slider') }}>{{ link('blogger_slider_index') }}</li>
+                        <li{{ current('blogger_post') }}>{{ link('blogger_post_index') }}</li>
+                        <li{{ current('blogger_tag') }}>{{ link('blogger_tag_index') }}</li>
+                        <li{{ current('blogger_file') }}>{{ link('blogger_file_index') }}</li>
+                        <li{{ current('blogger_faq_category') }}>{{ link('blogger_faq_category_index') }}</li>
+                        <li{{ current('blogger_faq') }}>{{ link('blogger_faq_index') }}</li>
+                        <li{{ current('blogger_static_content') }}>{{ link('blogger_static_content_index') }}</li>
+                    </ul>
+                {% endif %}
+                {% if is_granted(USER_ROLE_ADMIN) %}
+                    <h3>Zone gestion</h3>
+                    <ul class="nav">
+                        <li{{ current('admin_') }}>{{ link('admin_index') }}</li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div id="area" class="col-md-9">
+            <h1>{{ block('title') }}</h1>
+            {% include 'AdcogDefaultBundle::form.html.twig' %}
+            {{ block('subcontent') }}
+            {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
+
+{#{% block javascript %}#}
+    {#{{ parent() }}#}
+    {#<script type="text/javascript">#}
+        {#$(document).ready(function () {#}
+            {#// Instance the tour#}
+            {#var tour = new Tour({#}
+                {#name: 'Présentation de la zone utilisateur',#}
+                {#steps: [#}
+                    {#{#}
+                        {#element: '#subnav .nav .user_account a',#}
+                        {#title: 'Mon compte',#}
+                        {#content: 'Lorem ipsum dolor sit amet'#}
+                    {#},#}
+                    {#{#}
+                        {#element: '#subnav .nav .user_profile a',#}
+                        {#title: 'Mon profil public',#}
+                        {#content: 'Lorem ipsum dolor sit amet'#}
+                    {#},#}
+                    {#{#}
+                        {#element: '#subnav .nav .user_subscribe a',#}
+                        {#title: 'Mon adhésion',#}
+                        {#content: 'Lorem ipsum dolor sit amet'#}
+                    {#},#}
+                    {#{#}
+                        {#element: '#subnav .nav .user_bill a',#}
+                        {#title: 'Mes factures',#}
+                        {#content: 'Lorem ipsum dolor sit amet'#}
+                    {#},#}
+                    {#{#}
+                        {#element: '#subnav .nav .user_experience a',#}
+                        {#title: 'Mon cursus',#}
+                        {#content: 'Lorem ipsum dolor sit amet'#}
+                    {#},#}
+                    {#{#}
+                        {#element: '#subnav .nav .user_event a',#}
+                        {#title: 'Événements',#}
+                        {#content: 'Lorem ipsum dolor sit amet'#}
+                    {#}#}
+                {#]#}
+            {#});#}
+
+            {#tour.init();#}
+            {#tour.start(true);#}
+        {#});#}
+    {#</script>#}
+{#{% endblock %}#}

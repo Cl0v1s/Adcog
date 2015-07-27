@@ -1,0 +1,49 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_role_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('admin_role_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th>Rôle</th>
+                        <th class="sm">Bureau</th>
+                        <th class="sm">Classement</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for role in paginator %}
+                        <tr>
+                            <td>{{ role.id }}</td>
+                            <td>{{ role }}</td>
+                            <td>{{ role.desk|yes_no_icon }}</td>
+                            <td>{{ role.order }}</td>
+                            <td>{{ link('admin_role_read',{role:role.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:'',title:role}) }}</td>
+                            <td>{{ link('admin_role_update',{role:role.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:'',title:role}) }}</td>
+                            <td>{{ link('admin_role_delete',{role:role.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:'',title:role}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

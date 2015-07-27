@@ -1,0 +1,57 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_experience_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('admin_experience_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th class="sm"></th>
+                        <th>Utilisateur</th>
+                        <th class="sm">Type</th>
+                        <th>Expérience</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for experience in paginator %}
+                        <tr>
+                            <td>{{ experience.id }}</td>
+                            <td class="sm"><img class="no-max" src="{{ experience.user|user_profile|imagine_filter('default_20_20') }}"/></td>
+                            <td>
+                                {% if is_granted(USER_ROLE_ADMIN) %}
+                                    {{ link('admin_user_read',{user:experience.user.id},{name:experience.user,title:experience.user}) }}
+                                {% else %}
+                                    {{ experience.user }}
+                                {% endif %}
+                            </td>
+                            <td>{{ experience.typeName }}</td>
+                            <td class="let">{{ experience }}</td>
+                            <td>{{ link('admin_experience_read',{experience:experience.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:'',title:experience}) }}</td>
+                            <td>{{ link('admin_experience_update',{experience:experience.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:'',title:experience}) }}</td>
+                            <td>{{ link('admin_experience_delete',{experience:experience.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:'',title:experience}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

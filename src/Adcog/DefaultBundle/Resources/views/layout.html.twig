@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>{% block title %}{{ title() }}{% endblock %} - ADCOG</title>
+        <meta name="description" content="{% block description %}{{ description() }}{% endblock %}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% stylesheets
+        'bundles/adcogdefault/vendor/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css'
+        'bundles/adcogdefault/vendor/bootstrap-3.2.0-dist/css/bootstrap.min.css'
+        'bundles/adcogdefault/vendor/bootstrap-tour-0.9.3/build/css/bootstrap-tour.min.css'
+        'bundles/adcogdefault/vendor/jquery-ui-1.10.3/themes/base/minified/jquery-ui.min.css'
+        'bundles/adcogdefault/vendor/select2-3.5.1/select2.css'
+        'bundles/adcogdefault/vendor/select2-3.5.1/select2-bootstrap.css'
+        'bundles/adcogdefault/vendor/font-awesome-4.2.0/css/font-awesome.min.css'
+        'bundles/adcogdefault/vendor/highslide-4.1.13/highslide/highslide.css'
+        'bundles/adcogdefault/css/font.css'
+        'bundles/adcogdefault/css/timeline.css'
+        'bundles/adcogdefault/css/colored.css'
+        'bundles/adcogdefault/css/orderstatus.css'
+        'bundles/adcogdefault/css/board.css'
+        'bundles/adcogdefault/css/main.css'
+        output='bundles/main.css'
+        filter='cssrewrite,?yui_css' %}
+        <link type="text/css" media="screen" rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+        <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+        <!--[if IE]>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+        <![endif]-->
+    </head>
+    <body id="{{ app.request.attributes.get('_route') }}">
+        {% block body %}
+            <header id="header">
+                <div class="container row">
+                    <div id="logo" class="pull-left">
+                        {{ link('default_index',{},{'name':'ADCOG'}) }}
+                    </div>
+                    <div class="navbar navbar-default navbar-static-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Afficher le menu</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul id="nav" class="list-unstyled list-inline">
+                                <li{{ current('default_index') }}>{{ link('default_index') }}</li>
+                                <li{{ current('default_presentation') }}>{{ link('default_presentation') }}</li>
+                                <li{{ current('default_ensc') }}>{{ link('default_ensc',{},{name:'ENSC'}) }}</li>
+                                <li{{ current('default_faq') }}>{{ link('default_faq',{},{name:'FAQ'}) }}</li>
+                                <li{{ current('default_event') }}>{{ link('default_event') }}</li>
+                                <li{{ current('blog') }}>{{ link('blog_index') }}</li>
+                                <li{{ current('default_contact') }}>{{ link('default_contact') }}</li>
+                                {% if app.security.token and is_granted(USER_ROLE_USER) %}
+                                    <li{{ current(['user_index'],'active','lghidden') }}>{{ link('user_index') }}</li>
+                                    <li{{ current(['default_logout'],'active','lghidden') }}>{{ link('default_logout') }}</li>
+                                {% else %}
+                                    <li{{ current(['default_connexion'],'active','lghidden') }}>{{ link('default_connexion') }}</li>
+                                    <li{{ current(['default_register'],'active','lghidden') }}>{{ link('default_register') }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% block breadcrumb_container %}
+                        <div id="breadcrumb" class="row">
+                            <div id="account" class="pull-right">
+                                <ul class="list-inline list-unstyled">
+                                    {% if app.user %}
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle dropdown-toggle-user" data-toggle="dropdown" href="#" style="background-image:url({{ app.user|user_profile|imagine_filter('default_30_30') }})">
+                                                {{ app.user }}
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>{{ link('user_index') }}</li>
+                                                <li>{{ link('user_profile_index') }}</li>
+                                                <li>{{ link('user_subscribe_index') }}</li>
+                                                <li>{{ link('user_bill_index') }}</li>
+                                                <li>{{ link('user_experience_index') }}</li>
+                                                <li>{{ link('user_event_index') }}</li>
+                                                {% if is_granted(USER_ROLE_MEMBER) %}
+                                                    <li class="divider"></li>
+                                                    <li>{{ link('member_school_index') }}</li>
+                                                    <li>{{ link('member_yearbook_index') }}</li>
+                                                    <li>{{ link('member_statistics_index') }}</li>
+                                                {% endif %}
+                                                {% if is_granted(USER_ROLE_VALIDATOR) or is_granted(USER_ROLE_BLOGGER) or is_granted(USER_ROLE_ADMIN) %}
+                                                    <li class="divider"></li>
+                                                    {% if is_granted(USER_ROLE_VALIDATOR) %}
+                                                        <li>{{ link('validator_index') }}</li>
+                                                    {% endif %}
+                                                    {% if is_granted(USER_ROLE_BLOGGER) %}
+                                                        <li>{{ link('blogger_index') }}</li>
+                                                    {% endif %}
+                                                    {% if is_granted(USER_ROLE_ADMIN) %}
+                                                        <li>{{ link('admin_index') }}</li>
+                                                    {% endif %}
+                                                {% endif %}
+                                                <li class="divider"></li>
+                                                <li>{{ link('default_logout') }}</li>
+                                            </ul>
+                                        </li>
+                                    {% else %}
+                                        <li{{ current('default_connexion') }}>{{ link('default_connexion') }}</li>
+                                        <li{{ current('default_register') }}>{{ link('default_register') }}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <ol class="breadcrumb pull-left">
+                                {% block breadcrumb %}
+                                    <li><a href="{{ path('default_index') }}"><span class="fa fa-home"></span></a></li>
+                                {% endblock %}
+                            </ol>
+                        </div>
+                    {% endblock %}
+                </div>
+            </header>
+            {% block content_container_before %}{% endblock %}
+            <div id="content" class="container clearfix">
+                {% block form_result %}
+                    {% include 'AdcogDefaultBundle::form.html.twig' %}
+                {% endblock %}
+                {% block content %}
+                    {% block nav %}{% endblock %}
+                {% endblock %}
+            </div>
+            <footer id="footer">
+                <div class="container">
+                    <div class="brain">
+                        <dl class="dl-horizontal">
+                            <dt>Plan du site</dt>
+                            <dd>
+                                <ul class="list-unstyled list-inline">
+                                    <li{{ current('default_index') }}>{{ link('default_index') }}</li>
+                                    <li{{ current('default_presentation') }}>{{ link('default_presentation') }}</li>
+                                    <li{{ current('default_ensc') }}>{{ link('default_ensc',{},{name:'ENSC'}) }}</li>
+                                    <li{{ current('default_ipb') }}>{{ link('default_ipb',{},{name:'IPB'}) }}</li>
+                                    <li{{ current('default_faq') }}>{{ link('default_faq',{},{name:'FAQ'}) }}</li>
+                                    <li{{ current('default_register') }}>{{ link('default_register') }}</li>
+                                    <li{{ current('default_event') }}>{{ link('default_event') }}</li>
+                                    <li{{ current('blog_index') }}>{{ link('blog_index') }}</li>
+                                    <li{{ current('default_contact') }}>{{ link('default_contact') }}</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <ul class="list-unstyled list-inline social text-right">
+                            <li>
+                                <a class="facebook" title="Facebook" href="{{ facebook_uri }}">Facebook</a>
+                            </li>
+                            <li>
+                                <a class="twitter" title="Twitter" href="{{ twitter_uri }}">Twitter</a>
+                            </li>
+                            <li>
+                                <a class="youtube" title="Youtube" href="{{ youtube_uri }}">Youtube</a>
+                            </li>
+                            <li>
+                                <a class="rss" title="RSS" href="{{ path('blog_rss') }}">RSS</a>
+                            </li>
+                        </ul>
+                        <ul class="copy list-inline list-unstyled">
+                            <li>Copyright © {{ 'now'|date('Y') }}</li>
+                            <li>Tous droits réservés {{ link('default_index',{},{'name':'adcog.fr'}) }}</li>
+                            <li>Design & Développement : <a href="http://emmanuelballery.com/">Emmanuel BALLERY</a></li>
+                            <li>{{ link('default_mentions',{},{name:'mentions légales'}) }}</li>
+                            <li>Support : <a href="mailto:contact@adcog.fr" title="Contact">contact@adcog.fr</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        {% endblock body %}
+        {% block javascript %}
+            <script type="text/javascript">
+                CKEDITOR_BASEPATH = '/bundles/adcogdefault/vendor/ckeditor/';
+            </script>
+            {% javascripts
+            'bundles/adcogdefault/vendor/jquery-1.11.0.min.js'
+            'bundles/adcogdefault/vendor/bootstrap-3.2.0-dist/js/bootstrap.min.js'
+            'bundles/adcogdefault/vendor/bootstrap-tour-0.9.3/build/js/bootstrap-tour.min.js'
+            'bundles/adcogdefault/vendor/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js'
+            'bundles/adcogdefault/vendor/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js'
+            'bundles/adcogdefault/vendor/jquery-ui-1.10.3/ui/minified/i18n/jquery.ui.datepicker-fr.min.js'
+            'bundles/adcogdefault/vendor/select2-3.5.1/select2.min.js'
+            'bundles/adcogdefault/vendor/placeholders.min.js'
+            'bundles/adcogdefault/vendor/ckeditor/ckeditor.js'
+            'bundles/adcogdefault/vendor/ckeditor/lang/fr.js'
+            'bundles/adcogdefault/vendor/ckeditor/adapters/jquery.js'
+            'bundles/adcogdefault/vendor/Highcharts-3.0.10/js/highcharts.js'
+            'bundles/adcogdefault/vendor/highslide-4.1.13/highslide/highslide.js'
+            'bundles/adcogdefault/vendor/moment-with-locales.js'
+            'bundles/adcogdefault/js/ckeditor-config.js'
+            'bundles/adcogdefault/js/ckeditor-styles.js'
+            'bundles/adcogdefault/js/highslide-config.js'
+            'bundles/adcogdefault/js/main.js'
+            output='bundles/main.js'
+            filter='?yui_js' %}
+            <script type="text/javascript" src="{{ asset_url }}" charset="utf-8"></script>
+            {% endjavascripts %}
+            {% if 'prod' == app.environment %}
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-32588345-1', 'adcog.fr');
+                ga('send', 'pageview');
+            </script>
+            {% endif %}
+        {% endblock %}
+    </body>
+</html>

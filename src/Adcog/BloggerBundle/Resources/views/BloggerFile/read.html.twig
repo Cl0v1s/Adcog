@@ -1,0 +1,78 @@
+{% extends 'AdcogBloggerBundle:BloggerFile:index.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':file}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_file_read',{file:file.id},{},{vars:{'%entity%':file }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_file_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_file_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_file_delete',{file:file.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':file }}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ file.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ file.filename }}</td>
+            </tr>
+            <tr>
+                <th>Extension</th>
+                <td>{{ file.extension }}</td>
+            </tr>
+            <tr>
+                <th>Mime type</th>
+                <td>{{ file.mime }}</td>
+            </tr>
+            <tr>
+                <th>Chemin</th>
+                <td>{{ file.path }}</td>
+            </tr>
+            <tr>
+                <th>URL</th>
+                <td><a href="{{ file.uri }}">{{ file.uri }}</a></td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ file.size }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ file.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ file.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Articles</h2>
+    <ul>
+        {% for post in posts %}
+            <li><span class="text-danger fa fa-warning"></span> Fichier référencé dans {{ link('blogger_post_read',{post:post.id},{name:post,title:post}) }}</li>
+        {% else %}
+            <li><span class="text-success fa fa-thumbs-up"></span> Ce fichier ne semble pas référencé dans un article du blog pour l'instant.</li>
+        {% endfor %}
+        {% for staticContent in staticContents %}
+            <li><span class="text-danger fa fa-warning"></span> Fichier référencé dans {{ link('blogger_static_content_read',{staticContent:staticContent.id},{name:staticContent,title:staticContent}) }}</li>
+        {% else %}
+            <li><span class="text-success fa fa-thumbs-up"></span> Ce fichier ne semble pas référencé dans un contenu du site pour l'instant.</li>
+        {% endfor %}
+        {% for event in events %}
+            <li><span class="text-danger fa fa-warning"></span> Fichier référencé dans "{{ event }}"</li>
+        {% else %}
+            <li><span class="text-success fa fa-thumbs-up"></span> Ce fichier ne semble pas référencé dans un événement pour l'instant.</li>
+        {% endfor %}
+    </ul>
+    {% if 'image/' in file.mime %}
+        <h2>Image</h2>
+        <img src="{{ file.uri }}"/>
+    {% endif %}
+{% endblock %}

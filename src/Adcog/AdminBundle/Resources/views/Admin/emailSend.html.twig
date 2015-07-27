@@ -1,0 +1,15 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_email_send') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="controls pull-right">
+        <button class="btn btn-xs btn-success" type="submit">Envoyer</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

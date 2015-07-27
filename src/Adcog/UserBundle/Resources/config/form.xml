@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="adcog.user_bundle.form.bookmark_filter_type" class="Adcog\UserBundle\Form\BookmarkFilterType">
+            <call method="setName">
+                <argument>adcog_user_bookmark_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_user_bookmark_filter"/>
+        </service>
+        <service id="adcog.user_bundle.form.bookmark_type" class="Adcog\UserBundle\Form\BookmarkType">
+            <call method="setName">
+                <argument>adcog_user_bookmark</argument>
+            </call>
+            <tag name="form.type" alias="adcog_user_bookmark"/>
+        </service>
+    </services>
+</container>

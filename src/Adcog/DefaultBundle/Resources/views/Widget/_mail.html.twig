@@ -1,0 +1,16 @@
+<li class="{{ mail.author and mail.author.id == app.user.id ? 'timeline-inverted' : '' }} mail">
+    <div class="timeline-badge">
+        <i class="fa"></i>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">{{ mail.author|default('SYSTEM') }}</h4>
+            <p>
+                <small class="text-muted"><i class="fa fa-clock-o"></i> {{ mail.created.format('d/m/Y H\\hi') }}</small>
+            </p>
+        </div>
+        <div class="timeline-body">
+            <p>{{ mail.message|nl2br }}</p>
+        </div>
+    </div>
+</li>

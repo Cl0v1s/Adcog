@@ -1,0 +1,25 @@
+{% extends 'AdcogMemberBundle:Member:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_school_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <p class="alert alert-info">
+        La promotion est choisie lors de l'inscription et est validée par nos administrateurs en accord avec l'{{ link('default_ensc') }}.
+    </p>
+    {% if app.user.school %}
+        <ul class="colored-timeline full square">
+            {% for user in paginator %}
+                {% include 'AdcogDefaultBundle:Widget:_user_small.html.twig' %}
+            {% else %}
+                {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="alert alert-warning">
+            Vous n'êtes affecté à aucune promotion. Il y a un problème ? Rendez-vous sur la page {{ link('default_contact') }} pour nous en faire part.
+        </p>
+    {% endif %}
+{% endblock %}

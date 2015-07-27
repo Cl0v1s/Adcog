@@ -1,0 +1,22 @@
+{% extends 'AdcogMemberBundle:MemberYearbook:members.html.twig' %}
+
+{% block title %}{{ user }}{% endblock %}
+
+{% block description %}{{ user }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_yearbook_member',{user:user.id,slug:user.slug},{name:user,title:user}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="colored-timeline full">
+        {% include 'AdcogDefaultBundle:Widget:_user.html.twig' %}
+        {% for experience in user.experiences %}
+            {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
+        {% endfor %}
+    </ul>
+    <ul class="list-unstyled list-inline">
+        <li>{{ link('member_yearbook_members',{},{name:'&laquo; Retour',class:'btn btn-link'}) }}</li>
+    </ul>
+{% endblock %}

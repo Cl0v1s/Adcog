@@ -1,0 +1,29 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_passe') }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8">
+            <h2>Précisez votre adresse email</h2>
+            <p class="alert alert-info">
+                Une fois votre email précisé, nous vous transmettrons un lien vous permettant de réinitialiser votre mot de passe.
+            </p>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="pull-right btn btn-default" type="submit">Récupérer</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-lg-4">
+            <h2>Un problème ?</h2>
+
+            <p>
+                N'hésitez pas à contacter le support en cas de problème en utilisant les différents moyens de contact
+                prévu à cet effet sur la page {{ link('default_contact') }}.
+            </p>
+        </div>
+    </div>
+{% endblock %}

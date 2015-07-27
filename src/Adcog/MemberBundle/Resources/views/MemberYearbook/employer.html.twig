@@ -1,0 +1,19 @@
+{% extends 'AdcogMemberBundle:MemberYearbook:employers.html.twig' %}
+
+{% block title %}{{ employer }}{% endblock %}
+
+{% block description %}{{ employer }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_yearbook_employer',{employer:employer.id,slug:employer.slug},{name:employer,title:employer}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="colored-timeline full">
+        {% include 'AdcogDefaultBundle:Widget:_employer.html.twig' %}
+    </ul>
+    <ul class="list-unstyled list-inline">
+        <li>{{ link('member_yearbook_employers',{},{name:'&laquo; Retour',class:'btn btn-link'}) }}</li>
+    </ul>
+{% endblock %}

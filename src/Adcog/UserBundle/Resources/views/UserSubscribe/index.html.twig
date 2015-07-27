@@ -1,0 +1,50 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_subscribe_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% if is_granted(USER_ROLE_MEMBER) %}
+        <p>
+            <span class="label label-success"><span class="fa fa-thumbs-up"></span></span>
+            Vous êtes membre de l'association jusqu'au
+            <strong>{{ app.user.membered.format('d/m/Y') }}</strong>. Vous pouvez renouveler votre adhésion
+            dès maintenant en quelques clics grace à nos solutions de paiement sécurisées sur internet !
+        </p>
+    {% else %}
+        <p>
+            <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span>
+            Vous n'êtes pas membre de l'association. L'adhésion se fait en quelques clics grace à nos solutions
+            de paiement sécurisées sur internet !
+        </p>
+    {% endif %}
+    {{ block('boardcontent') }}
+{% endblock %}
+
+{% block boardcontent %}
+    <h2>1 - Choix du tarif</h2>
+    <table class="{{ table_class }}">
+        <thead>
+            <tr>
+                <th>Tarif</th>
+                <th>Montant</th>
+                <th>Durée</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for price in prices %}
+                <tr>
+                    <th>{{ price.title }}</th>
+                    <td>{{ price.amount }}€</td>
+                    <td>{{ price.duration }} an{{ price.duration>1 ? 's' : '' }}</td>
+                    <td class="let">{{ price.description }}</td>
+                    <td>{{ link('user_subscribe_mode',{price:price.id,slug:price.slug},{class:'btn btn-primary',name:'Je choisis ce tarif !'}) }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

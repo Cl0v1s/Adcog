@@ -1,0 +1,39 @@
+{% extends 'AdcogBloggerBundle:BloggerPost:read.html.twig' %}
+
+{% block title %}{{ title(null,{'%entity%':post}) }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('blogger_post_update',{post:post.id},{},{vars:{'%entity%':post }}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('blogger_post_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('blogger_post_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('blogger_post_read',{post:post.id},{class:'btn btn-xs btn-default',ficon:'comment'},{vars:{'%entity%':post }}) }}</li>
+        <li>{{ link('blogger_post_delete',{post:post.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':post }}) }}</li>
+    </ul>
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.file) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.tags) }}
+    {{ form_row(form.text) }}
+    {{ form_row(form.validate) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('blogger_post_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('blogger_post_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('blogger_post_read',{post:post.id},{class:'btn btn-xs btn-default',ficon:'comment'},{vars:{'%entity%':post }}) }}</li>
+                <li>{{ link('blogger_post_delete',{post:post.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'},{vars:{'%entity%':post }}) }}</li>
+                <li class="pull-right">
+                    {{ form_widget(form.fileRemove) }}
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

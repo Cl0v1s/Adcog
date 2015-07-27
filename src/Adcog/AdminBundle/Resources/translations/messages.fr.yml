@@ -1,0 +1,81 @@
+page:
+  admin:
+    todo: {name: Tableau de bord}
+    index: {name: Administration}
+    comment:
+      index: {name: Commentaires}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    sector:
+      index: {name: Secteurs}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+      replace: {name: Remplacer}
+    experience:
+      index: {name: Expériences}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    price:
+      index: {name: Prix}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    role:
+      index: {name: Rôles}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    office:
+      index: {name: 'CA & Bureau'}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    school:
+      index: {name: Promotions}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    user:
+      index: {name: Utilisateurs}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    payment:
+      index: {name: Paiements}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+    event:
+      index: {name: Événements}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+      participation:
+        index: {name: Participations}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}
+    employer:
+      index: {name: Employeurs}
+      create: {name: Créer}
+      read: {name: '%entity%'}
+      update: {name: Modifier}
+      delete: {name: Supprimer}
+      replace: {name: Remplacer}
+    email:
+      name: 'Prévisualisation des emails'
+      send: {name: 'Envoyer un email'}

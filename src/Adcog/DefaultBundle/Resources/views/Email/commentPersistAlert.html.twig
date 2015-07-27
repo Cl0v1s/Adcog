@@ -1,0 +1,42 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            Un commentaire vient d'être ajouté par {{ comment.author }} sur l'article
+            <a href="{{ url('blog_read',{post:comment.post.id,slug:comment.post.slug}) }}">{{ comment.post }}</a>
+            du blog de l'association des Anciens Diplômés en Cognitique.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ comment.author.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ comment.author.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Commentaire</th>
+                        <td>{{ comment.text|nl2br }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            Si vous êtes validateur, vous pouvez dès maintenant le <a href="{{ url('validator_comment_read',{comment:comment.id}) }}" style="color:#000000;text-decoration:underline;">consulter</a> pour le valider.
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+{% endblock %}

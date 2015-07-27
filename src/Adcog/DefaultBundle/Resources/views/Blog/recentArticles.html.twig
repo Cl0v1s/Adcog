@@ -1,0 +1,8 @@
+{% if posts|length > 0 %}
+    <h3>Articles récents</h3>
+    <ul>
+        {% for post in posts %}
+            <li>{{ link('blog_read',{post:post.id,slug:post.slug},{name:post.title,title:post.title}) }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}

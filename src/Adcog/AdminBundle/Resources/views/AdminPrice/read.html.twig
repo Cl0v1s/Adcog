@@ -1,0 +1,49 @@
+{% extends 'AdcogAdminBundle:AdminPrice:index.html.twig' %}
+
+{% block title %}{{ price }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_price_read',{price:price.id},{name:price,title:price}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_price_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_price_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_price_update',{price:price.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_price_delete',{price:price.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ price.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ price.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ price.description }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ price.amount }}€</td>
+            </tr>
+            <tr>
+                <th>Durée</th>
+                <td>{{ price.duration }} an(s)</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ price.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ price.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_passe') }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8">
+            <h2>Choisissez votre mot de passe</h2>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="pull-right btn btn-default" type="submit">Modifier</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-lg-4">
+            <h2>Un problème ?</h2>
+            <p>
+                N'hésitez pas à contacter le support en cas de problème en utilisant les différents moyens de contact
+                prévu à cet effet sur la page {{ link('default_contact') }}.
+            </p>
+        </div>
+    </div>
+{% endblock %}

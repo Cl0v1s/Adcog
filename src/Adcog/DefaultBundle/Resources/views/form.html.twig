@@ -1,0 +1,17 @@
+{% spaceless %}
+    {% if error is defined and error is not empty %}
+        <p class="alert alert-danger">
+            <strong>Erreur </strong> {% if error.message is defined %}{{ error.message }}{% endif %}
+        </p>
+    {% endif %}
+    {% for level in ['info','success','warning','danger','error'] %}
+        {% if app.session.getFlashBag().has(level) %}
+            <p class="alert alert-{{ level=='error'?'danger':level   }}">
+                {% for message in app.session.getFlashBag().get(level) %}
+                    <strong>{{ ('level.%s'|format(level))|trans }}</strong>: {{ message|trans }}
+                    {% if not loop.last %}<br>{% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    {% endfor %}
+{% endspaceless %}

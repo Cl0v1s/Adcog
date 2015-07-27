@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="adcog.blogger_bundle.form.file_type" class="Adcog\BloggerBundle\Form\FileType">
+            <call method="setName">
+                <argument>adcog_blogger_file</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_file"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.file_filter_type" class="Adcog\BloggerBundle\Form\FileFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_file_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_file_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.post_type" class="Adcog\BloggerBundle\Form\PostType">
+            <call method="setName">
+                <argument>adcog_blogger_post</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_post"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.post_filter_type" class="Adcog\BloggerBundle\Form\PostFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_post_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_post_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.tag_type" class="Adcog\BloggerBundle\Form\TagType">
+            <call method="setName">
+                <argument>adcog_blogger_tag</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_tag"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.tag_filter_type" class="Adcog\BloggerBundle\Form\TagFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_tag_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_tag_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.comment_type" class="Adcog\BloggerBundle\Form\CommentType">
+            <call method="setName">
+                <argument>adcog_blogger_comment</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_comment"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.comment_filter_type" class="Adcog\BloggerBundle\Form\CommentFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_comment_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_comment_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.faq_category_filter_type" class="Adcog\BloggerBundle\Form\FaqCategoryFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_faq_category_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_faq_category_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.faq_category_type" class="Adcog\BloggerBundle\Form\FaqCategoryType">
+            <argument type="service" id="eb_string"/>
+            <call method="setName">
+                <argument>adcog_blogger_faq_category</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_faq_category"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.faq_filter_type" class="Adcog\BloggerBundle\Form\FaqFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_faq_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_faq_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.faq_type" class="Adcog\BloggerBundle\Form\FaqType">
+            <argument type="service" id="eb_string"/>
+            <call method="setName">
+                <argument>adcog_blogger_faq</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_faq"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.static_content_filter_type" class="Adcog\BloggerBundle\Form\StaticContentFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_static_content_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_static_content_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.static_content_type" class="Adcog\BloggerBundle\Form\StaticContentType">
+            <argument type="service" id="eb_string"/>
+            <call method="setName">
+                <argument>adcog_blogger_static_content</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_static_content"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.slider_filter_type" class="Adcog\BloggerBundle\Form\SliderFilterType">
+            <call method="setName">
+                <argument>adcog_blogger_slider_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_slider_filter"/>
+        </service>
+        <service id="adcog.blogger_bundle.form.slider_type" class="Adcog\BloggerBundle\Form\SliderType">
+            <argument type="service" id="eb_string"/>
+            <call method="setName">
+                <argument>adcog_blogger_slider</argument>
+            </call>
+            <tag name="form.type" alias="adcog_blogger_slider"/>
+        </service>
+    </services>
+</container>

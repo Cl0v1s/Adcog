@@ -1,0 +1,64 @@
+<a href="http://www.adcog.fr/blog/wp-content/uploads/2011/06/JCBornard.png"><img title="JCBornard" src="http://www.adcog.fr/blog/wp-content/uploads/2011/06/JCBornard.png" alt="Jean-Charles" width="93" height="100"/></a>
+<p><em>Jean-Charles Bornard (promo '09) est doctorant en modélisation comportementale au LESCOT à Lyon. A mi-parcours,
+       il nous présente son sujet de thèse et ses réalisations.</em></p>
+<h5>Sujet de thèse : <strong>Développement d'un modèle de simulation cognitive du conducteur automobile sur une
+                             plateforme de conception virtuelle des assistances à la conduite.</strong></h5>
+<p>La problématique générale de cette thèse porte sur la modélisation du conducteur automobile et sur la simulation
+   informatique des activités mentales de l'humain dans le cadre d'une tâche complexe : la conduite automobile. Il
+   s'agit de concevoir, de développer et d'implémenter un modèle de simulation cognitive du conducteur automobile sur
+   une plateforme de simulation virtuelle, où ce modèle de conducteur pilote un véhicule, le tout dans un environnement
+   routier simulé. La modélisation cognitive du conducteur automobile est un domaine de recherche étudié depuis
+   plusieurs années au
+    <a href="http://www.inrets.fr/linstitut/unites-de-recherche-unites-de-service/lescot/" target="_blank">LESCOT</a>
+   (Laboratoire Ergonomie et Sciences Cognitives pour les Transports) dans le cadre du programme de recherche
+   COSMODRIVE (COgnitive Simulation MOdel of the <span>DRIVE</span>r) : elle vise à gérer un modèle reproduisant le plus
+   fidèlement possible à la fois le comportement du conducteur humain mais aussi les phases en amont de ce comportement.
+   Cette modélisation de l'humain s'intéresse donc aux processus mis en oeuvre par le conducteur pour voir, comprendre
+   et prendre une décision dans l'environnement routier pour réaliser au mieux ses buts à court et long terme. Ceci
+   permettra par la suite d'obtenir un modèle circulant dans un monde simulé et donc, par exemple, de lui soumettre un
+   prototype d'aide à la conduite en tout début de développement pour cerner les premiers cas d'utilisation critique, ou
+   potentiellement les cas problématiques pour l'humain. Ceci sans développer un prototype physique fonctionnel, mais
+   seulement une simulation sur la plateforme de conduite. Un gain de temps pour le prototypage ou un gain de temps dans
+   les boucles de développement et de test de l'aide.
+</p>
+<p>COSMODRIVE est un modèle cognitif du conducteur reposant sur une boucle de régulation dynamique "Perception –
+   Décision – Action", articulé autour de la <em>représentation mentale</em> du conducteur. Cette représentation
+   correspond en effet à la "<em>Conscience" </em>qu'a le conducteur<em> </em>de la situation (concept de
+    <em><a href="http://en.wikipedia.org/wiki/Situation_awareness" target="_blank">Situation Awareness</a></em> de
+   Endsley). Ce <em>modèle mental</em> est élaboré en <em>Mémoire de Travail</em> à partir de connaissances <em>opératoires</em>
+   stockées en <em>Mémoire à Long Terme</em> et <em>instanciées</em> au réel à partir des informations perçues dans
+   l'environnement routier.
+</p>L'environnement de simulation accueillant le modèle est quant à lui une plateforme de prototypage de capteurs virtuels. Cette plateforme vise donc à reproduire le plus fidèlement possible la réalité d'un environnement routier et d'une situation. Dans le cadre de notre thèse, cette plateforme nous apporte la possibilité de générer des
+<em>instances</em> parallèles d'un environnement simulé, correspondant d'un côté à l'environnement routier dans lequel évolue dynamiquement le conducteur, et de l'autre aux représentations mentales (perceptives et cognitives) de ce même conducteur. Par ailleurs, grâce au moteur graphique, il est possible de visualiser ces représentations mentales.
+<img title="Cosmodrive" src="http://www.adcog.fr/blog/wp-content/uploads/2011/06/Cosmodrive1.jpg" alt="Cosmodrive" width="348" height="265"/>
+<p>Le travail réalisé jusqu'ici au cours de la thèse a permis de concevoir et d'implémenter deux principaux modules du
+   modèle COSMODRIVE : (1) un <em>Module de</em> <em>Perception</em> permettant au modèle de se représenter
+   l'environnement routier simulé et, au final, d'interagir directement avec lui, et (2) un <em>Module de Planification
+                                                                                                d'Actions </em>permettant
+   au modèle d'évoluer dans l'environnement (à partir de <em>schémas tactiques</em> et de <em>sous-schémas
+                                                                                              opérationnels</em>) et de
+   définir puis de réaliser un <em>itinéraire</em>, en conformité avec des <em>buts</em> "stratégiques" et "tactiques".
+   Enfin, pour permettre aux différents modules de COSMODRIVE de communiquer entre eux, (3) un <em>Protocole standardisé
+                                                                                                   de communication</em>
+   inter-modules a été développé.
+</p>
+<p>Selon ce principe méthodologique général, notre démarche de modélisation telle qu'elle s'est engagée au cours de ces
+   18 premiers mois repose ainsi sur un cycle de développement itératif : recueil de données à développement
+   informatique à validation du modèle à recueil de données... Le recueil et l'analyse de données à l'issue de
+   l'expérimentation* que nous avons mise en place sur simulateur nous a permis de développer une première version
+   informatique du modèle.
+</p>
+<img title="mini simulateur de conduite" src="http://www.adcog.fr/blog/wp-content/uploads/2011/06/mini-simulateur-de-conduite1.jpg" alt="mini simulateur" width="362" height="242"/> Mini simulateur de conduite utilisé pour l'expérimentation.
+<p>C'est notamment le cas pour notre <em>Module de Perception</em> dont les stratégies visuelles simulent assez
+   fidèlement les stratégies visuelles des conducteurs telles qu'elles ont été observées lors de notre expérimentation
+   sur mini-simulateur, en condition de conduite avec une double tâche de distraction visuelle (qui consiste à
+   identifier des formes sur un écran placé au niveau de l'auto-radio). Les stratégies visuelles ont été extraites des
+   stratégies de regard sur la double tâche visuelle. Une publication sur cette question sera faite à
+    <a href="http://iea-dhm2011.univ-lyon1.fr/en" target="_blank">DHM 2011</a>.
+</p>
+<p>
+    <em>*20 participants conduisant sur autoroute/route de campagne/ zone urbaine (resp. 130,90 et 50 km/h), dans 3
+        types de conduite différente (sans personne devant, en suivi libre ou suivi contraint à 0.6 seconde de la
+        voiture devant), avec ou sans un double tache visuelle ou cognitive en parallèle. Donc 3 vitesses, 3 types de
+        suivi, 3 doubles taches : 27 scenarii.</em>
+</p>

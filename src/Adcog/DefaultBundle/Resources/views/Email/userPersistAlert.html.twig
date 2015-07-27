@@ -1,0 +1,37 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            Le compte de {{ user }} vient d'être créé sur le site de l'association des Anciens Diplômés en Cognitique.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ user.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ user.lastname }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            Si vous êtes validateur, vous pouvez dès maintenant le
+            <a href="{{ url('validator_user_read',{user:user.id}) }}" style="color:#000000;text-decoration:underline;">consulter</a> pour le valider.
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'AdcogAdminBundle:AdminSchool:read.html.twig' %}
+
+{% block title %}Modifier {{ school }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_school_update',{school:school.id}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_school_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_school_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_school_read',{school:school.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:school,title:school}) }}</li>
+        <li>{{ link('admin_school_delete',{school:school.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('admin_school_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('admin_school_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('admin_school_read',{school:school.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:school,title:school}) }}</li>
+                <li>{{ link('admin_school_delete',{school:school.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

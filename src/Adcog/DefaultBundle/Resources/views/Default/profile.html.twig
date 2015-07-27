@@ -1,0 +1,24 @@
+{% extends 'AdcogDefaultBundle:Default:presentation.html.twig' %}
+
+{% block title %}{{ profile.name }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_profile',{slug:profile.slug},{name:profile,title:profile}) }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="featurette">
+        <img class="featurette-image pull-right" alt="{{ block('title') }}" src="{{ profile.user|user_profile|imagine_filter('default_300_200') }}"/>
+        <h1 class="featurette-heading">{{ block('title') }}</h1>
+        <p class="lead">{{ profile.description }}</p>
+    </div>
+    <h2>Expériences</h2>
+    <ul class="colored-timeline full">
+        {% for experience in experiences %}
+            {% include 'AdcogDefaultBundle:Widget:_experience_small.html.twig' %}
+        {% else %}
+            {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+        {% endfor %}
+    </ul>
+{% endblock %}

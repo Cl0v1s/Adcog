@@ -1,0 +1,28 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_profile_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% if app.user.profile %}
+        <p class="well well-lg">
+            <a href="{{ url('default_profile',{slug:app.user.profile.slug}) }}" class="btn btn-link btn-block btn-bg">
+                {{ url('default_profile',{slug:app.user.profile.slug}) }}
+            </a>
+        </p>
+    {% else %}
+        <p class="alert alert-warning">
+            Vous n'avez pas encore créé de profil public sur le site adcog.fr.
+        </p>
+    {% endif %}
+    <div class="controls pull-right">
+        {% if app.user.profile %}
+            {{ link('user_profile_update',{},{class:'btn btn-warning',ficon:'pencil'}) }}
+            {{ link('user_profile_delete',{},{class:'btn btn-danger',ficon:'trash-o'}) }}
+        {% else %}
+            {{ link('user_profile_create',{},{class:'btn btn-success',ficon:'plus'}) }}
+        {% endif %}
+    </div>
+{% endblock %}

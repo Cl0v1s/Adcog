@@ -1,0 +1,56 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_faq') }}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div id="subnav" class="col-md-3">
+            <div class="affixer">
+                <h3>Catégories</h3>
+                <ul class="nav">
+                    {% for category in faqsByCategory %}
+                        <li{{ slug == category.slug ? ' class="active"' : '' }}>
+                            <a href="{{ path('default_faq_category',{slug:category.slug}) }}" title="{{ category.name }}">
+                                {{ category.name }} <span class="badge pull-right">{{ category.faqs.count }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9" id="area">
+            <h1>{{ block('title') }}</h1>
+            <div class="panel-group" id="accordion">
+                {% for faq in faqs %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#{{ faq.slug }}">
+                                    {{ faq.title }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{ faq.slug }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                {{ faq.text|raw }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+

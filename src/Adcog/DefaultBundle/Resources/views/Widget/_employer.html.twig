@@ -1,0 +1,54 @@
+<li class="timeline-inverted employer">
+    <div class="timeline-badge">
+        <i class="fa"></i>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">
+                {{ link('member_yearbook_employer',{employer:employer.id,slug:employer.slug},{name:employer,title:employer}) }}
+            </h4>
+        </div>
+        <div class="timeline-body">
+            {% if employer.address is not empty or employer.zip is not empty or employer.city is not empty %}
+                <h3>Contact</h3>
+                <address>
+                    {% if employer.address is not empty %}
+                        {{ employer.address|nl2br }}<br>
+                    {% endif %}
+                    {% if employer.zip %}
+                        {{ employer.zip }}
+                    {% endif %}
+                    {% if employer.city %}
+                        {{ employer.city }}
+                    {% endif %}
+                    {% if employer.country %}
+                        ({{ employer.country }})
+                    {% endif %}
+                </address>
+            {% endif %}
+            <ul>
+                {% if employer.phone %}
+                    <li><strong>Téléphone</strong> : <a href="tel:{{ employer.phone }}">{{ employer.phone }}</a></li>
+                {% endif %}
+                {% if employer.website %}
+                    <li><strong>Site web</strong> : <a href="{{ employer.website }}">{{ employer.website }}</a></li>
+                {% endif %}
+                {% if employer.email %}
+                    <li><strong>Email</strong> : <a href="mailto:{{ employer.email }}">{{ employer.email }}</a></li>
+                {% endif %}
+            </ul>
+            {% if employer.experiences.count > 0 %}
+                <h3>Expériences</h3>
+                <ul>
+                    {% for experience in employer.experiences %}
+                        <li>
+                            {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+                            par
+                            {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</li>

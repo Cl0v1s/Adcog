@@ -1,0 +1,23 @@
+{% extends 'AdcogUserBundle:UserEvent:read.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_event_cancel',{event:event.id}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <p class="alert alert-danger">Êtes vous certain de vouloir annuler votre participation à {{ event }} ?</p>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('user_event_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-danger"><span class="fa fa-thumbs-down"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

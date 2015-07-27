@@ -1,0 +1,111 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_account_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <p>
+        Bonjour <strong>{{ app.user }}</strong>,
+    </p>
+    <p>
+        Voici quelques informations concernant votre compte ADCOG :
+    </p>
+    <a href="{{ path('user_account_profile') }}" class="pull-left" style="margin:0 30px 30px 0;">
+        <img src="{{ app.user|user_profile|imagine_filter('default_150_150') }}" style="width:100%;">
+    </a>
+    <p class="no-margin">
+        <span class="label label-success"><span class="fa fa-envelope"></span></span>
+        Votre adresse email est <a href="mailto:{{ app.user.username }}" title="{{ app.user.username }}">{{ app.user.username }}</a>
+    </p>
+    <p class="no-margin">
+        <span class="label label-success"><span class="fa fa-list-alt"></span></span>
+        Vous êtes inscrit sur le site depuis le {{ app.user.created.format('d/m/Y à H\\hi') }}
+    </p>
+    {% if not app.user.validated %}
+        <p class="no-margin">
+            <span class="label label-danger"><span class="fa fa-hand-o-left"></span></span>
+            Votre compte n'a pas encore été validé par un administrateur.
+        </p>
+    {% endif %}
+    {% if not app.user.profile or not app.user.isValid() %}
+        <p class="no-margin">
+            <span class="label label-danger"><span class="fa fa-eye-slash"></span></span>
+            Votre profil n'est pas public.
+        </p>
+    {% else %}
+        <p class="no-margin">
+            <span class="label label-success"><span class="fa fa-eye"></span></span>
+            Votre profil est public : <a href="{{ path('default_profile',{slug:app.user.profile.slug}) }}" title="{{ app.user.profile }}">{{ app.user.profile }}</a>.
+        </p>
+    {% endif %}
+    <p class="no-margin">
+        {% if app.user.previousLoginDate %}
+            <span class="label label-success"><span class="fa fa-power-off"></span></span>
+            Vous vous êtes connecté le {{ app.user.previousLoginDate.format('d/m/Y à H\\hi') }} pour la dernière fois.
+        {% else %}
+            <span class="label label-default"><span class="fa fa-power-off"></span></span>
+            C'est votre première connexion !
+        {% endif %}
+    </p>
+    <p class="no-margin">
+        {% if is_granted(USER_ROLE_MEMBER) %}
+            <span class="label label-success"><span class="fa fa-user"></span></span>
+            Vous êtes membre jusqu'au {{ app.user.membered.format('d/m/Y') }}
+        {% else %}
+            <span class="label label-warning"><span class="fa fa-warning"></span></span>
+            Vous n'êtes pas membre de l'association
+        {% endif %}
+        {% if is_granted(USER_ROLE_ADMIN) %}
+            et vous êtes administrateur du site web
+        {% endif %}
+        !
+    </p>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>Promotion</th>
+                <td>
+                    {% if app.user.school %}
+                        Vous êtes de la promotion {{ app.user.school }}.
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>
+                    <address>
+                        {% if app.user.address is not empty or app.user.zip is not empty or app.user.city is not empty or app.user.country is not empty %}
+                            <strong>{{ app.user }}</strong><br>
+                            {% if app.user.address is not empty %}
+                                {{ app.user.address|nl2br }}<br>
+                            {% endif %}
+                            {% if app.user.zip is not empty or app.user.city is not empty or app.user.country is not empty %}
+                                {{ app.user.zip }} {{ app.user.city }} ({{ app.user.country }})
+                            {% endif %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </address>
+                </td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ app.user.phone?('<a href="tel:%1$s" title="%1$s">%1$s</a>'|format(app.user.phone)|raw):'-' }}</td>
+            </tr>
+            <tr>
+                <th>Site web</th>
+                <td>{{ app.user.website?('<a href="%1$s" title="%1$s">%1$s</a>'|format(app.user.website)|raw):'-' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="controls pull-right">
+        {{ link('user_account_update',{},{'class':'btn btn-xs btn-default',ficon:'pencil'}) }}
+        {{ link('user_account_profile',{},{'class':'btn btn-xs btn-default',ficon:'picture-o'}) }}
+        {{ link('user_account_password',{},{'class':'btn btn-xs btn-default',ficon:'lock'}) }}
+        {{ link('user_account_delete',{},{'class':'btn btn-xs btn-danger',ficon:'trash-o'}) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'AdcogAdminBundle:AdminEmployer:index.html.twig' %}
+
+{% block title %}{{ employer }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_employer_read',{employer:employer.id},{name:employer,title:employer}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_employer_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_employer_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_employer_replace',{employer:employer.id},{class:'btn btn-xs btn-info',ficon:'random'}) }}</li>
+        <li>{{ link('admin_employer_update',{employer:employer.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_employer_delete',{employer:employer.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ employer.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ employer.name }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ employer.address|default('-')|nl2br }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ employer.zip|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ employer.city|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ employer.country|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ employer.phone|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Site web</th>
+                <td>{{ employer.website|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ employer.email|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ employer.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ employer.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'AdcogUserBundle:User:index.html.twig' %}
+
+{% block title %}Compte non valide{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Compte non valide</li>
+{% endblock %}
+
+{% block subcontent %}
+    <p class="alert alert-danger">
+        Les administrateurs de la plateforme ont estimés que votre compte n'était pas valide. Si vous souhaitez
+        revenir sur cette décision, utilisez notre formulaire de {{ link('default_contact') }}. Sinon, nous vous invitons
+        à {{ link('user_account_delete') }}.
+    </p>
+{% endblock %}

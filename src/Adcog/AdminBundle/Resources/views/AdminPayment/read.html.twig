@@ -1,0 +1,18 @@
+{% extends 'AdcogAdminBundle:AdminPayment:index.html.twig' %}
+
+{% block title %}{{ payment }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_payment_read',{payment:payment.id},{name:payment,title:payment}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_payment_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_payment_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_payment_update',{payment:payment.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_payment_delete',{payment:payment.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    {% include 'AdcogAdminBundle:AdminPayment/Read:' ~ payment.type ~ '.html.twig' %}
+{% endblock %}

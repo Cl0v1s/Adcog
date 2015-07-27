@@ -1,0 +1,16 @@
+<li class="timeline-inverted comment" id="comment-{{ comment.id }}">
+    <div class="timeline-badge">
+        <img src="{{ comment.author|user_profile|imagine_filter('default_40_40') }}" alt="{{ comment.author }}"/>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">{{ comment.author }}</h4>
+            <p>
+                <small class="text-muted">{{ comment.created|timeago }}</small>
+            </p>
+        </div>
+        <div class="timeline-body">
+            {{ comment.text|nl2br }}
+        </div>
+    </div>
+</li>

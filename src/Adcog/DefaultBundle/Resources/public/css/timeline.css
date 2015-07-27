@@ -1,0 +1,42 @@
+.colored-timeline{ list-style:none; position:relative; padding:20px 0 5px; }
+.colored-timeline:before{ top:0; bottom:0; position:absolute; content:" "; width:4px; background-color:#eeeeee; left:50%; margin-left:-2px; }
+
+.colored-timeline > li{ margin:0 50% 20px 0; position:relative; }
+.colored-timeline > li:before,
+.colored-timeline > li:after{ content:" "; display:table; }
+.colored-timeline > li:after{ clear:both; }
+
+.colored-timeline > li > .timeline-panel{ margin:0 40px 0 0; border:1px solid #d4d4d4; border-radius:2px; position:relative; -webkit-box-shadow:0 1px 6px rgba(0, 0, 0, 0.175); box-shadow:0 1px 6px rgba(0, 0, 0, 0.175); padding:20px; }
+.colored-timeline > li > .timeline-panel:before{ position:absolute; top:26px; right:-15px; display:inline-block; border-top:15px solid transparent; border-left:15px solid #cccccc; border-right:0 solid #cccccc; border-bottom:15px solid transparent; content:" "; }
+.colored-timeline > li > .timeline-panel:after{ position:absolute; top:27px; right:-14px; display:inline-block; border-top:14px solid transparent; border-left:14px solid #ffffff; border-right:0 solid #ffffff; border-bottom:14px solid transparent; content:" "; }
+.colored-timeline > li > .timeline-badge{ color:#ffffff; width:50px; height:50px; line-height:50px; font-size:1.4em; text-align:center; position:absolute; top:16px; margin-left:-25px; background-color:#999999; z-index:100; border-top-right-radius:50%; border-top-left-radius:50%; border-bottom-right-radius:50%; border-bottom-left-radius:50%; }
+
+.colored-timeline .timeline-badge.primary{ background-color:#2e6da4 !important; }
+.colored-timeline .timeline-badge.success{ background-color:#3f903f !important; }
+.colored-timeline .timeline-badge.warning{ background-color:#f0ad4e !important; }
+.colored-timeline .timeline-badge.danger{ background-color:#d9534f !important; }
+.colored-timeline .timeline-badge.info{ background-color:#5bc0de !important; }
+
+.colored-timeline .timeline-title{ margin-top:0; color:inherit; }
+
+.colored-timeline .timeline-body > p,
+.colored-timeline .timeline-body > ul{ margin:15px 0 0; }
+.colored-timeline .timeline-body > p + p{ margin-top:5px; }
+
+.colored-timeline h3{ margin:8px 0 2px 0; }
+
+/* INVERTED */
+.colored-timeline > li.timeline-inverted{ margin:0 0 20px 50%; position:relative; }
+.colored-timeline > li.timeline-inverted > .timeline-panel{ margin:0 0 0 40px; }
+.colored-timeline > li.timeline-inverted > .timeline-panel{ }
+.colored-timeline > li.timeline-inverted > .timeline-panel:before{ border-left-width:0; border-right-width:15px; left:-15px; right:auto; }
+.colored-timeline > li.timeline-inverted > .timeline-panel:after{ border-left-width:0; border-right-width:14px; left:-14px; right:auto; }
+
+/* FULL */
+.colored-timeline.full{ margin-left:25px; }
+.colored-timeline.full:before{ left:0; }
+.colored-timeline.full > li,
+.colored-timeline.full > li.timeline-inverted{ margin:0 0 20px 0; }
+.colored-timeline.full > li > .timeline-panel,
+.colored-timeline.full > li.timeline-inverted > .timeline-panel{ margin:0 0 0 40px; }
+

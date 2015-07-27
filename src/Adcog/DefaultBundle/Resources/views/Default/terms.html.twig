@@ -1,0 +1,27 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block title %}Conditions d'utilisation{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>Conditions d'utilisation</li>
+{% endblock %}
+
+{% block content %}
+    <div class="featurette">
+        <h1 class="featurette-heading">Conditions d'utilisation</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                Vous n'avez pas encore accepté les conditions d'utilisation du site de l'ADCOG.
+            </p>
+        </div>
+        <div class="col-md-6">
+            {{ form_start(form,{attr:{class:'form-horizontal' }}) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-default btn-block" type="submit">J'accepte</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

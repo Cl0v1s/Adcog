@@ -1,0 +1,19 @@
+{% extends 'AdcogMemberBundle:MemberYearbook:experiences.html.twig' %}
+
+{% block title %}{{ experience }}{% endblock %}
+
+{% block description %}{{ experience }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="colored-timeline full">
+        {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
+    </ul>
+    <ul class="list-unstyled list-inline">
+        <li>{{ link('member_yearbook_experiences',{},{name:'&laquo; Retour',class:'btn btn-link'}) }}</li>
+    </ul>
+{% endblock %}

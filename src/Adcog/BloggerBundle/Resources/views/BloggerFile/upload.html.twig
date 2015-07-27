@@ -1,0 +1,5 @@
+<script type="text/javascript">
+    var funcNum = {{ app.request.query.get('CKEditorFuncNum') }}
+        fileUri = '{{ file.uri }}';
+    window.parent.CKEDITOR.tools.callFunction(funcNum,fileUri);
+</script>
