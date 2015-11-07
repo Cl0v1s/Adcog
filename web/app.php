@@ -10,8 +10,8 @@ $loader = require_once __DIR__ . '/../app/bootstrap.php.cache';
 require_once __DIR__ . '/../app/AppKernel.php';
 require_once __DIR__ . '/../app/AppCache.php';
 
-$loader = new ApcClassLoader('adcog_' . KEY . '_', $loader);
-$loader->register(true);
+//$loader = new ApcClassLoader('adcog_' . KEY . '_', $loader);
+//$loader->register(true);
 $kernel = new AppKernel(ENV, 'dev' === ENV);
 $kernel->loadClassCache();
 $kernel = new AppCache($kernel);
