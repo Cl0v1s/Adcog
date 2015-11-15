@@ -106,6 +106,9 @@ liip_imagine:
 eb_doctrine:
   filesystem:
     depth: 8
+  paginator:
+    default_limit: 10
+    max_limit: 100
 
 eb_translation:
   replace_underscore: true
