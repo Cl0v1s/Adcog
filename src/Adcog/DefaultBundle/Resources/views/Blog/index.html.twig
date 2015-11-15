@@ -29,7 +29,7 @@
                                     <img src="{{ post.uri }}" alt="{{ post.title }}"/>
                                 </div>
                             {% endif %}
-                            <div class="content">{{ post.text|replace({'&nbsp;': ''})|cut(500) }}</div>
+                            <div class="content">{{ post.text|cut(500)|raw }}</div>
                             <footer class="footer">
                                 <ul class="list-inline list-unstyled">
                                     {% if post.author.profile %}
