@@ -146,8 +146,8 @@ class MemberYearbookController extends Controller
      * @Template()
      */
     public function memberAction(User $user, $slug)
-    {
-        if ($slug !== $user->getSlug()) {
+    {		
+        if ($slug !== $user->getSlug()) {			
             return $this->redirect($this->generateUrl('member_yearbook_member', [
                 'user' => $user->getId(),
                 'slug' => $user->getSlug(),
@@ -156,9 +156,14 @@ class MemberYearbookController extends Controller
         if (false === $user->isValid()) {
             return $this->createNotFoundException();
         }
+		
+		# get experiences paginator
+		$paginatorHelper = $this->get('eb_paginator_helper');
+		$paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->getPaginator($paginatorHelper, ['user' => $user]);
 
         return [
             'user' => $user,
+			'paginator' => $paginator,
         ];
     }
 
