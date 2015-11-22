@@ -164,7 +164,7 @@ class DoctrineSchemaUpdateEventListener
         $staticContentTable = $this->getTable('StaticContent');
 		# If table doesn't exist
 		$schemaManager = $co->getSchemaManager();
-		if ($schemaManager->tablesExist(array('StaticContent')) == false) {
+		if ($schemaManager->tablesExist(array($staticContentTable)) == false) {
 			return;
 		}
         $statement = $co->executeQuery(sprintf('SELECT COUNT(*) AS count FROM %s', $staticContentTable));
