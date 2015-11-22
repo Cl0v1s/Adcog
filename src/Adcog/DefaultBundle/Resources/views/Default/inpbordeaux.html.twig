@@ -1,0 +1,11 @@
+{% extends 'AdcogDefaultBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('default_inpbordeaux') }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="featurette-heading">{{ inpbordeaux.title }}</h1>
+    <div>{{ inpbordeaux.content|raw}}</div>
+{% endblock %}

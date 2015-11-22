@@ -105,9 +105,9 @@ class StaticManager
     /**
      * @return StaticContent
      */
-    public function getDefaultIpb()
+    public function getDefaultInpbordeaux()
     {
-        return $this->getContent(StaticContent::TYPE_DEFAULT_IPB);
+        return $this->getContent(StaticContent::TYPE_DEFAULT_INP_BORDEAUX);
     }
 
     /**
