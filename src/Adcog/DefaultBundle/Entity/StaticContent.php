@@ -33,7 +33,7 @@ class StaticContent implements CreatedInterface, UpdatedInterface, LoggableInter
     const TYPE_DEFAULT_PRESENTATION_LIST = 'TYPE_DEFAULT_PRESENTATION_LIST';
     const TYPE_DEFAULT_PRESENTATION_OFFICE = 'TYPE_DEFAULT_PRESENTATION_OFFICE';
     const TYPE_DEFAULT_ENSC = 'TYPE_DEFAULT_ENSC';
-    const TYPE_DEFAULT_INP_BORDEAUX = 'TYPE_DEFAULT_INP_BORDEAUX';
+    const TYPE_DEFAULT_IPB = 'TYPE_DEFAULT_IPB';
     const TYPE_DEFAULT_EVENT_PICOGNITIQUE = 'TYPE_DEFAULT_EVENT_PICOGNITIQUE';
     const TYPE_DEFAULT_EVENT_COGNITOCONF = 'TYPE_DEFAULT_EVENT_COGNITOCONF';
     const TYPE_DEFAULT_EVENT_COGOUT = 'TYPE_DEFAULT_EVENT_COGOUT';
@@ -95,7 +95,7 @@ class StaticContent implements CreatedInterface, UpdatedInterface, LoggableInter
             self::TYPE_DEFAULT_PRESENTATION_LIST,
             self::TYPE_DEFAULT_PRESENTATION_OFFICE,
             self::TYPE_DEFAULT_ENSC,
-            self::TYPE_DEFAULT_INP_BORDEAUX,
+            self::TYPE_DEFAULT_IPB,
             self::TYPE_DEFAULT_EVENT_PICOGNITIQUE,
             self::TYPE_DEFAULT_EVENT_COGNITOCONF,
             self::TYPE_DEFAULT_EVENT_COGOUT,
@@ -130,7 +130,7 @@ class StaticContent implements CreatedInterface, UpdatedInterface, LoggableInter
             self::TYPE_DEFAULT_PRESENTATION_LIST => 'Présentation - Listes',
             self::TYPE_DEFAULT_PRESENTATION_OFFICE => 'Présentation - Bureau',
             self::TYPE_DEFAULT_ENSC => 'ENSC',
-            self::TYPE_DEFAULT_INP_BORDEAUX => 'INP',
+            self::TYPE_DEFAULT_IPB => 'IPB',
             self::TYPE_DEFAULT_EVENT_PICOGNITIQUE => 'Événements - Pi\'Cognitique',
             self::TYPE_DEFAULT_EVENT_COGNITOCONF => 'Événements - Cognito\'Conf',
             self::TYPE_DEFAULT_EVENT_COGOUT => 'Événements - Cog\'Out',

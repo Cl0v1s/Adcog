@@ -96,10 +96,10 @@ page:
       name: École Nationale Supérieure de Cognitique
       title: École Nationale Supérieure de Cognitique
       description: École Nationale Supérieure de Cognitique
-    inpbordeaux:
-      name: Institut National Polytechnique de Bordeaux
-      title: Institut National Polytechnique de Bordeaux
-      description: Institut National Polytechnique de Bordeaux
+    ipb:
+      name: Institut Polytechnique de Bordeaux
+      title: Institut Polytechnique de Bordeaux
+      description: Institut Polytechnique de Bordeaux
     adhesion:
       name: Adhésion
       title: 'Adhésion à l''ADCOG'
