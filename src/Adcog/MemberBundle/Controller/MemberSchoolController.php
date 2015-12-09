@@ -20,7 +20,7 @@ class MemberSchoolController extends Controller
      * Index
      *
      * @return array
-     * @Route()
+     * @Route("/{page}", requirements={"page":"\d+"}, defaults={"page":1})
      * @Method("GET")
      * @Template()
      */

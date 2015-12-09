@@ -23,12 +23,12 @@ class MemberFilterType extends AbstractType
         $builder
             ->add('lastname', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'John',
+                'placeholder' => 'DOE',
                 'required' => false,
             ])
             ->add('firstname', 'text', [
                 'label' => 'Prénom',
-                'placeholder' => 'DOE',
+                'placeholder' => 'John',
                 'required' => false,
             ])
             ->add('schools', 'entity', [

@@ -12,7 +12,7 @@
 {% block subcontent %}
     <ul class="colored-timeline full">
         {% include 'AdcogDefaultBundle:Widget:_user.html.twig' %}
-        {% for experience in user.experiences %}
+        {% for experience in paginator %}
             {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
         {% endfor %}
     </ul>

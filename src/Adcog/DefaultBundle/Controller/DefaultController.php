@@ -226,17 +226,17 @@ class DefaultController extends Controller
     }
 
     /**
-     * Présentation de l'IPB
+     * Présentation de l'INP de Bordeaux
      *
      * @return array
-     * @Route("/ipb")
+     * @Route("/inp-bordeaux")
      * @Method("GET")
      * @Template()
      */
-    public function ipbAction()
+    public function inpbordeauxAction()
     {
         return [
-            'ipb' => $this->get('adcog_default.static_content.static_manager')->getDefaultIpb(),
+            'inpbordeaux' => $this->get('adcog_default.static_content.static_manager')->getDefaultInpbordeaux(),
         ];
     }
 
