@@ -134,7 +134,7 @@ eb_email:
   emails:
     contact:
       template: 'AdcogDefaultBundle:Email:contact.html.twig'
-      subject: '{{ mail.subject }}'
+      subject: '{{ mail.subject|raw }}'
     user_persist:
       template: 'AdcogDefaultBundle:Email:userPersist.html.twig'
       subject: '{{ user }}, bienvenue sur le site de l''ADCOG'
