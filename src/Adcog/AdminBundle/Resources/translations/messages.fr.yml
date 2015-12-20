@@ -51,6 +51,15 @@ page:
       read: {name: '%entity%'}
       update: {name: Modifier}
       delete: {name: Supprimer}
+      export: {name: 'Exporter en CSV'}
+      table:
+        member: {name: Membre}
+        nomember: {name: 'Non membre'}
+        admin: {name: Administrateur}
+        noadmin: {name: 'Non administrateur'}
+        nom: {name: Nom}
+        prenom: {name: Prénom}
+        promo: {name: Promotion}
     payment:
       index: {name: Paiements}
       create: {name: Créer}
