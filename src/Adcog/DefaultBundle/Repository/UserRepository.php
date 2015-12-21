@@ -93,6 +93,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         
         //Ouvre le fichier
         $handle = fopen($filename, 'w+');
+        //Spécifie UTF-8 with BOM pour l'ouverture sur Excel
+        fwrite($handle, pack("CCC",0xef,0xbb,0xbf));
         
         // Nom des colonnes du CSV 
         fputcsv($handle, array($translation->name('admin_user_table_nom'),
