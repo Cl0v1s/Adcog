@@ -57,6 +57,7 @@ page:
         nomember: {name: 'Non membre'}
         admin: {name: Administrateur}
         noadmin: {name: 'Non administrateur'}
+        user: {name: Utilisateur}
         nom: {name: Nom}
         prenom: {name: Prénom}
         promo: {name: Promotion}
@@ -66,6 +67,12 @@ page:
       read: {name: '%entity%'}
       update: {name: Modifier}
       delete: {name: Supprimer}
+      export: {name: 'Exporter en CSV'}
+      table:
+        nom : {name: Nom}
+        prenom: {name: Prénom}
+        type: {name: Type}
+        details: {name: Détails}
     event:
       index: {name: Événements}
       create: {name: Créer}

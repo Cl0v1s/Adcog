@@ -4,6 +4,7 @@ namespace Adcog\DefaultBundle\Repository;
 
 use Adcog\DefaultBundle\Entity\Payment;
 use EB\DoctrineBundle\Paginator\PaginatorHelper;
+use EB\TranslationBundle\Translation\TranslationService;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -43,6 +44,45 @@ class PaymentRepository extends EntityRepository
             ->applyValidatedFilter($qb, $filters);
 
         return $paginatorHelper->create($qb, ['created' => 'DESC']);
+    }
+    
+    /**
+     * Export Data from repository
+     *
+     * @param String
+     * @param array           $filters         Filters
+     *
+     * @return
+     */
+    public function exportToFile($filename, TranslationService $translation, array $filters = []) 
+    {
+        // Recherche les éléments
+        $paginatorHelper = new PaginatorHelper();
+        $paginator = $this->getPaginator($paginatorHelper, $filters);
+        
+        //Ouvre le fichier
+        $handle = fopen($filename, 'w+');
+        //Spécifie UTF-8 with BOM pour l'ouverture sur Excel
+        fwrite($handle, pack("CCC",0xef,0xbb,0xbf));
+        
+        // Nom des colonnes du CSV 
+        fputcsv($handle, array($translation->name('admin_payment_table_nom'),
+                               $translation->name('admin_payment_table_prenom'),
+                               $translation->name('admin_payment_table_type'),
+                               $translation->name('admin_payment_table_details'),
+                ),';');
+            
+        //Champs
+        foreach ($paginator as $payment) 
+        {
+            fputcsv($handle,array($payment->getUser()->getLastname(),
+                                  $payment->getUser()->getFirstname(),
+                                  $payment->getTypeName(),
+                                  $payment,
+                   ),';');
+        }
+           
+        fclose($handle);
     }
 
     /**

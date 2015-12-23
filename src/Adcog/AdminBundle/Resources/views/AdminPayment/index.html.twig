@@ -9,6 +9,7 @@
     {% include 'AdcogDefaultBundle::filter.html.twig' %}
     <ul class="list-inline">
         <li>{{ link('admin_payment_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+		<li>{{ link('admin_payment_export',filter_attr,{class:'btn btn-xs btn-default',ficon:'download'}) }}</li>
     </ul>
     <div class="row">
         <div class="table_responsive">
