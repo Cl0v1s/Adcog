@@ -26,13 +26,20 @@ class PaymentRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('a');
 
+        // Join user
+        $qb
+            ->leftJoin('a.user', 'b')
+            ->addSelect('b');
+        
         // Type
         if (array_key_exists('type', $filters) && null !== $type = $filters['type']) {
             $qb->andWhere(sprintf('a INSTANCE OF %s', get_class(Payment::createObject($type))));
         }
-
+        
+        // Recherche des users
         $paginatorHelper
-            ->applyEqFilter($qb, 'user', $filters)
+            ->applyLikeFilter($qb, 'firstname', $filters, 'b')
+            ->applyLikeFilter($qb, 'lastname', $filters, 'b')
             ->applyValidatedFilter($qb, $filters);
 
         return $paginatorHelper->create($qb, ['created' => 'DESC']);
