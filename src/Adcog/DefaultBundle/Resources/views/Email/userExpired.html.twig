@@ -1,0 +1,11 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            {{ user }}, votre adhésion à l'ADCOG a expiré depuis le {{expiration_date|date("d/m/Y")}}.
+            Nous vous invitons à renouveler votre adhésion dès maintenant en vous rendant sur la page :
+            <a href="{{ url('user_subscribe_index') }}">Mon adhésion</a>.
+        </td>
+    </tr>
+{% endblock %}

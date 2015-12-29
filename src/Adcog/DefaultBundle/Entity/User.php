@@ -435,6 +435,31 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
 
         return $this;
     }
+    
+    /**
+     * Get Last payment expiration date
+     *
+     * @return null|\DateTime
+     */
+    public function getLastPaymentEnded()
+    {
+        $array_date = array();
+        
+        // Verify all payment
+        foreach ($this->getPayments() as $payment) {
+            if (true === $payment->isActive()) {
+                return $payment->getEnded();
+            } else {
+                $array_date[] = $payment->getEnded();
+            }
+        }
+
+        // get max payment
+        if (!empty($array_date)) {
+            return max($array_date);
+        }
+        return null;
+    }
 
     /**
      * Member

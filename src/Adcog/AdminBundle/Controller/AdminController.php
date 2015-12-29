@@ -206,6 +206,10 @@ EOF;
             case 'user_update_password':
                 $data['user'] = $this->getUser();
                 break;
+            case 'user_expired':
+                $data['user'] = $this->getUser();
+                $data['expiration_date'] = new \DateTime('2005-01-01');
+                break;
             case 'comment_persist_alert':
                 $comment = new Comment();
                 $comment
