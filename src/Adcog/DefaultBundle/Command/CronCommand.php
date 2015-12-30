@@ -53,27 +53,81 @@ class CronCommand extends ContainerAwareCommand
         $interval = new \DateInterval($input->getOption('interval'));
         $pas = new \DateInterval($input->getOption('step'));
         
+        // Envoi des mails
+        $this->sendMailToUsersExpired($output, $interval, $pas, $input->getOption('repeat'));
+        
+        return 0;
+    }
+    
+    /**
+     * Get member expired
+     */
+    private function sendMailToUsersExpired(OutputInterface $output, \DateInterval $interval, \DateInterval $pas, $repeat = false) 
+    {
         // Obtient la connexion
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
         
-        // Recherche sur les utilisateurs
-        $users_array = $em->getRepository('AdcogDefaultBundle:User')->getUsersExpiredAt($interval, $pas, $input->getOption('repeat'));
+        //Mailer
+        $mailer = $this->getContainer()->get('eb_email.mailer.mailer');      
         
-        // Envoi des mails
-        foreach ($users_array as $user) 
-        {
-            // Affichage (debug)
-            if ($output->isVerbose()) {
-                $output->writeln(sprintf("%s %s a expiré depuis le %s", $user->getFirstname(), $user->getLastname(), $user->getLastPaymentEnded()->format('d/m/Y')));
-            }
+        // get users
+        $users = $em->getRepository('AdcogDefaultBundle:User')->findBy(array());
             
-            // Envoi du mail
-            $this->getContainer()->get('eb_email.mailer.mailer')->send('user_expired', $user, [
-                'user' => $user,
-                'expiration_date' => $user->getLastPaymentEnded()
-            ]);
+        // post traitement with date interval
+        $datenow = new \DateTime();
+        foreach ($users as $user) 
+        {
+            // set mail model by default
+            $mailmodel = 'user_expired';
+            
+            // get date limit
+            if (null === $datelimit = $user->getLastPaymentEnded())
+            {
+                // Verification de la fin de période scolaire
+                if (null !== $school = $user->getSchool()) {
+                    $datelimit = \DateTime::createFromFormat('Ymd', sprintf('%s0901', $school->getYear()));
+                    $mailmodel = 'user_join_member';
+                } 
+            }
+
+            // if has a date of account expiration
+            if (null !== $datelimit)
+            {
+                // if day of end
+                $datelimitstart = clone $datelimit;
+                $datelimitend = clone $datelimit;
+                $datelimitend->add($pas);
+                if (($datelimit < $datenow) && ($datelimitend > $datenow)) {
+                    $users_expired[] = $user;
+                } else {
+                    // loop for repeat
+                    do {
+                        // define date start and end
+                        $datelimit->add($interval);
+                        $datelimitend = clone $datelimit;
+                        $datelimitend->add($pas);
+                        // compare date 
+                        if (($datelimit < $datenow) && ($datelimitend > $datenow))
+                        {
+                            // Affichage (debug)
+                            if ($output->isVerbose()) {
+                                if ('user_expired' == $mailmodel) {
+                                    $output->writeln(sprintf("%s %s a expiré depuis le %s", $user->getFirstname(), $user->getLastname(), $datelimitstart->format('d/m/Y')));
+                                } else {
+                                    $output->writeln(sprintf("%s %s n'est plus étudiant depuis le %s", $user->getFirstname(), $user->getLastname(), $datelimitstart->format('d/m/Y')));
+                                }
+                            }
+                            
+                            // Envoi du mail
+                            $mailer->send($mailmodel, $user, [
+                                'user' => $user,
+                                'expiration_date' => $datelimitstart
+                            ]);
+                            break;
+                        }
+                    } while (($datelimit < $datenow) && (true === $repeat));
+                }
+            }
         }
-        
-        return 0;
     }
 }

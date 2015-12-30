@@ -210,6 +210,9 @@ EOF;
                 $data['user'] = $this->getUser();
                 $data['expiration_date'] = new \DateTime('2005-01-01');
                 break;
+            case 'user_join_member':
+                $data['user'] = $this->getUser();
+                break;
             case 'comment_persist_alert':
                 $comment = new Comment();
                 $comment

@@ -1,0 +1,12 @@
+{% extends 'AdcogDefaultBundle:Email:layout.html.twig' %}
+
+{% block content %}
+    <tr>
+        <td>
+            {{ user }}, devenez membre à part entière en adhérant à l'ADCOG.
+			L'adhésion se fait en quelques clics grace à nos solutions de paiement sécurisées sur internet !
+            Rendez vous dès maintenant sur la page :
+            <a href="{{ url('user_subscribe_index') }}">Mon adhésion</a>.
+        </td>
+    </tr>
+{% endblock %}
