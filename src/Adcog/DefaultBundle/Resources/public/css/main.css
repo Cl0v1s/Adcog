@@ -309,3 +309,11 @@ body#default_contact address{ margin-bottom:0; }
     position:relative;
     z-index:5;
 }
+/* SHARE LINKS */
+.share iframe
+{
+	margin: 0px;
+}
+.share span {
+    vertical-align: baseline !important;
+}
