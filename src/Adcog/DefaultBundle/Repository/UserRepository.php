@@ -78,44 +78,20 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     }
     
     /**
-     * Export Data from repository
-     *
-     * @param String
-     * @param array           $filters         Filters
-     *
-     * @return
-     */
-    public function exportToFile($filename, TranslationService $translation, array $filters = []) 
+    * Export Data (not paginated)
+    *
+    * @param array           $filters         Filters
+    *
+    * @return
+    */
+    public function exportData(array $filters = []) 
     {
         // Recherche les éléments
         $paginatorHelper = new PaginatorHelper();
-        $paginator = $this->getPaginator($paginatorHelper, $filters);
+        $data = $this->getPaginator($paginatorHelper, $filters);
         
-        //Ouvre le fichier
-        $handle = fopen($filename, 'w+');
-        //Spécifie UTF-8 with BOM pour l'ouverture sur Excel
-        fwrite($handle, pack("CCC",0xef,0xbb,0xbf));
-        
-        // Nom des colonnes du CSV 
-        fputcsv($handle, array($translation->name('admin_user_table_nom'),
-                               $translation->name('admin_user_table_prenom'),
-                               $translation->name('admin_user_table_promo'),
-                               $translation->name('admin_user_table_member'),
-                               $translation->name('admin_user_table_admin')
-                ),';');
-            
-        //Champs
-        foreach ($paginator as $user) 
-        {
-            fputcsv($handle,array($user->getLastname(),
-                                  $user->getFirstname(),
-                                  $user->getSchool(),
-                                  $user->isMember() ? "X" : "",
-                                  $user->isAdmin() ? "X" : "",
-                   ),';');
-        }
-           
-        fclose($handle);
+        // Retourne les données
+        return $data;
     }
 
     /**
