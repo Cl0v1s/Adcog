@@ -19,20 +19,18 @@ class PaymentFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', 'text', [
-                'label' => 'Prénom',
-                'placeholder' => 'John',
-                'required' => false,
-            ])
-            ->add('lastname', 'text', [
-                'label' => 'Nom',
-                'placeholder' => 'DOE',
+            ->add('user', 'entity', [
+                'label' => 'Utilisateur',
+                'class' => 'Adcog\DefaultBundle\Entity\User',
                 'required' => false,
             ])
             ->add('type', 'choice', [
-                'label' => 'Type de payment',
+                'label' => 'Type',
                 'choices' => Payment::getTypeNameList(),
                 'required' => false,
+            ])
+            ->add('not_validated', 'adcog_ternary', [
+                'label' => 'En attente de validation',
             ]);
     }
 }

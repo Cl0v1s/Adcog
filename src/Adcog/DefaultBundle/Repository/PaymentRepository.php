@@ -39,8 +39,7 @@ class PaymentRepository extends EntityRepository
         
         // Recherche des users
         $paginatorHelper
-            ->applyLikeFilter($qb, 'firstname', $filters, 'b')
-            ->applyLikeFilter($qb, 'lastname', $filters, 'b')
+            ->applyEqFilter($qb, 'user', $filters)
             ->applyValidatedFilter($qb, $filters);
 
         return $paginatorHelper->create($qb, ['created' => 'DESC']);
