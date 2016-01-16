@@ -7,6 +7,9 @@
 
 {% block subcontent %}
     {% include 'AdcogDefaultBundle::filter.html.twig' %}
+	<ul class="list-inline">
+		<li>{{ link('validator_user_export',filter_attr,{class:'btn btn-xs btn-default',ficon:'download'}) }}</li>
+    </ul>
     <div class="row">
         <div class="table_responsive">
             <table class="{{ table_class }}">
