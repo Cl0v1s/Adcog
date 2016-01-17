@@ -1,6 +1,6 @@
 {% autoescape false %}
 {{ excel_pack }}{{ name('validator_user_table_nom') }};{{ name('validator_user_table_prenom') }};{{ name('validator_user_table_mail') }};{{ name('validator_user_table_promo') }};{{ name('validator_user_table_creationdate') }};{{ name('validator_user_table_valid') }}
 {% for user in data %}
-	{{ user.lastname }};{{ user.firstname }};{{ user.username }};{{ user.school ? user.school : '-' }};{{ user.created|date("m/d/Y") }};{{ user.isValid() ? 'X' : '' }}
+{{ user.lastname }};{{ user.firstname }};{{ user.username }};{{ user.school ? user.school : '-' }};{{ user.created|date("d/m/Y") }};{{ user.isValid() ? 'X' : '' }}
 {% endfor %}
 {% endautoescape %}

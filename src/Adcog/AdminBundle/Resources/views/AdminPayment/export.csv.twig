@@ -1,0 +1,6 @@
+{% autoescape false %}
+{{ excel_pack }}{{ name('admin_payment_table_nom') }};{{ name('admin_payment_table_prenom') }};{{ name('admin_payment_table_type') }};{{ name('admin_payment_table_details') }}
+{% for payment in data %}
+{{ payment.user.lastname }};{{ payment.user.firstname }};{{ payment.typeName }};{{ payment }}
+{% endfor %}
+{% endautoescape %}

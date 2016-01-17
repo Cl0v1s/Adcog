@@ -44,7 +44,6 @@ class AdminPaymentController extends Controller
         return [
             'paginator' => $paginator,
             'filter' => $filter->createView(),
-            'filter_attr' => $filter->getData()
         ];
     }
     
@@ -65,15 +64,10 @@ class AdminPaymentController extends Controller
         $filterData = !$filter->isSubmitted() || $filter->isValid() ? $filter->getData() : [];
 
         // Find filtered results
-        $response = new StreamedResponse();
-        $output = 'php://output';
-        $translation = $this->get('eb_translation');
-        $response->setCallback(function() use($output, $translation, $filterData){
-            $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Payment')->exportToFile($output, $translation, $filterData);
-        });
-
+        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Payment')->exportData($filterData);
+        
         // Set Response
-        $response->setStatusCode(200);
+        $response = $this->render('AdcogAdminBundle:AdminPayment:export.csv.twig',array('data' => $paginator, 'excel_pack' => pack("CCC",0xef,0xbb,0xbf)));
         $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
         $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
 

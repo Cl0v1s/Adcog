@@ -72,7 +72,8 @@ page:
         nom : {name: Nom}
         prenom: {name: Prénom}
         type: {name: Type}
-        details: {name: Détails}
+        details: {name: Paiement}
+        validationdate: {name: 'Date de validation'}
     event:
       index: {name: Événements}
       create: {name: Créer}
