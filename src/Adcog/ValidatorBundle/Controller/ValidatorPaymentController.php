@@ -41,7 +41,7 @@ class ValidatorPaymentController extends Controller
         return [
             'paginator' => $paginator,
             'filter' => $filter->createView(),
-            'filterattr' => ['not_validated' => true]
+            'filter_attr' => ['not_validated' => true]
         ];
     }
     

@@ -43,7 +43,6 @@ class AdminUserController extends Controller
         return [
             'paginator' => $paginator,
             'filter' => $filter->createView(),
-			'filter_attr' => $filter->getData()
         ];
     }
 	
