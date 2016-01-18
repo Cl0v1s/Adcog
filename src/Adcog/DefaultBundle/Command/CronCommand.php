@@ -30,13 +30,6 @@ class CronCommand extends ContainerAwareCommand
                 'P6M'
             )
             ->addOption(
-                'step',
-                'p',
-                InputOption::VALUE_OPTIONAL,
-                'Le pas de la commande planifiée (cron)',
-                'P1D'
-            )
-            ->addOption(
                'repeat',
                'r',
                InputOption::VALUE_NONE,
@@ -51,10 +44,9 @@ class CronCommand extends ContainerAwareCommand
     {
         // Intervale et pas
         $interval = new \DateInterval($input->getOption('interval'));
-        $pas = new \DateInterval($input->getOption('step'));
         
         // Envoi des mails
-        $this->sendMailToUsersExpired($output, $interval, $pas, $input->getOption('repeat'));
+        $this->sendMailToUsersExpired($output, $interval, $input->getOption('repeat'));
         
         return 0;
     }
@@ -62,7 +54,7 @@ class CronCommand extends ContainerAwareCommand
     /**
      * Get member expired
      */
-    private function sendMailToUsersExpired(OutputInterface $output, \DateInterval $interval, \DateInterval $pas, $repeat = false) 
+    private function sendMailToUsersExpired(OutputInterface $output, \DateInterval $interval, $repeat = false) 
     {
         // Obtient la connexion
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
@@ -95,19 +87,15 @@ class CronCommand extends ContainerAwareCommand
             {
                 // if day of end
                 $datelimitstart = clone $datelimit;
-                $datelimitend = clone $datelimit;
-                $datelimitend->add($pas);
-                if (($datelimit < $datenow) && ($datelimitend > $datenow)) {
+                if ($datelimit->format('Y-m-d') == $datenow->format('Y-m-d')) {
                     $users_expired[] = $user;
                 } else {
                     // loop for repeat
                     do {
                         // define date start and end
                         $datelimit->add($interval);
-                        $datelimitend = clone $datelimit;
-                        $datelimitend->add($pas);
                         // compare date 
-                        if (($datelimit < $datenow) && ($datelimitend > $datenow))
+                        if ($datelimit->format('Y-m-d') == $datenow->format('Y-m-d'))
                         {
                             // Affichage (debug)
                             if ($output->isVerbose()) {

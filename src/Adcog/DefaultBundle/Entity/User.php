@@ -181,7 +181,7 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
      */
     public function __toString()
     {
-        return sprintf('%s %s', mb_strtoupper($this->getLastname(), 'UTF-8'), $this->getFirstname());
+        return sprintf('%s %s', $this->getFirstname(), mb_strtoupper($this->getLastname(), 'UTF-8'));
     }
 
     /**
