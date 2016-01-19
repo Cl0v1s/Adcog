@@ -23,11 +23,18 @@ class CronCommand extends ContainerAwareCommand
             ->setName('adcog:cron')
             ->setDescription('Cron for all ADCOG jobs')
             ->addOption(
-                'interval',
-                'i',
+                'months-interval',
+                'm',
                 InputOption::VALUE_OPTIONAL,
-                'L\'intervale de temps depuis que le membre a expiré',
-                'P6M'
+                'L\'intervale de temps en mois depuis que le membre a expiré, cumulable avec les jours',
+                '0'
+            )
+            ->addOption(
+                'days-interval',
+                'd',
+                InputOption::VALUE_OPTIONAL,
+                'L\'intervale de temps en jours depuis que le membre a expiré, cumulable avec les mois',
+                '0'
             )
             ->addOption(
                'repeat',
@@ -42,11 +49,28 @@ class CronCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // Intervale et pas
-        $interval = new \DateInterval($input->getOption('interval'));
+        // Mois, jours et repeat
+        $months = $input->getOption('months-interval');
+        $days = $input->getOption('days-interval');
+        $repeat = $input->getOption('repeat');
+        
+        // Test des variables : cas d'erreur
+        if (!is_numeric($months) || !is_int((int)$months) || !is_numeric($days) || !is_int((int)$days)) 
+        {
+            $output->writeln("Les options mois et/ou jours sont incorrectes, les valeurs doivent être des entiers.");
+            return 1;
+        }
+        else if (($months == "0") && ($days == "0"))
+        {
+            $output->writeln("L'options repeat n'est pas compatible avec une intervalle de temps nulle.");
+            return 1;
+        }
+        
+        // Intervale
+        $interval = new \DateInterval(sprintf("P%sM%sD", $months, $days));
         
         // Envoi des mails
-        $this->sendMailToUsersExpired($output, $interval, $input->getOption('repeat'));
+        $this->sendMailToUsersExpired($output, $interval, $repeat);
         
         return 0;
     }
@@ -87,34 +111,30 @@ class CronCommand extends ContainerAwareCommand
             {
                 // if day of end
                 $datelimitstart = clone $datelimit;
-                if ($datelimit->format('Y-m-d') == $datenow->format('Y-m-d')) {
-                    $users_expired[] = $user;
-                } else {
-                    // loop for repeat
-                    do {
-                        // define date start and end
-                        $datelimit->add($interval);
-                        // compare date 
-                        if ($datelimit->format('Y-m-d') == $datenow->format('Y-m-d'))
-                        {
-                            // Affichage (debug)
-                            if ($output->isVerbose()) {
-                                if ('user_expired' == $mailmodel) {
-                                    $output->writeln(sprintf("%s %s a expiré depuis le %s", $user->getFirstname(), $user->getLastname(), $datelimitstart->format('d/m/Y')));
-                                } else {
-                                    $output->writeln(sprintf("%s %s n'est plus étudiant depuis le %s", $user->getFirstname(), $user->getLastname(), $datelimitstart->format('d/m/Y')));
-                                }
+                // loop for repeat
+                do {
+                    // define date start and end
+                    $datelimit->add($interval);
+                    // compare date 
+                    if ($datelimit->format('Y-m-d') == $datenow->format('Y-m-d'))
+                    {
+                        // Affichage (debug)
+                        if ($output->isVerbose()) {
+                            if ('user_expired' == $mailmodel) {
+                                $output->writeln(sprintf("%s %s a expiré depuis le %s", $user->getFirstname(), $user->getLastname(), $datelimitstart->format('d/m/Y')));
+                            } else {
+                                $output->writeln(sprintf("%s %s n'est plus étudiant depuis le %s", $user->getFirstname(), $user->getLastname(), $datelimitstart->format('d/m/Y')));
                             }
-                            
-                            // Envoi du mail
-                            $mailer->send($mailmodel, $user, [
-                                'user' => $user,
-                                'expiration_date' => $datelimitstart
-                            ]);
-                            break;
                         }
-                    } while (($datelimit < $datenow) && (true === $repeat));
-                }
+                        
+                        // Envoi du mail
+                        $mailer->send($mailmodel, $user, [
+                            'user' => $user,
+                            'expiration_date' => $datelimitstart
+                        ]);
+                        break;
+                    }
+                } while (($datelimit < $datenow) && (true === $repeat));
             }
         }
     }
