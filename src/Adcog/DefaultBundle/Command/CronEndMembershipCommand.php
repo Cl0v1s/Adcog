@@ -8,11 +8,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class CronCommand
+ * Class CronEndMembershipCommand
  *
- * @author "Emmanuel BALLERY" <emmanuel.ballery@gmail.com>
+ * @author "Nicolas Drufin" <nicolas.drufin@gmail.com>
  */
-class CronCommand extends ContainerAwareCommand
+class CronEndMembershipCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritdoc}
@@ -20,8 +20,8 @@ class CronCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('adcog:cron')
-            ->setDescription('Cron for all ADCOG jobs')
+            ->setName('adcog:cron-end-of-membership')
+            ->setDescription('Cron to send mail after end of membership')
             ->addOption(
                 'months-interval',
                 'm',
