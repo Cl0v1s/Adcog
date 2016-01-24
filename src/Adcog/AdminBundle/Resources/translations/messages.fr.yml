@@ -51,12 +51,29 @@ page:
       read: {name: '%entity%'}
       update: {name: Modifier}
       delete: {name: Supprimer}
+      export: {name: 'Exporter en CSV'}
+      table:
+        member: {name: Membre}
+        nomember: {name: 'Non membre'}
+        admin: {name: Administrateur}
+        noadmin: {name: 'Non administrateur'}
+        user: {name: Utilisateur}
+        nom: {name: Nom}
+        prenom: {name: Prénom}
+        promo: {name: Promotion}
     payment:
       index: {name: Paiements}
       create: {name: Créer}
       read: {name: '%entity%'}
       update: {name: Modifier}
       delete: {name: Supprimer}
+      export: {name: 'Exporter en CSV'}
+      table:
+        nom : {name: Nom}
+        prenom: {name: Prénom}
+        type: {name: Type}
+        details: {name: Paiement}
+        validationdate: {name: 'Date de validation'}
     event:
       index: {name: Événements}
       create: {name: Créer}

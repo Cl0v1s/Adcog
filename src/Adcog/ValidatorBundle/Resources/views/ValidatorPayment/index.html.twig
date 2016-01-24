@@ -7,6 +7,9 @@
 
 {% block subcontent %}
     {% include 'AdcogDefaultBundle::filter.html.twig' %}
+	<ul class="list-inline">
+		<li>{{ link('validator_payment_export',filter_attr|merge(app.request.query.all),{class:'btn btn-xs btn-default',ficon:'download'})|replace({'&': '&amp;'})|raw }}</li>
+    </ul>
     <div class="row">
         <div class="table_responsive">
             <table class="{{ table_class }}">

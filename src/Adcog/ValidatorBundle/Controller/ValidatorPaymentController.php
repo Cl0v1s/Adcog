@@ -41,7 +41,35 @@ class ValidatorPaymentController extends Controller
         return [
             'paginator' => $paginator,
             'filter' => $filter->createView(),
+            'filter_attr' => ['not_validated' => true]
         ];
+    }
+    
+    /**
+     * Export
+     *
+     * @param Request $request Request
+     *
+     * @return array
+     * @Route("/export")
+     * @Method("GET")
+     * @Template()
+     */
+    public function exportAction(Request $request)
+    {
+        // Filter results
+        $filter = $this->get('form.factory')->createNamed(null, 'adcog_validator_payment_filter', [], ['method' => 'GET', 'csrf_protection' => false])->handleRequest($request);
+        $filterData = !$filter->isSubmitted() || $filter->isValid() ? $filter->getData() : [];
+
+        // Find filtered results
+        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Payment')->exportData($filterData);
+        
+        // Set Response
+        $response = $this->render('AdcogValidatorBundle:ValidatorPayment:export.csv.twig',array('data' => $paginator, 'excel_pack' => pack("CCC",0xef,0xbb,0xbf)));
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+
+        return $response;
     }
 
     /**

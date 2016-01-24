@@ -6,9 +6,24 @@ page:
     payment:
       index: {name: Paiements}
       read: {name: '%entity%'}
+      export: {name: 'Exporter en CSV'}
+      table:
+        nom : {name: Nom}
+        prenom: {name: Prénom}
+        type: {name: Type}
+        details: {name: Paiement}
+        validationdate: {name: 'Date de validation'}
     user:
       index: {name: Utilisateurs}
       read: {name: '%entity%'}
+      export: {name: 'Exporter en CSV'}
+      table:
+        nom: {name: Nom}
+        prenom: {name: Prénom}
+        mail: {name: E-mail}
+        promo: {name: Promotion}
+        creationdate: {name: 'Date de création'}
+        valid: {name: Validé}
     bookmark:
       index: {name: 'Bookmarks'}
       read: {name: '%entity%'}

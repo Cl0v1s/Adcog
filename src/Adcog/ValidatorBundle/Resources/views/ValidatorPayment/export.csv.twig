@@ -1,0 +1,6 @@
+{% autoescape false %}
+{{ excel_pack }}{{ name('validator_payment_table_nom') }};{{ name('validator_payment_table_prenom') }};{{ name('validator_payment_table_type') }};{{ name('validator_payment_table_details') }};{{ name('validator_payment_table_validationdate') }}
+{% for payment in data %}
+{{ payment.user.lastname }};{{ payment.user.firstname }};{{ payment.typeName }};{{ payment }};{{ payment.validated is empty ? "" : payment.validated|date("d/m/Y") }}
+{% endfor %}
+{% endautoescape %}

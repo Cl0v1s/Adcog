@@ -4,6 +4,7 @@ namespace Adcog\DefaultBundle\Repository;
 
 use Adcog\DefaultBundle\Entity\Payment;
 use EB\DoctrineBundle\Paginator\PaginatorHelper;
+use EB\TranslationBundle\Translation\TranslationService;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -26,16 +27,39 @@ class PaymentRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('a');
 
+        // Join user
+        $qb
+            ->leftJoin('a.user', 'b')
+            ->addSelect('b');
+        
         // Type
         if (array_key_exists('type', $filters) && null !== $type = $filters['type']) {
             $qb->andWhere(sprintf('a INSTANCE OF %s', get_class(Payment::createObject($type))));
         }
-
+        
+        // Recherche des users
         $paginatorHelper
             ->applyEqFilter($qb, 'user', $filters)
             ->applyValidatedFilter($qb, $filters);
 
         return $paginatorHelper->create($qb, ['created' => 'DESC']);
+    }
+    
+    /**
+    * Export Data (not paginated)
+    *
+    * @param array           $filters         Filters
+    *
+    * @return
+    */
+    public function exportData(array $filters = []) 
+    {
+        // Recherche les éléments
+        $paginatorHelper = new PaginatorHelper();
+        $data = $this->getPaginator($paginatorHelper, $filters);
+        
+        // Retourne les données
+        return $data;
     }
 
     /**

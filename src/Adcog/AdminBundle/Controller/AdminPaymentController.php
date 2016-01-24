@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -44,6 +45,33 @@ class AdminPaymentController extends Controller
             'paginator' => $paginator,
             'filter' => $filter->createView(),
         ];
+    }
+    
+    /**
+     * Export
+     *
+     * @param Request $request Request
+     *
+     * @return array
+     * @Route("/export")
+     * @Method("GET")
+     * @Template()
+     */
+    public function exportAction(Request $request)
+    {
+        // Filter results
+        $filter = $this->get('form.factory')->createNamed(null, 'adcog_admin_payment_filter', [], ['method' => 'GET', 'csrf_protection' => false])->handleRequest($request);
+        $filterData = !$filter->isSubmitted() || $filter->isValid() ? $filter->getData() : [];
+
+        // Find filtered results
+        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Payment')->exportData($filterData);
+        
+        // Set Response
+        $response = $this->render('AdcogAdminBundle:AdminPayment:export.csv.twig',array('data' => $paginator, 'excel_pack' => pack("CCC",0xef,0xbb,0xbf)));
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+
+        return $response;
     }
 
     /**

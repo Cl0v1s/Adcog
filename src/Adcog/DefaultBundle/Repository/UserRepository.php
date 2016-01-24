@@ -4,6 +4,7 @@ namespace Adcog\DefaultBundle\Repository;
 use Adcog\DefaultBundle\Entity\School;
 use Adcog\DefaultBundle\Entity\User;
 use EB\DoctrineBundle\Paginator\PaginatorHelper;
+use EB\TranslationBundle\Translation\TranslationService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -74,6 +75,23 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         }
 
         return $paginatorHelper->create($qb, ['lastname' => 'ASC', 'firstname' => 'DESC', 'created' => 'DESC']);
+    }
+    
+    /**
+    * Export Data (not paginated)
+    *
+    * @param array           $filters         Filters
+    *
+    * @return
+    */
+    public function exportData(array $filters = []) 
+    {
+        // Recherche les éléments
+        $paginatorHelper = new PaginatorHelper();
+        $data = $this->getPaginator($paginatorHelper, $filters);
+        
+        // Retourne les données
+        return $data;
     }
 
     /**
