@@ -1,6 +1,6 @@
 {% extends 'AdcogDefaultBundle:Blog:index.html.twig' %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %} {{ post.title }} {% endblock %}
 
 {% block description %}{{ post.title }}{% endblock %}
 
@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block articles %}
+    <h1>{{ block('title') }}</h1>
     {% if not post.isValid() %}
         <p class="alert alert-danger">
             Vous pouvez consulter cet article car vous êtes blogger. Cet article n'est pas publié pour les autres utilisateurs.
@@ -37,6 +38,34 @@
                     <h3 class="text-right">{{ post.author }}</h3>
                 {% endif %}
             </div>
+			<h3>Réseaux sociaux</h3>
+			<div class="share">
+				<div class="fb-like" 
+					data-layout="button" 
+					data-action="like">
+				</div>
+				<div class="fb-share-button" 
+					data-href="{{ url('blog_read',{post:post.id,slug:post.slug}) }}" 
+					data-layout="button_count">
+				</div>
+				<a href="https://twitter.com/share" class="twitter-share-button"{count} 
+					data-text="{{ post.title }}"
+					data-url="{{ url('blog_read',{post:post.id,slug:post.slug}) }}"
+					data-via="AssoAdcog" 
+					data-lang="fr"
+					data-hashtags="adcog"
+				>Tweet</a>
+				<script type="IN/Share" 
+					data-url="{{ url('blog_read',{post:post.id,slug:post.slug}) }}" 
+					data-counter="right">
+				</script>
+				<div class="g-plus" 
+					data-action="share" 
+					data-annotation="bubble" 
+					data-height="20" 
+					data-href="{{ url('blog_read',{post:post.id,slug:post.slug}) }}">
+				</div>
+			</div>
         </div>
     </article>
     {% include 'AdcogDefaultBundle::form.html.twig' %}
@@ -81,24 +110,19 @@
     </ul>
 {% endblock %}
 
-{% block column %}
-    {{ parent() }}
-    {% if post.hasBeenValidated() and post.isValid() %}
-        <div class="share">
-            <h3>Réseaux sociaux</h3>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-via="AssoAdcog" data-hashtags="adcog">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            <div id="fb-root"></div>
-            <div class="fb-like" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-            <script type="text/javascript">
-                (function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            </script>
-        </div>
-    {% endif %}
+{% block javascript %}
+	{{ parent() }}
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: fr_FR</script>
+	<script src="https://apis.google.com/js/platform.js" async defer>
+		{lang: 'fr'}
+	</script>
 {% endblock %}
