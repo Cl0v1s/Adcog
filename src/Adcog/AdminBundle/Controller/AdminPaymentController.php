@@ -55,7 +55,6 @@ class AdminPaymentController extends Controller
      * @return array
      * @Route("/export")
      * @Method("GET")
-     * @Template()
      */
     public function exportAction(Request $request)
     {
