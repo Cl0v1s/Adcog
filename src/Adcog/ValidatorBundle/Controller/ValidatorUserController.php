@@ -41,7 +41,7 @@ class ValidatorUserController extends Controller
         return [
             'paginator' => $paginator,
             'filter' => $filter->createView(),
-            'filter_attr' => ['not_validated' => true]
+            'filter_attr' => ['not_validated' => 'yes']
         ];
     }
     
