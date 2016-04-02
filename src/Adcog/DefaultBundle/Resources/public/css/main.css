@@ -15,6 +15,10 @@ body a:hover,
 body a:active{ color:#008fd5; }
 body iframe{ width:100%; margin:15px 0; }
 body form input[type=checkbox].form-control{ width:auto; height:26px; }
+body form .form-control::-webkit-input-placeholder{ color: #ccc; }
+body form .form-control:-moz-placeholder{ color: #ccc; }
+body form .form-control::-moz-placeholder{ color: #ccc; }
+body form .form-control:-ms-input-placeholder{ color: #ccc; }
 body .label{ font-weight:normal; }
 body .tab-pane{ padding:10px; }
 body table .sm{ width:1%; white-space:nowrap; }
