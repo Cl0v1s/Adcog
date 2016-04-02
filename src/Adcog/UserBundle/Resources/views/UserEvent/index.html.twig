@@ -21,9 +21,17 @@
                         <div>{{ event.description|raw }}</div>
                         <p>
                             {% if event.userParticipation(app.user) %}
-                                <span class="label label-success"><span class="fa fa-thumbs-up"></span></span> Vous êtes des notres pour cet événement !
+                                {%  if is_future(event.date) %}
+                                    <span class="label label-success"><span class="fa fa-thumbs-up"></span></span> Vous êtes des nôtres pour cet événement !
+                                {% else %}
+                                    <span class="label label-success"><span class="fa fa-thumbs-up"></span></span> Vous avez participé à cet événement !
+                                {% endif %}
                             {% else %}
-                                <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span> Vous ne participez pas encore, mais il est encore temps ...
+                                {%  if is_future(event.date) %}
+                                    <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span> Vous ne participez pas encore, mais il est encore temps ...
+                                {% else %}
+                                    <span class="label label-warning"><span class="fa fa-thumbs-down"></span></span> Vous n'avez pas participé à cet événement.
+                                {% endif %}
                             {% endif %}
                         </p>
                         {% if is_future(event.date) %}
