@@ -27,3 +27,7 @@ page:
     bookmark:
       index: {name: 'Bookmarks'}
       read: {name: '%entity%'}
+    index:
+      name: 'Zone validateur'
+      title: 'Zone validateur'
+      description: 'Zone validateur'
