@@ -24,7 +24,7 @@ class ExperienceInternshipType extends AbstractType
         $builder
             ->add('internshipSubject', 'text', [
                 'label' => 'Sujet',
-                'placeholder' => 'Création d\'un outil de gestion',
+                'placeholder' => 'ex: Création d\'un outil de gestion',
             ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,

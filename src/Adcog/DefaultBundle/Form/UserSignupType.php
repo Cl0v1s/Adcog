@@ -23,15 +23,15 @@ class UserSignupType extends AbstractType
         $builder
             ->add('username', 'text', [
                 'label' => 'Email',
-                'placeholder' => 'john.doe@gmail.com',
+                'placeholder' => 'ex: john.doe@gmail.com',
             ])
             ->add('firstname', 'text', [
                 'label' => 'Prénom',
-                'placeholder' => 'John',
+                'placeholder' => 'ex: John',
             ])
             ->add('lastname', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'DOE',
+                'placeholder' => 'ex: DOE',
             ])
             ->add('rawPassword', 'repeated', [
                 'first_options' => [

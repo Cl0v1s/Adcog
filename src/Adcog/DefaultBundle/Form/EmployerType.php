@@ -47,7 +47,7 @@ class EmployerType extends AbstractType
         $builder
             ->add('name', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'Cognitive Corp\'',
+                'placeholder' => 'ex: Cognitive Corp\'',
                 'attr' => [
                     'data-employer-selector' => 1,
                     'data-ws' => $this->router->generate('user_employer_api_name'),
@@ -56,12 +56,12 @@ class EmployerType extends AbstractType
             ])
             ->add('address', 'textarea', [
                 'label' => 'Adresse',
-                'placeholder' => '109 avenue Roul',
+                'placeholder' => 'ex: 109 avenue Roul',
                 'required' => false,
             ])
             ->add('zip', 'text', [
                 'label' => 'Code postal',
-                'placeholder' => '33400',
+                'placeholder' => 'ex: 33400',
                 'required' => false,
                 'attr' => [
                     'data-ws' => $this->router->generate('user_employer_api_zip'),
@@ -70,7 +70,7 @@ class EmployerType extends AbstractType
             ])
             ->add('city', 'text', [
                 'label' => 'Ville',
-                'placeholder' => 'Talence',
+                'placeholder' => 'ex: Talence',
                 'required' => false,
                 'attr' => [
                     'data-ws' => $this->router->generate('user_employer_api_city'),
@@ -79,7 +79,7 @@ class EmployerType extends AbstractType
             ])
             ->add('country', 'text', [
                 'label' => 'Pays',
-                'placeholder' => 'France',
+                'placeholder' => 'ex: France',
                 'required' => false,
                 'attr' => [
                     'data-ws' => $this->router->generate('user_employer_api_country'),
@@ -88,17 +88,17 @@ class EmployerType extends AbstractType
             ])
             ->add('phone', 'text', [
                 'label' => 'Téléphone',
-                'placeholder' => '0566778899',
+                'placeholder' => 'ex: 0566778899',
                 'required' => false,
             ])
             ->add('website', 'text', [
                 'label' => 'Site web',
-                'placeholder' => 'http://cognitive-corp.fr',
+                'placeholder' => 'ex: http://cognitive-corp.fr',
                 'required' => false,
             ])
             ->add('email', 'email', [
                 'label' => 'Email',
-                'placeholder' => 'contact@cognitive-corp.fr',
+                'placeholder' => 'ex: contact@cognitive-corp.fr',
                 'required' => false,
             ])
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {

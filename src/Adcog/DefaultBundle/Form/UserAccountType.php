@@ -40,24 +40,24 @@ class UserAccountType extends AbstractType
         $builder
             ->add('username', 'email', [
                 'label' => 'Email',
-                'placeholder' => 'john.doe@gmail.com',
+                'placeholder' => 'ex: john.doe@gmail.com',
             ])
             ->add('firstname', 'text', [
                 'label' => 'Prénom',
-                'placeholder' => 'John',
+                'placeholder' => 'ex: John',
             ])
             ->add('lastname', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'DOE',
+                'placeholder' => 'ex: DOE',
             ])
             ->add('address', 'textarea', [
                 'label' => 'Adresse',
-                'placeholder' => '109 avenue Roul',
+                'placeholder' => 'ex: 109 avenue Roul',
                 'required' => false,
             ])
             ->add('zip', 'text', [
                 'label' => 'Code postal',
-                'placeholder' => '33400',
+                'placeholder' => 'ex: 33400',
                 'required' => false,
                 'attr' => [
                     'data-ws' => $this->router->generate('user_user_api_zip'),
@@ -66,7 +66,7 @@ class UserAccountType extends AbstractType
             ])
             ->add('city', 'text', [
                 'label' => 'Ville',
-                'placeholder' => 'Talence',
+                'placeholder' => 'ex: Talence',
                 'required' => false,
                 'attr' => [
                     'data-ws' => $this->router->generate('user_user_api_city'),
@@ -75,7 +75,7 @@ class UserAccountType extends AbstractType
             ])
             ->add('country', 'text', [
                 'label' => 'Pays',
-                'placeholder' => 'France',
+                'placeholder' => 'ex: France',
                 'required' => false,
                 'attr' => [
                     'data-ws' => $this->router->generate('user_user_api_country'),
@@ -84,12 +84,12 @@ class UserAccountType extends AbstractType
             ])
             ->add('phone', 'text', [
                 'label' => 'Téléphone',
-                'placeholder' => '0566778899',
+                'placeholder' => 'ex: 0566778899',
                 'required' => false,
             ])
             ->add('website', 'text', [
                 'label' => 'Site web',
-                'placeholder' => 'http://adcog.fr',
+                'placeholder' => 'ex: http://adcog.fr',
                 'required' => false,
             ])
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {

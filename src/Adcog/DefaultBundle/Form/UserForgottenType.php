@@ -23,7 +23,7 @@ class UserForgottenType extends AbstractType
     {
         $builder->add('username', 'email', [
             'label' => 'Email',
-            'placeholder' => 'john.doe@gmail.com',
+            'placeholder' => 'ex: john.doe@gmail.com',
             'constraints' => [
                 new C\NotBlank(),
                 new C\NotNull(),

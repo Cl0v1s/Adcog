@@ -23,17 +23,17 @@ class EmployerFilterType extends AbstractType
         $builder
             ->add('name', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'Cognitive Corp\'',
+                'placeholder' => 'ex: Cognitive Corp\'',
                 'required' => false,
             ])
             ->add('city', 'text', [
                 'label' => 'Ville',
-                'placeholder' => 'Talence',
+                'placeholder' => 'ex: Talence',
                 'required' => false,
             ])
             ->add('country', 'text', [
                 'label' => 'Pays',
-                'placeholder' => 'France',
+                'placeholder' => 'ex: France',
                 'required' => false,
             ]);
     }

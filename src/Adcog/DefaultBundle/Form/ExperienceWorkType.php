@@ -25,7 +25,7 @@ class ExperienceWorkType extends AbstractType
         $builder
             ->add('workPosition', 'text', [
                 'label' => 'Poste',
-                'placeholder' => 'Ingénieur en Cognitique',
+                'placeholder' => 'ex: Ingénieur en Cognitique',
             ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,

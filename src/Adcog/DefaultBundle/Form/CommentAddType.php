@@ -23,7 +23,7 @@ class CommentAddType extends AbstractType
         $builder
             ->add('text', 'textarea', [
                 'label' => 'Commentaire',
-                'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                'placeholder' => 'Saisissez ici votre commentaire...',
                 'help' => 'Ce commentaire sera validé par un administrateur avant sa publication',
             ]);
     }

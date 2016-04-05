@@ -23,12 +23,12 @@ class UserFilterType extends AbstractType
         $builder
             ->add('firstname', 'text', [
                 'label' => 'Prénom',
-                'placeholder' => 'John',
+                'placeholder' => 'ex: John',
                 'required' => false,
             ])
             ->add('lastname', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'DOE',
+                'placeholder' => 'ex: DOE',
                 'required' => false,
             ])
             ->add('school', 'entity', [

@@ -26,11 +26,11 @@ class ContactType extends AbstractType
         $builder
             ->add('name', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'John DOE',
+                'placeholder' => 'ex: John DOE',
             ])
             ->add('email', 'email', [
                 'label' => 'Email',
-                'placeholder' => 'john.doe@gmail.com',
+                'placeholder' => 'ex: john.doe@gmail.com',
             ])
             ->add('subject', 'choice', [
                 'label' => 'Objet',
@@ -41,7 +41,7 @@ class ContactType extends AbstractType
             ])
             ->add('message', 'textarea', [
                 'label' => 'Message',
-                'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                'placeholder' => 'Saisissez votre message ici...',
             ]);
     }
 

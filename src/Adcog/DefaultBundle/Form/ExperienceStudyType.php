@@ -24,7 +24,7 @@ class ExperienceStudyType extends AbstractType
         $builder
             ->add('studyDiploma', 'text', [
                 'label' => 'Diplôme',
-                'placeholder' => 'Diplôme d\'Ingénieur Robotique',
+                'placeholder' => 'ex: Diplôme d\'Ingénieur Robotique',
             ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,

@@ -26,15 +26,15 @@ class ExperienceThesisType extends AbstractType
         $builder
             ->add('thesisType', 'text', [
                 'label' => 'Type',
-                'placeholder' => 'CIFRE',
+                'placeholder' => 'ex: CIFRE',
             ])
             ->add('thesisDiscipline', 'text', [
                 'label' => 'Discipline',
-                'placeholder' => 'Cognitique',
+                'placeholder' => 'ex: Cognitique',
             ])
             ->add('thesisSubject', 'text', [
                 'label' => 'Sujet',
-                'placeholder' => 'Analyse des comportements',
+                'placeholder' => 'ex: Analyse des comportements',
             ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,

@@ -51,14 +51,14 @@ class PaymentType extends AbstractType
             ])
             ->add('amount', 'integer', [
                 'label' => 'Montant',
-                'placeholder' => '5',
+                'placeholder' => 'ex: 5',
                 'help' => 'Nombre représentant une somme en euro (utiliser le "." pour la virgule)',
                 'read_only' => true,
                 'disabled' => true,
             ])
             ->add('duration', 'integer', [
                 'label' => 'Durée',
-                'placeholder' => '5',
+                'placeholder' => 'ex: 5',
                 'help' => 'Nombre entier représentant une durée en année',
                 'read_only' => true,
                 'disabled' => true,

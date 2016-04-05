@@ -23,29 +23,29 @@ class MemberFilterType extends AbstractType
         $builder
             ->add('lastname', 'text', [
                 'label' => 'Nom',
-                'placeholder' => 'DOE',
+                'placeholder' => 'ex: DOE',
                 'required' => false,
             ])
             ->add('firstname', 'text', [
                 'label' => 'Prénom',
-                'placeholder' => 'John',
+                'placeholder' => 'ex: John',
                 'required' => false,
             ])
             ->add('schools', 'entity', [
                 'label' => 'Promotions',
-                'placeholder' => '2010',
+                'placeholder' => 'ex: 2010',
                 'required' => false,
                 'multiple' => true,
                 'class' => 'Adcog\DefaultBundle\Entity\School',
             ])
             ->add('city', 'text', [
                 'label' => 'Ville',
-                'placeholder' => 'Talence',
+                'placeholder' => 'ex: Talence',
                 'required' => false,
             ])
             ->add('country', 'text', [
                 'label' => 'Pays',
-                'placeholder' => 'France',
+                'placeholder' => 'ex: France',
                 'required' => false,
             ]);
     }

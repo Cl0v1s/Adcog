@@ -24,18 +24,18 @@ class ExperienceFilterType extends AbstractType
         $builder
             ->add('type', 'choice', [
                 'label' => 'Type',
-                'placeholder' => 'Type',
+                'placeholder' => 'Tous les types d\'expérience',
                 'required' => false,
                 'choices' => Experience::getTypeNameList(),
             ])
             ->add('description', 'text', [
                 'label' => 'Mots clés',
-                'placeholder' => 'Aviation, IHM, ...',
+                'placeholder' => 'ex: Aviation, IHM, ...',
                 'required' => false,
             ])
             ->add('sectors', 'entity', [
                 'label' => 'Secteurs',
-                'placeholder' => 'Informatique, Robotique, ...',
+                'placeholder' => 'ex: Informatique, Robotique, ...',
                 'required' => false,
                 'multiple' => true,
                 'class' => 'Adcog\DefaultBundle\Entity\Sector',

@@ -46,16 +46,16 @@ class ExperienceType extends AbstractType
             ])
             ->add('started', 'adcog_date_field', [
                 'label' => 'Début',
-                'placeholder' => '01/09/2007',
+                'placeholder' => 'ex: 01/09/2007',
             ])
             ->add('ended', 'adcog_date_field', [
                 'label' => 'Fin',
-                'placeholder' => '30/06/2010',
+                'placeholder' => 'ex: 30/06/2010',
                 'required' => false,
             ])
             ->add('description', 'textarea', [
                 'label' => 'Description',
-                'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                'placeholder' => 'Decrivez ici votre expérience...',
             ])
             ->add('salary', 'choice', [
                 'label' => 'Salaire brut annuel',
