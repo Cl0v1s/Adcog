@@ -9,9 +9,9 @@
             </h4>
             <p>
                 <small class="text-muted">
-                    <i class="fa fa-clock-o"></i> {{ experience.started|timeago }}
+                    <i class="fa fa-clock-o"></i> {{ experience.started|dateago }}
                     {% if experience.ended %}
-                        {{ experience.started|timediff(experience.ended) }}
+                        {{ experience.started|datediff(experience.ended) }}
                     {% endif %}
                 </small>
             </p>

@@ -86,8 +86,10 @@ class DateExtension extends \Twig_Extension
             implode(' ', array_filter([
                 $this->translator->trans('eb.date.during'),
                 0 !== $diff->y ? sprintf('%u %s', $diff->y, $this->translator->transChoice('eb.date.year', $diff->y)) : null,
-                (0 !== $diff->y && 0 !== $diff->m) ? $this->translator->trans('eb.date.and') : null,
+                (0 !== $diff->y && 0 !== $diff->m && 0 == $diff->d) ? $this->translator->trans('eb.date.and') : null,
                 0 !== $diff->m ? sprintf('%u %s', $diff->m, $this->translator->transChoice('eb.date.month', $diff->m)) : null,
+                ((0 !== $diff->m || 0 !== $diff->y) && 0 !== $diff->d) ? $this->translator->trans('eb.date.and') : null,
+                0 !== $diff->d ? sprintf('%u %s', $diff->d, $this->translator->transChoice('eb.date.day', $diff->d)) : null,
             ]))
         );
     }
@@ -185,6 +187,7 @@ class DateExtension extends \Twig_Extension
                 0 !== $diff->y ? sprintf('%u %s', $diff->y, $this->translator->transChoice('eb.date.year', $diff->y)) : null,
                 (0 !== $diff->y && 0 !== $diff->m) ? $this->translator->trans('eb.date.and') : null,
                 0 !== $diff->m ? sprintf('%u %s', $diff->m, $this->translator->transChoice('eb.date.month', $diff->m)) : null,
+                0 !== $diff->d ? sprintf('%u %s', $diff->d, $this->translator->transChoice('eb.date.day', $diff->d)) : null,
                 0 !== $diff->h ? sprintf('%u %s', $diff->h, $this->translator->transChoice('eb.date.hour', $diff->h)) : null,
                 0 !== $diff->m ? sprintf('%u %s', $diff->m, $this->translator->transChoice('eb.date.minute', $diff->m)) : null,
                 0 !== $diff->s ? sprintf('%u %s', $diff->s, $this->translator->transChoice('eb.date.second', $diff->s)) : null,

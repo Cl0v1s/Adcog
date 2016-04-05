@@ -36,6 +36,7 @@ eb:
     and: et
     year: année|années
     month: mois|mois
+    day: jour|jours
     months:
       1: Janvier
       2: Février
