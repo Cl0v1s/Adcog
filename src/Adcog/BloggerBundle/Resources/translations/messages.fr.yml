@@ -1,6 +1,6 @@
 page:
   blogger:
-    index: {name: Blogger}
+    index: {name: Zone blogger}
     slider:
       index: {name: Sliders}
       create: {name: Créer}
