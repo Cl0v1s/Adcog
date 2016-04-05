@@ -9,6 +9,7 @@
     {% include 'AdcogDefaultBundle::filter.html.twig' %}
     <ul class="list-inline">
         <li>{{ link('admin_event_participation_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_event_participation_export',app.request.query.all,{class:'btn btn-xs btn-default',ficon:'download'}) }}</li>
     </ul>
     <div class="row">
         <div class="table_responsive">
@@ -17,9 +18,10 @@
                     <tr>
                         <th class="sm">#</th>
                         <th class="sm"></th>
+                        <th class="sm"><span class="fa fa-users" title="{{name('admin_user_table_member')}}"></span></th>
                         <th>Utilisateur</th>
-                        <th>Type</th>
-                        <th>Evenement</th>
+                        <th>{{name('admin_event_table_type')}}</th>
+                        <th>{{name('admin_event_table_event')}}</th>
                         <th class="sm"></th>
                         <th class="sm"></th>
                         <th class="sm"></th>
@@ -30,6 +32,11 @@
                         <tr>
                             <td>{{ eventParticipation.id }}</td>
                             <td class="sm"><img class="no-max" src="{{ eventParticipation.user|user_profile|imagine_filter('default_20_20') }}"/></td>
+                            {% if eventParticipation.user.isMember() %}
+                                <td><span class="fa fa-circle text-success" title="{{name('admin_user_table_member')}}"></span></td>
+                            {% else %}
+                                <td><span class="fa fa-circle-o text-danger" title="{{name('admin_user_table_nomember')}}"></span></td>
+                            {% endif %}
                             <td>{{ link('admin_user_read',{user:eventParticipation.user.id},{name:eventParticipation.user,title:eventParticipation.user}) }}</td>
                             <td>{{ eventParticipation.typeName }}</td>
                             <td>{{ link('admin_event_read',{event:eventParticipation.event.id},{name:eventParticipation.event,title:eventParticipation.event}) }}</td>

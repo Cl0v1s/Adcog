@@ -32,4 +32,21 @@ class EventParticipationRepository extends EntityRepository
 
         return $paginatorHelper->create($qb);
     }
+
+    /**
+     * Export Data (not paginated)
+     *
+     * @param array           $filters         Filters
+     *
+     * @return
+     */
+    public function exportData(array $filters = [])
+    {
+        // Recherche les éléments
+        $paginatorHelper = new PaginatorHelper();
+        $data = $this->getPaginator($paginatorHelper, $filters);
+
+        // Retourne les données
+        return $data;
+    }
 }
