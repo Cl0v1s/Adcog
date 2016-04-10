@@ -37,7 +37,7 @@
                 <td>
                     <ul>
                         {% for participation in event.participations %}
-                            <li>{{ link('admin_event_participation_read',{participation:participation.id},{name:participation,title:participation}) }}</li>
+                            <li>{{ link('admin_event_participation_read',{eventParticipation:participation.id},{name:participation,title:participation}) }}</li>
                         {% else %}
                             <li>Aucune</li>
                         {% endfor %}
