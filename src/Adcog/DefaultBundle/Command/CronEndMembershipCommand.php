@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Class CronEndMembershipCommand
  *
- * @author "Nicolas Drufin" <nicolas.drufin@gmail.com>
+ * @author "Nicolas Drufin" <nicolas.drufin@ensc.fr>
  */
 class CronEndMembershipCommand extends ContainerAwareCommand
 {
