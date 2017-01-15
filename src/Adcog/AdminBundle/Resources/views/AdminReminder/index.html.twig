@@ -1,0 +1,38 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_reminder_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        {# <li>{{ link('admin_reminder_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li> #}
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th>Durée</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reminder in paginator %}
+                        <tr>
+                            <td>{{ reminder.id }}</td>
+                            <td>{{ reminder.getDateInterval() }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

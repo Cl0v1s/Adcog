@@ -2,17 +2,17 @@
 
 namespace Adcog\DefaultBundle\Repository;
 
-use Adcog\DefaultBundle\Entity\CustomDateInterval;
+use Adcog\DefaultBundle\Entity\Reminder;
 use EB\DoctrineBundle\Paginator\PaginatorHelper;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
- * Class FileRepository
+ * Class ReminderRepository
  *
  * @author "Nicolas Drufin" <nicolas.drufin@ensc.fr>
  */
-class CustomDateIntervalRepository extends EntityRepository
+class ReminderRepository extends EntityRepository
 {
     /**
      * Create a paginator

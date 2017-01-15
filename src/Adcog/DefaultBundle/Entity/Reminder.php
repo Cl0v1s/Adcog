@@ -2,6 +2,8 @@
 
 namespace Adcog\DefaultBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use EB\DoctrineBundle\Entity\LoggableInterface;
 use EB\DoctrineBundle\Entity\CreatedInterface;
 use EB\DoctrineBundle\Entity\Doctrine\CreatedTrait;
@@ -9,12 +11,12 @@ use EB\DoctrineBundle\Entity\Doctrine\UpdatedTrait;
 use EB\DoctrineBundle\Entity\UpdatedInterface;
 
 /**
- * Class DateInterval
+ * Class Reminder
  * @author "Nicolas Drufin" <nicolas.drufin@ensc.fr>
- * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\CustomDateIntervalRepository")
- * @ORM\Table(name="adcog_date_interval")
+ * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\ReminderRepository")
+ * @ORM\Table(name="adcog_reminder")
  */
-class CustomDateInterval implements CreatedInterface, UpdatedInterface, LoggableInterface {
+class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface {
 
     use CreatedTrait;
     use UpdatedTrait;
