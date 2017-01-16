@@ -21,6 +21,9 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     use CreatedTrait;
     use UpdatedTrait;
 
+    const TYPE_BEFORE = false;
+    const TYPE_AFTER = true;
+
     /**
      * @var int
      * @ORM\Column(type="integer")
@@ -75,6 +78,26 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     }
 
     /**
+     * Get Interval
+     *
+     * @return String
+     */
+    public function getInterval()
+    {
+        return $this->interval;
+    }
+
+    /**
+     * Set Interval
+     *
+     * @param Interval $interval
+     */
+    public function setInterval(String $interval) {
+        $this->interval = $interval;
+    }
+
+
+    /**
      * If is cycle
      *
      * @return Boolean
@@ -98,7 +121,7 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
      *
      * @return Boolean
      */
-    public function isInverted()
+    public function isInvert()
     {
         return $this->invert;
     }
@@ -108,7 +131,7 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
      *
      * @param Boolean $has_invert
      */
-    public function setInverted(Boolean $has_invert) {
+    public function setInvert(Boolean $has_invert) {
         $this->invert = $has_invert;
     }
 
@@ -135,7 +158,7 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
      *
      * @return string
      */
-    function dateIntervalToString(\DateInterval $interval) {
+    static function dateIntervalToString(\DateInterval $interval) {
 
         // Reading all non-zero date parts.
         $date = array_filter(array(
@@ -165,5 +188,16 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
         }
 
         return $specString;
+    }
+
+    /**
+     * @return string[]
+     */
+    static public function getTypeInverted()
+    {
+        return [
+            self::TYPE_BEFORE => 'Avant',
+            self::TYPE_AFTER => 'Après',
+        ];
     }
 } 
