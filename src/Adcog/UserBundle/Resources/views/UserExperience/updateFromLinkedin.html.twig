@@ -1,0 +1,23 @@
+{% extends 'AdcogUserBundle:UserExperience:createWork.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_experience_create_work') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+
+{{parent()}}
+{% endblock %}
+
+{#% extends 'AdcogUserBundle:UserExperience:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('user_experience_create_work') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+
+{{dump(toBeDumped)}}
+{% endblock %#}
