@@ -15,14 +15,26 @@
                 <thead>
                     <tr>
                         <th class="sm">#</th>
-                        <th>Durée</th>
+                        <th class="sm"><span class="fa fa-history" title="{{name('admin_reminder_table_cycle')}}"></span></th>
+                        <th>Description</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for reminder in paginator %}
                         <tr>
                             <td>{{ reminder.id }}</td>
-                            <td>{{ reminder.getDateInterval() }}</td>
+                            {% if reminder.isCycle() %}
+                                <td><span class="fa fa-circle text-success" title="{{name('admin_reminder_table_cycle')}}"></span></td>
+                            {% else %}
+                                <td><span class="fa fa-circle-o text-danger" title="{{name('admin_user_table_nocycle')}}"></span></td>
+                            {% endif %}
+                            <td>{{ reminder }}</td>
+                            <td>{{ link('admin_reminder_read',{reminder:reminder.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:'',title:reminder}) }}</td>
+                            <td>{{ link('admin_reminder_update',{reminder:reminder.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:'',title:reminder}) }}</td>
+                            <td>{{ link('admin_reminder_delete',{reminder:reminder.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:'',title:reminder}) }}</td>
                         </tr>
                     {% else %}
                         <tr>

@@ -28,13 +28,29 @@ class ReminderType extends AbstractType
                 'label' => 'Type de rappel',
                 'choices' => Reminder::getTypeInverted(),
             ])
-            ->add('interval', 'text', [
-                'label' => 'Durée',
-                'placeholder' => '5',
+            ->add('year', 'integer', [
+                'label' => 'Années',
+                'required' => false,
+                'attr' => ['min' => '0'],
+                'empty_data'  => '0',
                 'help' => 'Nombre entier représentant une durée en année',
             ])
+            ->add('month', 'integer', [
+                'label' => 'Mois',
+                'required' => false,
+                'attr' => ['min' => '0'],
+                'empty_data'  => '0',
+                'help' => 'Nombre entier représentant une durée en mois',
+            ])
+            ->add('days', 'integer', [
+                'label' => 'Jours',
+                'required' => false,
+                'attr' => ['min' => '0'],
+                'empty_data'  => '0',
+                'help' => 'Nombre entier représentant une durée en jours',
+            ])
             ->add('cycle', 'checkbox', [
-                'label' => 'En boucle',
+                'label' => 'Récurrent sans fin',
                 'required' => false,
             ]);
     }

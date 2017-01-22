@@ -63,7 +63,7 @@ class AdminReminderController extends Controller {
             $em->persist($reminder);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_reminder_read', ['price' => $reminder->getId()]));
+            return $this->redirect($this->generateUrl('admin_reminder_read', ['reminder' => $reminder->getId()]));
         }
 
         return [
@@ -86,6 +86,62 @@ class AdminReminderController extends Controller {
     {
         return [
             'reminder' => $reminder,
+        ];
+    }
+
+    /**
+     * Update
+     *
+     * @param Request $request Request
+     * @param Reminder    $reminder    Reminder
+     *
+     * @return array|RedirectResponse
+     * @Route("/{reminder}/update", requirements={"reminder":"\d+"})
+     * @ParamConverter("reminder", class="AdcogDefaultBundle:Reminder")
+     * @Method("GET|POST")
+     * @Template()
+     */
+    public function updateAction(Request $request, Reminder $reminder)
+    {
+        $form = $this->createForm('adcog_admin_reminder', $reminder);
+        if ($form->handleRequest($request)->isValid()) {
+            $this->get('doctrine.orm.default_entity_manager')->flush();
+
+            return $this->redirect($this->generateUrl('admin_reminder_read', ['reminder' => $reminder->getId()]));
+        }
+
+        return [
+            'reminder' => $reminder,
+            'form' => $form->createView(),
+        ];
+    }
+
+    /**
+     * Delete
+     *
+     * @param Request $request Request
+     * @param Reminder    $reminder    Reminder
+     *
+     * @return array|RedirectResponse
+     * @Route("/{reminder}/delete", requirements={"reminder":"\d+"})
+     * @ParamConverter("reminder", class="AdcogDefaultBundle:Reminder")
+     * @Method("GET|POST")
+     * @Template()
+     */
+    public function deleteAction(Request $request, Reminder $reminder)
+    {
+        $form = $this->createForm('form');
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->get('doctrine.orm.default_entity_manager');
+            $em->remove($reminder);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('admin_reminder_index'));
+        }
+
+        return [
+            'reminder' => $reminder,
+            'form' => $form->createView(),
         ];
     }
 

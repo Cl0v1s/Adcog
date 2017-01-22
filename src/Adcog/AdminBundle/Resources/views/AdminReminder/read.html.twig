@@ -1,6 +1,6 @@
-{% extends 'AdcogAdminBundle:AdminPrice:index.html.twig' %}
+{% extends 'AdcogAdminBundle:AdminReminder:index.html.twig' %}
 
-{% block title %}{{ reminder }}{% endblock %}
+{% block title %}Rappel {{ reminder.id }}{% endblock %}
 
 {% block breadcrumb %}
     {{ parent() }}
@@ -19,6 +19,10 @@
             <tr>
                 <th>ID</th>
                 <td>{{ reminder.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reminder }}</td>
             </tr>
         </tbody>
     </table>

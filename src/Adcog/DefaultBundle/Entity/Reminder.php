@@ -33,13 +33,25 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     private $id;
 
     /**
-     * @var \string
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
-     * @Assert\Type(type="string")
-     * @Assert\Length(min=2, max=255)
+     * @var int
+     * @ORM\Column(type="integer", options={"default":0})
+     * @Assert\Regex(pattern="/[0-9]+/")
      */
-    private $interval;
+    private $year;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", options={"default":0})
+     * @Assert\Regex(pattern="/[0-9]+/")
+     */
+    private $month;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", options={"default":0})
+     * @Assert\Regex(pattern="/[0-9]+/")
+     */
+    private $days;
 
     /**
      * @var bool
@@ -54,13 +66,28 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     private $cycle = false;
 
     /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Get date interval
      *
      * @return DateInterval
      */
     public function getDateInterval()
     {
-        $date_interval = new \DateInterval($this->interval);
+        $date_interval = new \DateInterval(
+            sprintf("P%uY%uM%uD",
+                $this->year,
+                $this->month,
+                $this->days)
+        );
         if ($this->invert) {
             $date_interval->invert = 1;
         }
@@ -68,34 +95,73 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     }
 
     /**
-     * Set date interval
+     * Get year
      *
-     * @param DateInterval $date_interval
+     * @return int
      */
-    public function setDateInterval(\DateInterval $date_interval) {
-        $this->interval = $this->dateIntervalToString($date_interval);
-        $this->invert = $date_interval->invert;
-    }
-
-    /**
-     * Get Interval
-     *
-     * @return String
-     */
-    public function getInterval()
+    public function getYear()
     {
-        return $this->interval;
+        return $this->year;
     }
 
     /**
-     * Set Interval
+     * Set year
      *
-     * @param Interval $interval
+     * @param int $year
+     *
+     * @return Reminder
      */
-    public function setInterval(String $interval) {
-        $this->interval = $interval;
+    public function setYear($year) {
+        $this->year = $year;
+
+        return $this;
     }
 
+    /**
+     * Get month
+     *
+     * @return int
+     */
+    public function getMonth()
+    {
+        return $this->month;
+    }
+
+    /**
+     * Set month
+     *
+     * @param int $month
+     *
+     * @return Reminder
+     */
+    public function setMonth($month) {
+        $this->month = $month;
+
+        return $this;
+    }
+
+    /**
+     * Get days
+     *
+     * @return int
+     */
+    public function getDays()
+    {
+        return $this->days;
+    }
+
+    /**
+     * Set days
+     *
+     * @param int $days
+     *
+     * @return Reminder
+     */
+    public function setDays($days) {
+        $this->days = $days;
+
+        return $this;
+    }
 
     /**
      * If is cycle
@@ -111,9 +177,13 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
      * Set cycle
      *
      * @param Boolean $has_cycle
+     *
+     * @return Reminder
      */
-    public function setCycle(Boolean $has_cycle) {
+    public function setCycle($has_cycle) {
         $this->cycle = $has_cycle;
+
+        return $this;
     }
 
     /**
@@ -130,9 +200,13 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
      * Set inverted
      *
      * @param Boolean $has_invert
+     *
+     * @return Reminder
      */
-    public function setInvert(Boolean $has_invert) {
+    public function setInvert($has_invert) {
         $this->invert = $has_invert;
+
+        return $this;
     }
 
     /**
@@ -140,54 +214,20 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
      */
     public function __toString()
     {
+        $cycle_indicator = "";
         if ($this->isCycle()) {
-            $cycle_indicator = "cyclique";
+            $cycle_indicator = "récurrent";
         }
         $invert_indicator = "après";
-        if ($this->isInverted()) {
+        if ($this->isInvert()) {
             $invert_indicator = "avant";
         }
-        return sprintf("%s le %s %s",
+        return sprintf("Rappel %s %u ans %u mois et %u jours %s",
             $invert_indicator,
-            $this->interval,
+            $this->year,
+            $this->month,
+            $this->days,
             $cycle_indicator);
-    }
-
-    /**
-     * @param \DateInterval $interval
-     *
-     * @return string
-     */
-    static function dateIntervalToString(\DateInterval $interval) {
-
-        // Reading all non-zero date parts.
-        $date = array_filter(array(
-            'Y' => $interval->y,
-            'M' => $interval->m,
-            'D' => $interval->d
-        ));
-
-        // Reading all non-zero time parts.
-        $time = array_filter(array(
-            'H' => $interval->h,
-            'M' => $interval->i,
-            'S' => $interval->s
-        ));
-
-        $specString = 'P';
-
-        // Adding each part to the spec-string.
-        foreach ($date as $key => $value) {
-            $specString .= $value . $key;
-        }
-        if (count($time) > 0) {
-            $specString .= 'T';
-            foreach ($time as $key => $value) {
-                $specString .= $value . $key;
-            }
-        }
-
-        return $specString;
     }
 
     /**
@@ -196,8 +236,8 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     static public function getTypeInverted()
     {
         return [
-            self::TYPE_BEFORE => 'Avant',
-            self::TYPE_AFTER => 'Après',
+            self::TYPE_BEFORE => 'Avant expiration',
+            self::TYPE_AFTER => 'Après expiration',
         ];
     }
 } 
