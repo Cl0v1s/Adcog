@@ -3,10 +3,14 @@
 {% block content %}
     <tr>
         <td>
-            {{ user }}, devenez membre à part entière en adhérant à l'ADCOG.
-			L'adhésion se fait en quelques clics grace à nos solutions de paiement sécurisées sur internet !
-            Rendez vous dès maintenant sur la page :
-            <a href="{{ url('user_subscribe_index') }}">Mon adhésion</a>.
+            <p>{{ user }}, devenez membre à part entière en adhérant à l'ADCOG,
+                l'association des anciens élèves de l'ENSC.</p>
+            <p>Pour soutenir les actions de l'ADCOG, profiter de tarifs préférentiels sur certains
+            de nos événements, et accéder à l'ensemble des fonctionnalités du site, vous pouvez dès à présent
+                adhérer directement en ligne sur le site en vous rendant sur la page :
+                <a href="{{ url('user_subscribe_index') }}">Mon adhésion</a>.</p>
+            <p>A cette occasion, n'hésitez pas à nous faire part de vos remarques et vos attentes via notre
+                adresse mail : <a href="mailto:contact@adcog.fr">contact@adcog.fr</a></p>
         </td>
     </tr>
 {% endblock %}

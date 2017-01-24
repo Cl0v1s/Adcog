@@ -21,8 +21,8 @@ class Reminder implements CreatedInterface, UpdatedInterface, LoggableInterface 
     use CreatedTrait;
     use UpdatedTrait;
 
-    const TYPE_BEFORE = false;
-    const TYPE_AFTER = true;
+    const TYPE_BEFORE = true;
+    const TYPE_AFTER = false;
 
     /**
      * @var int

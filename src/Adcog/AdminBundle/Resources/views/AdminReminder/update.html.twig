@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     {{ parent() }}
-    <li>{{ link('admin_reminder_update',{reminder:reminder}) }}</li>
+    <li>{{ link('admin_reminder_update',{reminder:reminder.id}) }}</li>
 {% endblock %}
 
 {% block subcontent %}
