@@ -84,19 +84,19 @@ class CronEndMembershipCommand extends ContainerAwareCommand
             $mailmodel = 'user_expired';
             
             // get date limit
-            if (null === $datelimit = $user->getLastPaymentEnded())
+            if (null === $datelimitstart = $user->getLastPaymentEnded())
             {
                 // Verification de la fin de période scolaire
                 if (null !== $school = $user->getSchool()) {
-                    $datelimit = \DateTime::createFromFormat('Ymd', sprintf('%s0901', $school->getYear()));
+                    $datelimitstart = \DateTime::createFromFormat('Ymd', sprintf('%s0901', $school->getYear()));
                     $mailmodel = 'user_join_member';
                 } 
             }
 
             // if has a date of account expiration
-            if (null !== $datelimit)
+            if (null !== $datelimitstart)
             {
-                $this->printDebug($output, $debug, sprintf("%s expire le %s", $user, $datelimit->format('d-m-Y')));
+                $this->printDebug($output, $debug, sprintf("%s expire le %s", $user, $datelimitstart->format('d-m-Y')));
 
                 // flag mail send (avoid 2 mails for a same user)
                 $mail_send = false;
@@ -109,7 +109,7 @@ class CronEndMembershipCommand extends ContainerAwareCommand
                     $repeat = $reminder->isCycle();
 
                     // if day of end
-                    $datelimitstart = clone $datelimit;
+                    $datelimit = clone $datelimitstart;
                     // loop for repeat
                     do {
                         // define date start and end
@@ -127,7 +127,7 @@ class CronEndMembershipCommand extends ContainerAwareCommand
                             }
 
                             // Envoi du mail
-                            $mailer->send($mailmodel, $user, [
+                            $mailer->send($mailmodel, $user->getUsername(), [
                                 'user' => $user,
                                 'expiration_date' => $datelimitstart
                             ]);
