@@ -19,6 +19,7 @@
             <ul class="nav">
                 <li{{ current('admin_price') }}>{{ link('admin_price_index') }}</li>
                 <li{{ current('admin_payment') }}>{{ link('admin_payment_index') }}</li>
+                <li{{ current('admin_reminder') }}>{{ link('admin_reminder_index') }}</li>
             </ul>
             <h3>Evenements</h3>
             <ul class="nav">
@@ -41,6 +42,8 @@
                 <li>{{ link('admin_email',{templateName:'user_password_lost'},{name:'Utilisateur - Mot de passe oublié',title:'Utilisateur - Mot de passe oublié'}) }}</li>
                 <li>{{ link('admin_email',{templateName:'user_update_email'},{name:'Utilisateur - Email modifié',title:'Utilisateur - Email modifié'}) }}</li>
                 <li>{{ link('admin_email',{templateName:'user_update_password'},{name:'Utilisateur - Mot de passe modifié',title:'Utilisateur - Mot de passe modifié'}) }}</li>
+				<li>{{ link('admin_email',{templateName:'user_expired'},{name:'Utilisateur - Expiration',title:'Utilisateur - Expiration'}) }}</li>
+				<li>{{ link('admin_email',{templateName:'user_join_member'},{name:'Utilisateur - Adhésion',title:'Utilisateur - Adhésion'}) }}</li>
                 <li>{{ link('admin_email',{templateName:'payment_persist'},{name:'Facture - Création',title:'Facture - Validation'}) }}</li>
                 <li>{{ link('admin_email',{templateName:'payment_persist_alert'},{name:'Facture - Alerte de création',title:'Facture - Alerte de création'}) }}</li>
                 <li>{{ link('admin_email',{templateName:'payment_validate'},{name:'Facture - Validation',title:'Facture - Validation'}) }}</li>

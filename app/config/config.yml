@@ -136,6 +136,12 @@ eb_email:
     contact:
       template: 'AdcogDefaultBundle:Email:contact.html.twig'
       subject: '{{ mail.subject|raw }}'
+    user_expired:
+      template: 'AdcogDefaultBundle:Email:userExpired.html.twig'
+      subject: '{{ user }}, renouvelez votre adhésion à l''ADCOG'
+    user_join_member:
+      template: 'AdcogDefaultBundle:Email:userJoinMember.html.twig'
+      subject: '{{ user }}, devenez membre en adhérant à l''ADCOG'
     user_persist:
       template: 'AdcogDefaultBundle:Email:userPersist.html.twig'
       subject: '{{ user }}, bienvenue sur le site de l''ADCOG'

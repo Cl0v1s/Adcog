@@ -333,5 +333,5 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             ->andWhere($qb->expr()->isNull('a.invalidated'))
             ->getQuery()
             ->getSingleScalarResult();
-    }
+    }    
 }

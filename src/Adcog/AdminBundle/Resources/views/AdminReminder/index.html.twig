@@ -1,0 +1,50 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_reminder_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_reminder_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th class="sm"><span class="fa fa-history" title="{{name('admin_reminder_table_cycle')}}"></span></th>
+                        <th>Description</th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reminder in paginator %}
+                        <tr>
+                            <td>{{ reminder.id }}</td>
+                            {% if reminder.isCycle() %}
+                                <td><span class="fa fa-circle text-success" title="{{name('admin_reminder_table_cycle')}}"></span></td>
+                            {% else %}
+                                <td><span class="fa fa-circle-o text-danger" title="{{name('admin_user_table_nocycle')}}"></span></td>
+                            {% endif %}
+                            <td>{{ reminder }}</td>
+                            <td>{{ link('admin_reminder_read',{reminder:reminder.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:'',title:reminder}) }}</td>
+                            <td>{{ link('admin_reminder_update',{reminder:reminder.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:'',title:reminder}) }}</td>
+                            <td>{{ link('admin_reminder_delete',{reminder:reminder.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:'',title:reminder}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

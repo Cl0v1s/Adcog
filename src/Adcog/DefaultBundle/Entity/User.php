@@ -181,7 +181,7 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
      */
     public function __toString()
     {
-        return sprintf('%s %s', mb_strtoupper($this->getLastname(), 'UTF-8'), $this->getFirstname());
+        return sprintf('%s %s', $this->getFirstname(), mb_strtoupper($this->getLastname(), 'UTF-8'));
     }
 
     /**
@@ -434,6 +434,31 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
         $this->lastname = $lastname;
 
         return $this;
+    }
+    
+    /**
+     * Get Last payment expiration date
+     *
+     * @return null|\DateTime
+     */
+    public function getLastPaymentEnded()
+    {
+        $array_date = array();
+        
+        // Verify all payment
+        foreach ($this->getPayments() as $payment) {
+            if (true === $payment->isActive()) {
+                return $payment->getEnded();
+            } else {
+                $array_date[] = $payment->getEnded();
+            }
+        }
+
+        // get max payment
+        if (!empty($array_date)) {
+            return max($array_date);
+        }
+        return null;
     }
 
     /**

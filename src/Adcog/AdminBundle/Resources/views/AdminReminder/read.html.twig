@@ -1,0 +1,29 @@
+{% extends 'AdcogAdminBundle:AdminReminder:index.html.twig' %}
+
+{% block title %}Rappel {{ reminder.id }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_reminder_read',{reminder:reminder.id},{name:reminder,title:reminder}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_reminder_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_reminder_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_reminder_update',{reminder:reminder.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_reminder_delete',{reminder:reminder.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ reminder.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reminder }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
