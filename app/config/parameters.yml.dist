@@ -21,3 +21,5 @@ parameters:
     paypal_endpoint: ''
     paypal_client_id: ''
     paypal_secret: ''
+    linkedin_id = '775rlmtewci542'
+    client_secret = '57laN2m5Go1jw1Mx'

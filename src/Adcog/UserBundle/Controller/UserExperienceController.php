@@ -259,8 +259,14 @@ class UserExperienceController extends Controller
     {
         $callback = $this->generateUrl("user_experience_update_from_linkedin", array(), true);
 
-        $client_id = '775rlmtewci542';
-        $client_secret = '57laN2m5Go1jw1Mx';
+        if ($container->has_paramaeter('linkedin_id') && $container->has_paramaeter('linkedin_secret'))
+        {
+            $client_id = $container->getParameter('linkedin_id');
+            $client_secret = $container->getParameter('linkedin_secret');
+        }
+        else throw new Exception("parameters linkedin_id and linkedin_secret must be defined");
+
+        
 
         $li = new linkedIn(array(
                 'api_key' => $client_id,
