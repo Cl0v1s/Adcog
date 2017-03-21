@@ -178,9 +178,11 @@ eb_email:
 
 services:
   adcog.functions.string:
-    class:      Adcog\DefaultBundle\Functions\StringFunc
-    #arguments:
-    #      entityManager: "@doctrine.orm.entity_manager"
+    class: Adcog\DefaultBundle\Functions\StringFunc
+  adcog.checkDoubles:
+    class: Adcog\UserBundle\Service\CheckDoubles
+    arguments:
+          entityManager: "@doctrine.orm.entity_manager"
 
 
 

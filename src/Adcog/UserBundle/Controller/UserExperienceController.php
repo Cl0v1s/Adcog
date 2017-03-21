@@ -58,10 +58,10 @@ class UserExperienceController extends Controller
         $experience->setUser($this->getUser());
         $form = $this->createForm('adcog_experience_work', $experience);
         if ($form->handleRequest($request)->isValid()) {
-            $this->checkEmployerDoubles($experience);
-            $this->checkSectorsDoubles($experience);
-            $this->checkCountryDoubles($experience);
-            $this->checkCityDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCountryDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCityDoubles($experience);
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($experience);
             $em->flush();
@@ -91,10 +91,10 @@ class UserExperienceController extends Controller
         $experience->setUser($this->getUser());
         $form = $this->createForm('adcog_experience_study', $experience);
         if ($form->handleRequest($request)->isValid()) {
-            $this->checkEmployerDoubles($experience);
-            $this->checkSectorsDoubles($experience);
-            $this->checkCountryDoubles($experience);
-            $this->checkCityDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCountryDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCityDoubles($experience);
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($experience);
             $em->flush();
@@ -124,10 +124,10 @@ class UserExperienceController extends Controller
         $experience->setUser($this->getUser());
         $form = $this->createForm('adcog_experience_thesis', $experience);
         if ($form->handleRequest($request)->isValid()) {
-            $this->checkEmployerDoubles($experience);
-            $this->checkSectorsDoubles($experience);
-            $this->checkCountryDoubles($experience);
-            $this->checkCityDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCountryDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCityDoubles($experience);
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($experience);
             $em->flush();
@@ -157,10 +157,10 @@ class UserExperienceController extends Controller
         $experience->setUser($this->getUser());
         $form = $this->createForm('adcog_experience_internship', $experience);
         if ($form->handleRequest($request)->isValid()) {
-            $this->checkEmployerDoubles($experience);
-            $this->checkSectorsDoubles($experience);
-            $this->checkCountryDoubles($experience);
-            $this->checkCityDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCountryDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCityDoubles($experience);
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($experience);
             $em->flush();
@@ -195,10 +195,10 @@ class UserExperienceController extends Controller
 
         $form = $this->createForm(sprintf('adcog_experience_%s', $experience->getType()), $experience);
         if ($form->handleRequest($request)->isValid()) {
-            $this->checkEmployerDoubles($experience);
-            $this->checkSectorsDoubles($experience);
-            $this->checkCountryDoubles($experience);
-            $this->checkCityDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCountryDoubles($experience);
+            $this->get('adcog.checkDoubles')->checkCityDoubles($experience);
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($experience);
             $em->flush();
@@ -259,10 +259,10 @@ class UserExperienceController extends Controller
     {
         $callback = $this->generateUrl("user_experience_update_from_linkedin", array(), true);
 
-        if ($container->has_paramaeter('linkedin_id') && $container->has_paramaeter('linkedin_secret'))
+        if ($this->container->hasParameter('linkedin_id') && $this->container->hasParameter('linkedin_secret'))
         {
-            $client_id = $container->getParameter('linkedin_id');
-            $client_secret = $container->getParameter('linkedin_secret');
+            $client_id = $this->container->getParameter('linkedin_id');
+            $client_secret = $this->container->getParameter('linkedin_secret');
         }
         else throw new Exception("parameters linkedin_id and linkedin_secret must be defined");
 
@@ -332,10 +332,10 @@ class UserExperienceController extends Controller
             $form = $this->createForm('adcog_experience_work', $experience);
             if ($form->handleRequest($request)->isValid()) 
             {
-                $this->checkEmployerDoubles($experience);
-                $this->checkSectorsDoubles($experience);
-                $this->checkCountryDoubles($experience);
-                $this->checkCityDoubles($experience);
+                $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
+                $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
+                $this->get('adcog.checkDoubles')->checkCountryDoubles($experience);
+                $this->get('adcog.checkDoubles')->checkCityDoubles($experience);
                 $em = $this->get('doctrine.orm.default_entity_manager');
                 $em->persist($experience);
                 $em->flush();
@@ -369,8 +369,8 @@ class UserExperienceController extends Controller
 
     public function requestAuthorizationCodeAction(Request $request)
     {
-        $client_id = '775rlmtewci542';
-        $client_secret = '57laN2m5Go1jw1Mx';
+        $client_id = $this->container->getParameter('linkedin_id');
+        $client_secret = $this->container->getParameter('linkedin_secret');
         $callBack = $this->generateUrl("user_experience_update_from_linkedin", array(), true);
 
         $li = new linkedIn(array(
@@ -390,79 +390,5 @@ class UserExperienceController extends Controller
         );
 
         return $this->redirect($url);
-    }
-
-    private function checkEmployerDoubles(Experience $experience)
-    {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-        $strfunc = $this->get('adcog.functions.string');
-        $empRep = $em->getRepository('AdcogDefaultBundle:Employer');
-        //at this place, we do not make a case insensitive or accent insensitive search. However, the utf8_unicode_ci interclassment makes so that it is ignored.
-        $employers = $empRep->findByName($experience->getEmployer()->getName());
-        foreach($employers as $oneEmployer)
-        {
-            if (strtolower($strfunc->remove_accents($oneEmployer->getName())) == strtolower($strfunc->remove_accents($experience->getEmployer()->getName())))
-            {
-                $experience->setEmployer($oneEmployer);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private function checkSectorsDoubles(Experience $experience)
-    {
-        $nbOfSectorsReplaced = 0;
-        $em = $this->get('doctrine.orm.default_entity_manager');
-        $strfunc = $this->get('adcog.functions.string');
-        $sectRep = $em->getRepository('AdcogDefaultBundle:Sector');
-        $expSectors = $experience->getSectors();
-        foreach($expSectors as $sectNumber => $oneExpSector)
-        {
-            $sectors = $sectRep->findByName($oneExpSector->getName());
-            foreach($sectors as $oneSector)
-            {
-                if (strtolower($strfunc->remove_accents($oneSector->getName())) == strtolower($strfunc->remove_accents($oneExpSector->getName())))
-                {
-                    $expSectors[$sectNumber] = $oneSector;
-                    $nbOfSectorsReplaced++;
-                    break;
-                }
-            }
-        }
-        return $nbOfSectorsReplaced;
-    }
-
-    private function checkCountryDoubles(Experience $experience)
-    {
-        $strfunc = $this->get('adcog.functions.string');
-        $empRep = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer');
-        //at this place, we do not make a case insensitive or accent insensitive search. However, the utf8_unicode_ci interclassment makes so that it is ignored.
-        $employers = $empRep->findByCountry($experience->getEmployer()->getCountry());
-        foreach($employers as $oneEmployer)
-        {
-            if (strtolower($strfunc->remove_accents($oneEmployer->getCountry())) == strtolower($strfunc->remove_accents($experience->getEmployer()->getCountry())))
-            {
-                $experience->getEmployer()->setCountry($oneEmployer->getCountry());                
-                return true;
-            }
-        }
-        return false;
-    }
-    private function checkCityDoubles(Experience $experience)
-    {
-        $strfunc = $this->get('adcog.functions.string');
-        $empRep = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer');
-        //at this place, we do not make a case insensitive or accent insensitive search. However, the utf8_unicode_ci interclassment makes so that it is ignored.
-        $employers = $empRep->findByCity($experience->getEmployer()->getCity());
-        foreach($employers as $oneEmployer)
-        {
-            if (strtolower($strfunc->remove_accents($oneEmployer->getCity())) == strtolower($strfunc->remove_accents($experience->getEmployer()->getCity())))
-            {
-                $experience->getEmployer()->setCity($oneEmployer->getCity());
-                return true;
-            }
-        }
-        return false;
     }
 }
