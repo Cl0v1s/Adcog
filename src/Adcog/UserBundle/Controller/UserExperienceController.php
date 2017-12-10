@@ -255,9 +255,9 @@ class UserExperienceController extends Controller
      * @Method("GET|POST")
      * @Template()
      */
-    public function updateFromLinkedinAction(Request $request)
+    public function importLinkedinAction(Request $request)
     {
-        $callback = $this->generateUrl("user_experience_update_from_linkedin", array(), true);
+        $callback = $this->generateUrl("user_experience_import_linkedin", array(), true);
 
         if ($this->container->hasParameter('linkedin_id') && $this->container->hasParameter('linkedin_secret'))
         {
@@ -371,7 +371,7 @@ class UserExperienceController extends Controller
     {
         $client_id = $this->container->getParameter('linkedin_id');
         $client_secret = $this->container->getParameter('linkedin_secret');
-        $callBack = $this->generateUrl("user_experience_update_from_linkedin", array(), true);
+        $callBack = $this->generateUrl("user_experience_import_linkedin", array(), true);
 
         $li = new linkedIn(array(
             'api_key' => $client_id,

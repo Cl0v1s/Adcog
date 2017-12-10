@@ -32,6 +32,8 @@ page:
       read: {name: Consulter}
       update: {name: Modifier}
       delete: {name: Supprimer}
+      import:
+        linkedin: {name: 'Importer mon emploi actuel depuis LinkedIn'}
     bookmark:
       index: {name: Bookmarks}
       create: {name: Créer}
