@@ -81,4 +81,15 @@ class Sector implements CreatedInterface, UpdatedInterface, LoggableInterface
     {
         return $this->id;
     }
+
+    public function toArray() 
+    {
+        $result = get_object_vars($this);
+        foreach ((array)$this as $key => $value) 
+        {
+            $key = trim($key);
+        }
+
+        return $result;
+    }
 }

@@ -450,4 +450,16 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
 
         return $this;
     }
+    
+    public function toArray() 
+    {
+        $result = get_object_vars($this);
+        foreach ((array)$this as $key => $value) 
+        {
+            $key = trim($key);
+        }
+
+        return $result;
+    }
+
 }

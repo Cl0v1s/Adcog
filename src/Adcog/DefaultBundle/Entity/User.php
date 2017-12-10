@@ -782,4 +782,15 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
     {
         list ($this->id, $this->username, $this->password, $this->salt) = unserialize($serialized);
     }
+
+    public function toArray() 
+    {
+        $result = get_object_vars($this);
+        foreach ((array)$this as $key => $value) 
+        {
+            $key = trim($key);
+        }
+
+        return $result;
+    }
 }

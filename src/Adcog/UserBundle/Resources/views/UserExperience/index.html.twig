@@ -31,6 +31,21 @@
                 </div>
             </div>
         </li>
+        <li class="timeline-inverted">
+            <div class="timeline-badge">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Importer mon emploi actuel depuis Linkedin</h4>
+                    <ul class="actions pull-right list-inline list-unstyled"> 
+                        <li class="dropdown">
+                            {{ link('user_experience_request_authorization_code',{},{'class':'btn btn-xs btn-default',ficon:'plus',name:'importer'}) }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
         {% for experience in paginator %}
             {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
         {% else %}
