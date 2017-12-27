@@ -13,6 +13,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ExperienceInternship extends Experience
 {
+
+    const SALARY_0_25 = 25;
+    const SALARY_25_30 = 30;
+    const SALARY_30_35 = 35;
+    const SALARY_35_40 = 40;
+    const SALARY_40_45 = 45;
+    const SALARY_45 = 50;
+    
     /**
      * @var string
      * @ORM\Column(type="string", length=200)

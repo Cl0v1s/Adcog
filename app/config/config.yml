@@ -18,7 +18,8 @@ framework:
     assets_version: %version%
   default_locale: %locale%
   trusted_proxies: ~
-  session: ~
+  session: 
+    cookie_lifetime: 864000
   fragments: ~
   http_method_override: true
 
@@ -174,6 +175,16 @@ eb_email:
     comment_persist_alert:
       template: 'AdcogDefaultBundle:Email:commentPersistAlert.html.twig'
       subject: 'Nouveau commentaire sur le site : {{ comment }}'
+
+services:
+  adcog.functions.string:
+    class: Adcog\DefaultBundle\Functions\StringFunc
+  adcog.checkDoubles:
+    class: Adcog\UserBundle\Service\CheckDoubles
+    arguments:
+          entityManager: "@doctrine.orm.entity_manager"
+
+
 
 #eb_admin:
 #  routing:

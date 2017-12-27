@@ -119,4 +119,25 @@ class ExperienceRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * find By sector
+     *
+     * @return Experience[]
+     */
+
+    public function findBySector($sector)
+    {
+        $query = $this->createQueryBuilder('e')
+                      ->select('e')
+                      ->leftJoin('e.sector', 's')
+                      ->addSelect('s');
+ 
+        $query = $query->add('where', $query->expr()->in('s', ':s'))
+                      ->setParameter('s', $sector)
+                      ->getQuery()
+                      ->getResult();
+          
+        return $query;
+    }
 }

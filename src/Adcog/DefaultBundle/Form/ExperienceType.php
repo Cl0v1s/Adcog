@@ -57,11 +57,6 @@ class ExperienceType extends AbstractType
                 'label' => 'Description',
                 'placeholder' => 'Decrivez ici votre expérience...',
             ])
-            ->add('salary', 'choice', [
-                'label' => 'Salaire brut annuel',
-                'required' => false,
-                'choices' => Experience::getSalaryNameList(),
-            ])
             ->add('sectors', 'adcog_sectors_field', [
                 'label' => 'Secteurs',
             ])

@@ -29,6 +29,11 @@ class ExperienceWorkType extends AbstractType
             ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
+            ])
+            ->add('salary', 'choice', [
+                'label' => 'Salaire brut annuel',
+                'required' => false,
+                'choices' => ExperienceWork::getSalaryNameList(),
             ]);
     }
 
