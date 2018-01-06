@@ -3,7 +3,7 @@
 namespace Adcog\DefaultBundle\Form;
 
 use Adcog\DefaultBundle\Entity\ExperienceWork;
-
+use Adcog\DefaultBundle\Entity\Experience;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -27,9 +27,15 @@ class ExperienceWorkType extends AbstractType
                 'label' => 'Poste',
                 'placeholder' => 'ex: Ingénieur en Cognitique',
             ])
+            ->add('salary', 'choice', [
+                'label' => 'Salaire brut annuel',
+                'required' => false,
+                'choices' => Experience::getSalaryNameList()
+            ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
             ]);
+            
     }
 
     /**

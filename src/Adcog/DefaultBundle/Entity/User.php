@@ -38,6 +38,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, UserPasswordDateInterface, CreatedInterface, UpdatedInterface, \Serializable, LoggableInterface, FileReadableInterface, FileVersionableInterface, SlugInterface
 {
+
+    
+
     use UserTrait;
     use UserLoginTrait;
     use UserPasswordDateTrait;
@@ -367,6 +370,8 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
 
         return $this;
     }
+
+    
 
     /**
      * Get experiences
@@ -781,5 +786,102 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
     public function unserialize($serialized)
     {
         list ($this->id, $this->username, $this->password, $this->salt) = unserialize($serialized);
+    }
+
+
+    /*Changement apporté Emile et Thomas*/
+
+    
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nationality;
+
+    /**
+     * Get nationality
+     *
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * Set nationality
+     *
+     * @param string $nationality
+     *
+     * @return User
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gender;
+    
+        /**
+         * Get gender
+         *
+         * @return string
+         */
+        public function getGender()
+        {
+            return $this->gender;
+        }
+    
+        /**
+         * Set gender
+         *
+         * @param string $gender
+         *
+         * @return User
+         */
+        public function setGender($gender)
+        {
+            $this->gender = $gender;
+    
+            return $this;
+        }
+
+            /**
+         * @var \DateTime
+         * @ORM\Column(type="date")
+         * @Assert\NotBlank()
+         * @Assert\DateTime()
+         */
+        private $birthDate;
+
+        /**
+     * Get BirthDate
+     *
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set 
+     *
+     * @param \DateTime $birthDate BirthDate
+     *
+     * @return User
+     */
+    public function setBirthDate(\DateTime $birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
     }
 }

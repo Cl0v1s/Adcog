@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class ExperienceType extends AbstractType
 {
     use NameTrait;
-
+    
     /**
      * @var AuthorizationCheckerInterface
      */
@@ -56,11 +56,6 @@ class ExperienceType extends AbstractType
             ->add('description', 'textarea', [
                 'label' => 'Description',
                 'placeholder' => 'Decrivez ici votre expérience...',
-            ])
-            ->add('salary', 'choice', [
-                'label' => 'Salaire brut annuel',
-                'required' => false,
-                'choices' => Experience::getSalaryNameList(),
             ])
             ->add('sectors', 'adcog_sectors_field', [
                 'label' => 'Secteurs',
