@@ -29,6 +29,13 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     use UpdatedTrait;
     use SlugTrait;
 
+    const SALARY_0_5 = 5;
+    const SALARY_5_7 = 7;
+    const SALARY_7_9 = 9;
+    const SALARY_9_11 = 11;
+    const SALARY_11_13 = 13;
+    const SALARY_13 = 15;
+
     const SALARY_0_25 = 25;
     const SALARY_25_30 = 30;
     const SALARY_30_35 = 35;
@@ -84,7 +91,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Choice(callback="getSalaryList")
      */
-    private $salary;
+    protected $salary;
 
     /**
      * @var User
@@ -149,6 +156,20 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
             self::SALARY_45,
         ];
     }
+     /**
+     * @return string[]
+     */
+    public static function getSalaryInternshipList()
+    {
+        return [
+            self::SALARY_0_5,
+            self::SALARY_5_7,
+            self::SALARY_7_9,
+            self::SALARY_9_11,
+            self::SALARY_11_13,
+            self::SALARY_13,
+        ];
+    }
 
     /**
      * @return string[]
@@ -162,6 +183,20 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
             self::SALARY_35_40 => 'Entre 35 et 40k€',
             self::SALARY_40_45 => 'Entre 40 et 45k€',
             self::SALARY_45 => 'Plus de 45k€',
+        ];
+    }
+    /**
+     * @return string[]
+     */
+    public static function getSalaryInternshipNameList()
+    {
+        return [
+            self::SALARY_0_5 => 'Moins de 500€',
+            self::SALARY_5_7 => 'Entre 500 et 700€',
+            self::SALARY_7_9 => 'Entre 700 et 900€',
+            self::SALARY_9_11 => 'Entre 900 et 1100€',
+            self::SALARY_11_13 => 'Entre 1100 et 1300€',
+            self::SALARY_13 => 'Plus de 1300€',
         ];
     }
 

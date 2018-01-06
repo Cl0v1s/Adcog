@@ -30,6 +30,14 @@ class UserRegisterType extends AbstractType
                 'label' => 'Email',
                 'placeholder' => 'ex: john.doe@gmail.com',
             ])
+            ->add('gender', 'choice',[
+                'label' => 'Sexe',
+                'placeholder' => "Choisissez votre Sexe",
+                'choices' => array(
+                    'H' => "Homme",
+                    'F' => "Femme"
+                )
+            ])
             ->add('firstname', 'text', [
                 'label' => 'Prénom',
                 'placeholder' => 'ex: John',
@@ -37,6 +45,15 @@ class UserRegisterType extends AbstractType
             ->add('lastname', 'text', [
                 'label' => 'Nom',
                 'placeholder' => 'ex: DOE',
+            ])
+            ->add('birthDate', 'adcog_date_field', [
+                'label'=>'Date de Naissance',
+                'placeholder' => 'ex: 15/08/1995',
+            ])
+            ->add('nationality', 'country', [
+                'label' => 'Nationalité',
+                'placeholder' => 'Choisissez votre nationalité',
+                'preferred_choices' => array('FR')
             ])
             ->add('school', 'entity', [
                 'label' => 'Promotion',
@@ -72,6 +89,7 @@ class UserRegisterType extends AbstractType
                     }
                 }
             });
+          
     }
 
     /**

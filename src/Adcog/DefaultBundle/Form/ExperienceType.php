@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class ExperienceType extends AbstractType
 {
     use NameTrait;
-
+    
     /**
      * @var AuthorizationCheckerInterface
      */
