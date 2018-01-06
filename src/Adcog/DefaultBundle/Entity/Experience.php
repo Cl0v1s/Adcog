@@ -134,7 +134,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
 
     /**
      * @var int 
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $partTime;
 
