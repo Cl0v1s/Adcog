@@ -115,6 +115,30 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     private $sectors;
 
     /**
+     * @var ExperienceSource
+     * @ORM\OneToOne(targetEntity="ExperienceSource", cascade={"persist"})
+     */
+    private $experienceSource;
+
+    /**
+     * @var ContractType
+     * @ORM\OneToOne(targetEntity="ContractType", cascade={"persist"})
+     */
+    private $contractType;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text")
+     */
+    private $status;
+
+    /**
+     * @var int 
+     * @ORM\Column(type="int")
+     */
+    private $partTime;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()

@@ -101,6 +101,12 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
     private $experiences;
 
     /**
+     * @var EmployerType
+     * @ORM\OneToOne(targetEntity="EmployerType", cascade={"persist"})
+     */
+    private $employerType;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
