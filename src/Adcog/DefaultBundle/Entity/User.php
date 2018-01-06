@@ -169,6 +169,26 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
     private $profile;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nationality;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
+     */
+    private $birthDate;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
@@ -798,14 +818,8 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
         }
 
         return $result;
-
+    }
     /*Changement apporté Emile et Thomas*/ 
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $nationality;
 
     /**
      * Get nationality
@@ -830,46 +844,32 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
 
         return $this;
     }
+    
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return User
      */
-    private $gender;
-    
-        /**
-         * Get gender
-         *
-         * @return string
-         */
-        public function getGender()
-        {
-            return $this->gender;
-        }
-    
-        /**
-         * Set gender
-         *
-         * @param string $gender
-         *
-         * @return User
-         */
-        public function setGender($gender)
-        {
-            $this->gender = $gender;
-    
-            return $this;
-        }
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
 
-            /**
-         * @var \DateTime
-         * @ORM\Column(type="date")
-         * @Assert\NotBlank()
-         * @Assert\DateTime()
-         */
-        private $birthDate;
+        return $this;
+    }
 
-        /**
+    /**
      * Get BirthDate
      *
      * @return \DateTime
