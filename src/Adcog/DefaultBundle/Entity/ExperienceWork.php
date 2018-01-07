@@ -69,4 +69,74 @@ class ExperienceWork extends Experience
     {
         return $this->workPosition;
     }
+
+    /**
+     * @var int 
+     * @ORM\Column(type="integer")
+     */
+    private $partTime;
+
+    /**
+     * Set partTime
+     *
+     * @param null|int $partTime
+     *
+     * @return ExperienceWork
+     */
+    public function setPartTime($partTime =null)
+    {
+        if($partTime!=null){
+            $this->partTime = $partTime;
+        }
+        else{
+            $this->partTime = 0;
+        }
+        
+
+        return $this;
+    }
+
+    /**
+     * Get PartTime
+     *
+     * @return int
+     */
+    public function getPartTime()
+    {
+        return $this->partTime;
+    }
+
+    /**
+     * @var ContractType
+     * @ORM\OneToOne(targetEntity="ContractType", cascade={"persist"})
+     */
+    private $contractType;
+
+    /**
+     * Set contractType
+     *
+     * @param ContractType $contracType
+     *
+     * @return ExperienceWork
+     */
+    public function setContractType($contractType)
+    {
+       
+        $this->contractType = $contractType;
+        
+
+        return $this;
+    }
+
+    /**
+     * Get PartTime
+     *
+     * @return ContractType
+     */
+    public function getContractType()
+    {
+        return $this->contractType;
+    }
+
+
 }

@@ -32,6 +32,21 @@ class ExperienceWorkType extends AbstractType
                 'required' => false,
                 'choices' => Experience::getSalaryNameList()
             ])
+            ->add('contractType','entity', [
+                'label' => 'Type de Contrat',
+                'placeholder' => 'Choissisez un type de contrat',
+                'class' => 'Adcog\DefaultBundle\Entity\ContractType',
+            ])
+            ->add('partTime','checkbox',[
+                'label'=> 'Temps Partiel',
+                'required' => false,
+            ]) 
+            ->add('status','choice', [
+                'label' => 'Statut',
+                'choices' => ExperienceWork::getStatutNameList(),
+                'placeholder' => 'Choissisez un statut',
+                /*'preferred_choices' => array('Cadres et professions intellectuelles supérieures'),*/
+            ])  
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
             ])

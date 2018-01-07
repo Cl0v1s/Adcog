@@ -90,6 +90,7 @@ class UserExperienceController extends Controller
         $experience = new ExperienceStudy();
         $experience->setUser($this->getUser());
         $form = $this->createForm('adcog_experience_study', $experience);
+        $form->get('experience')->remove('experienceSource');//On récupère le form expérience pour pouvoir enlever le champ de experienceSource
         if ($form->handleRequest($request)->isValid()) {
             $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
             $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);

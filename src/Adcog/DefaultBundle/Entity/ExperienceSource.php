@@ -61,4 +61,12 @@ class ExperienceSource
     {
         return $this->content;
     }
+
+     /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->getContent();   
+    }
 }

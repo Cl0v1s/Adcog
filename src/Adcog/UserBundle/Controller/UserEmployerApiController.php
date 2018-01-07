@@ -30,7 +30,7 @@ class UserEmployerApiController extends Controller
     {
         $data = [];
         if (null !== $query = $request->query->get('query')) {
-            if (AdcogDefaultBundle::WS_MIN_SIZE <= mb_strlen($query)) {
+            if (AdcogDefaultBundle::WS_MIN_SIZE_0 <= mb_strlen($query)) {
                 $data = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer')->autocompleteEmployer($query);
             }
         }

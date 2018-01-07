@@ -48,6 +48,13 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     const TYPE_THESIS = 'thesis';
     const TYPE_WORK = 'work';
 
+    const STATUT_1= 1;
+    const STATUT_2= 2;
+    const STATUT_3= 3;
+    const STATUT_4= 4;
+    const STATUT_5= 5;
+    const STATUT_6= 6;
+
     /**
      * @var int
      * @ORM\Column(type="integer")
@@ -120,23 +127,14 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
      */
     private $experienceSource;
 
-    /**
-     * @var ContractType
-     * @ORM\OneToOne(targetEntity="ContractType", cascade={"persist"})
-     */
-    private $contractType;
 
     /**
-     * @var string
-     * @ORM\Column(type="text")
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $status;
 
-    /**
-     * @var int 
-     * @ORM\Column(type="integer")
-     */
-    private $partTime;
+    
 
     /**
      * {@inheritdoc}
@@ -195,6 +193,18 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
         ];
     }
 
+    public static function getStatutList()
+    {
+        return [
+            self::STATUT_1,
+            self::STATUT_2,
+            self::STATUT_3,
+            self::STATUT_4,
+            self::STATUT_5,
+            self::STATUT_6,
+        ];
+    }
+
     /**
      * @return string[]
      */
@@ -221,6 +231,18 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
             self::SALARY_9_11 => 'Entre 900 et 1100€',
             self::SALARY_11_13 => 'Entre 1100 et 1300€',
             self::SALARY_13 => 'Plus de 1300€',
+        ];
+    }
+
+    public static function getStatutNameList()
+    {
+        return [
+            self::STATUT_1 => '1.Agriculteurs exploitants',
+            self::STATUT_2 => '2.Artisans, commerçants et chefs d’entreprise',
+            self::STATUT_3 => '3.Cadres et professions intellectuelles supérieures',
+            self::STATUT_4 => '4.Professions Intermédiaires',
+            self::STATUT_5 => '5.Employés',
+            self::STATUT_6 => '6.Ouvriers',
         ];
     }
 
@@ -313,6 +335,55 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
 
         return $this;
     }
+
+    /**
+     * Get ExperienceSource
+     *
+     * @return ExperienceSource
+     */
+    public function getExperienceSource()
+    {
+        return $this->experienceSource;
+    }
+
+    /**
+     * Set ExperienceSource
+     *
+     * @param null|ExperienceSource $experienceSource
+     *
+     * @return Experience
+     */
+    public function setExperienceSource(ExperienceSource $experienceSource= null)
+    {
+        $this->experienceSource = $experienceSource;
+
+        return $this;
+    }
+
+    /**
+     * Get Status
+     *
+     * @return null\int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set Status
+     *
+     * @param null|int $status
+     *
+     * @return Experience
+     */
+    public function setStatus($status= null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
 
     /**
      * Get Ended

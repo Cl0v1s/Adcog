@@ -25,10 +25,12 @@ class ExperienceStudyType extends AbstractType
             ->add('studyDiploma', 'text', [
                 'label' => 'Diplôme',
                 'placeholder' => 'ex: Diplôme d\'Ingénieur Robotique',
+                'required'=> false
             ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
-            ]);
+            ])
+            ->remove('experience.employer');
     }
 
     /**
