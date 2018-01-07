@@ -13,18 +13,32 @@
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h4 class="timeline-title">Ajouter une expérience</h4>
+                    <h4 class="timeline-title">Ajouter une formation</h4>
+                    <ul class="actions pull-right list-inline list-unstyled"> 
+                        <li class="dropdown">
+                            {{ link('user_experience_create_study',{},{'class':'btn btn-xs btn-default',ficon:'plus',name:'Ajouter'}) }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="timeline-inverted">
+            <div class="timeline-badge">
+                <i class="fa fa-plus"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Ajouter une expérience professionnelle</h4>
                     <ul class="actions pull-right list-inline list-unstyled">
                         <li class="dropdown">
                             <a class="btn btn-xs btn-default dropdown-toggle dropdown-toggle-user" data-toggle="dropdown" href="#">
-                                <i class="fa fa-plus"></i> Créer
+                                <i class="fa fa-plus"></i> Ajouter
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>{{ link('user_experience_create_work',{},{'class':'btn-xs',ficon:'plus',name:'Expérience professionnelle'}) }}</li>
-                                <li>{{ link('user_experience_create_study',{},{'class':'btn-xs',ficon:'plus',name:'Diplôme'}) }}</li>
-                                <li>{{ link('user_experience_create_thesis',{},{'class':'btn-xs',ficon:'plus',name:'Thèse'}) }}</li>
+                                <li>{{ link('user_experience_create_work',{},{'class':'btn-xs',ficon:'plus',name:'Emploi'}) }}</li>
                                 <li>{{ link('user_experience_create_internship',{},{'class':'btn-xs',ficon:'plus',name:'Stage'}) }}</li>
+                                <li>{{ link('user_experience_create_thesis',{},{'class':'btn-xs',ficon:'plus',name:'Thèse'}) }}</li>
                             </ul>
                         </li>
                     </ul>
