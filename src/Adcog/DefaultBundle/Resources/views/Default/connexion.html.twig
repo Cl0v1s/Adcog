@@ -32,32 +32,4 @@
             {{ link('default_register',{},{'class':'btn btn-link',name:'Pas encore membre ?'}) }}
         </div>
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title"> Bienvenue {{ app.user }} !</h3>
-                 </div>
-                 <div class="modal-body">
-                    Que dirais-tu de partager ton parcours avec l'ensemble du réseau ?
-                 </div>
-
-                 <div class="modal-footer">
-                    <a href="{{ path('user_experience_index') }}" class="btn btn-success" data-dismiss="modal">GO</a>
-                 </div>
-            </div>
-        </div>
-    </div>
-
-{% endblock %}
-{% block javascript %}
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(window).on('load',function(){
-            console.log("TEST");
-            $('#modal-message').modal('show');
-        });
-    </script>
 {% endblock %}
