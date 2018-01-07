@@ -189,6 +189,12 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
     private $birthDate;
 
     /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $acceptedContact = false;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
@@ -889,6 +895,30 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
     public function setBirthDate(\DateTime $birthDate)
     {
         $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get AcceptedContact
+     *
+     * @return bool
+     */
+    public function getAcceptedContact()
+    {
+        return $this->acceptedContact;
+    }
+
+    /**
+     * Set AcceptedContact
+     *
+     * @param bool $acceptedContact AcceptedContact
+     *
+     * @return User
+     */
+    public function setAcceptedContact($acceptedContact)
+    {
+        $this->acceptedContact = $acceptedContact;
 
         return $this;
     }
