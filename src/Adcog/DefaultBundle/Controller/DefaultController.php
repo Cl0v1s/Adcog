@@ -403,6 +403,9 @@ class DefaultController extends Controller
             $token = new UsernamePasswordToken($user, null, 'secured_area', $user->getRoles());
             $this->get('security.token_storage')->setToken($token);
 
+            $request->getSession()
+                ->getFlashBag()
+                ->add('reussite', 'Inscription confirmée');
             return $this->redirect($this->generateUrl('user_index'));
         }
 
