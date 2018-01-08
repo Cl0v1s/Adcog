@@ -62,6 +62,15 @@
         {% endif %}
         !
     </p>
+    <p class="no-margin">
+        {% if app.user.acceptedContact %}
+            <span class="label label-success"><span class="fa fa-user"></span></span>
+            Vous acceptez d'être contacté
+        {% else %}
+            <span class="label label-warning"><span class="fa fa-user"></span></span>
+            Vous n'acceptez pas d'être contacté.
+        {% endif %}
+    </p>
     <table class="{{ table_class }}">
         <tbody>
             <tr>
