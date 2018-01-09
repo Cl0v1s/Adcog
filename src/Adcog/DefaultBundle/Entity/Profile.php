@@ -39,6 +39,7 @@ class Profile implements CreatedInterface, UpdatedInterface, LoggableInterface, 
     /**
      * @var User
      * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotBlank()
      */
     private $user;

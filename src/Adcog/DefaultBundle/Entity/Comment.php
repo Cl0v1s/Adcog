@@ -35,6 +35,7 @@ class Comment implements CreatedInterface, UpdatedInterface, LoggableInterface
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotBlank()
      */
     private $author;

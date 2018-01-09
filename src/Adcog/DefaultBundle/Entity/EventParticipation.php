@@ -45,6 +45,7 @@ class EventParticipation implements CreatedInterface, UpdatedInterface, Loggable
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotNull()
      */
     private $user;

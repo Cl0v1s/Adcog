@@ -73,6 +73,7 @@ class Post implements CreatedInterface, UpdatedInterface, SlugInterface, Loggabl
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotBlank()
      */
     private $author;

@@ -89,6 +89,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="experiences")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotBlank()
      */
     private $user;

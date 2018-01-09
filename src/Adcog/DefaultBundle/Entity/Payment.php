@@ -45,6 +45,7 @@ abstract class Payment implements CreatedInterface, UpdatedInterface, LoggableIn
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="payments")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotBlank()
      */
     private $user;

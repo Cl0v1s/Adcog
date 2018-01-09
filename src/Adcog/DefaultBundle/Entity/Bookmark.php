@@ -36,6 +36,7 @@ class Bookmark implements CreatedInterface, UpdatedInterface, LoggableInterface
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\NotBlank()
      */
     private $author;
