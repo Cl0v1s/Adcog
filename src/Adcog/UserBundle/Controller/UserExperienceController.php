@@ -194,9 +194,10 @@ class UserExperienceController extends Controller
             throw new NotFoundHttpException();
         }
         
-
+        
         $form = $this->createForm(sprintf('adcog_experience_%s', $experience->getType()), $experience);
-        if($experience->getType() ==="TYPE_STUDY")
+        echo($experience->getType());
+        if($experience->getType() ===ExperienceStudy::TYPE_STUDY)
         {
             $form->get('experience')->remove('experienceSource');//On récupère le form expérience pour pouvoir enlever le champ de experienceSource si on est dans le cas de modification de diplome
         }
