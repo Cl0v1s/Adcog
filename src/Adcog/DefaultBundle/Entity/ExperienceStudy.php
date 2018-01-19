@@ -27,7 +27,7 @@ class ExperienceStudy extends Experience
      */
     public function __toString()
     {
-        return sprintf('Diplôme "%s"', $this->getStudyDiploma());
+        return sprintf('Formation "%s"', $this->getStudyDiploma());
     }
 
     /**
