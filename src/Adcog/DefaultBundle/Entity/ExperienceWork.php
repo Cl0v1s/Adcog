@@ -71,15 +71,15 @@ class ExperienceWork extends Experience
     }
 
     /**
-     * @var int 
-     * @ORM\Column(type="integer")
+     * @var bool
+     * @ORM\Column(type="boolean")
      */
     private $partTime;
 
     /**
      * Set partTime
      *
-     * @param null|int $partTime
+     * @param null|bool $partTime
      *
      * @return ExperienceWork
      */
@@ -89,7 +89,7 @@ class ExperienceWork extends Experience
             $this->partTime = $partTime;
         }
         else{
-            $this->partTime = 0;
+            $this->partTime = false;
         }
         
 
@@ -99,12 +99,48 @@ class ExperienceWork extends Experience
     /**
      * Get PartTime
      *
-     * @return int
+     * @return bool
      */
     public function getPartTime()
     {
         return $this->partTime;
     }
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $partTimeValue;
+    
+        /**
+         * Set partTimeValue
+         *
+         * @param null|int $partTime
+         *
+         * @return ExperienceWork
+         */
+        public function setPartTimeValue($partTime =null)
+        {
+            if($partTimeValue!=null){
+                $this->partTimeValue = $partTimeValue;
+            }
+            else{
+                $this->partTimeValue = 0;
+            }
+            
+    
+            return $this;
+        }
+    
+        /**
+         * Get PartTimeValue
+         *
+         * @return int
+         */
+        public function getPartTimeValue()
+        {
+            return $this->partTimeValue;
+        }
 
     /**
      * @var ContractType

@@ -41,6 +41,10 @@ class ExperienceWorkType extends AbstractType
                 'label'=> 'Temps Partiel',
                 'required' => false,
             ]) 
+            ->add('partTimeValue','number', [
+                'label'=>'A combien de % ?',
+                'required'=> false,
+            ])
             ->add('status','choice', [
                 'label' => 'Statut',
                 'choices' => ExperienceWork::getStatutNameList(),
