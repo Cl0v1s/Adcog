@@ -193,8 +193,13 @@ class UserExperienceController extends Controller
         if ($experience->getUser()->getId() !== $this->getUser()->getId()) {
             throw new NotFoundHttpException();
         }
+        
 
         $form = $this->createForm(sprintf('adcog_experience_%s', $experience->getType()), $experience);
+        if($experience->getType() ==="TYPE_STUDY")
+        {
+            $form->get('experience')->remove('experienceSource');//On récupère le form expérience pour pouvoir enlever le champ de experienceSource si on est dans le cas de modification de diplome
+        }
         if ($form->handleRequest($request)->isValid()) {
             $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
             $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);

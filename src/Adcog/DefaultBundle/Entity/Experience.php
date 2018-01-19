@@ -289,6 +289,16 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     }
 
     /**
+     * Get Discr
+     *
+     * @return string
+     */
+    public function getDiscr()
+    {
+        return $this->discr;
+    }
+
+    /**
      * Get Description
      *
      * @return string
