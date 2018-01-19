@@ -42,8 +42,10 @@ class ExperienceWorkType extends AbstractType
                 'required' => false,
             ]) 
             ->add('partTimeValue','number', [
-                'label'=>'A combien de % ?',
+                'placeholder'=>'A combien de % ?',
                 'required'=> false,
+                'label' => ' ',
+                'attr' => array('style' => 'display:none'),
             ])
             ->add('status','choice', [
                 'label' => 'Statut',
