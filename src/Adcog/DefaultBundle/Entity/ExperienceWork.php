@@ -119,7 +119,7 @@ class ExperienceWork extends Experience
          *
          * @return ExperienceWork
          */
-        public function setPartTimeValue($partTime =null)
+        public function setPartTimeValue($partTimeValue =null)
         {
             if($partTimeValue!=null){
                 $this->partTimeValue = $partTimeValue;

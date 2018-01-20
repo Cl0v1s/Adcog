@@ -21,3 +21,31 @@
     </div>
     {{ form_end(form) }}
 {% endblock %}
+
+{% block javascript%}
+{{parent()}}
+{#gestion de cacher/montrer le champ de texte suivant si on est à temps Partiel ou non#}
+    {% if form.partTime is defined %}
+        
+        
+        
+        <script type="text/javascript">
+            var cpt=0;
+            if(cpt==0){
+                {% if form.partTimeValue.vars.value == 0 %}
+                    $({{form.partTimeValue.vars.id}}).hide();
+                    cpt++;
+                {% endif %}
+            }
+            $({{form.partTime.vars.id}}).click(function() {
+            if(this.checked){
+                $({{form.partTimeValue.vars.id}}).show();
+            }
+            else{
+                $({{form.partTimeValue.vars.id}}).hide();
+                {{form.partTimeValue.vars.id}}.value=0;   
+            }
+        });
+        </script>   
+    {% endif %}
+{% endblock %}
