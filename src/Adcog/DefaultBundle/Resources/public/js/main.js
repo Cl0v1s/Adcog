@@ -10,7 +10,12 @@ CKEDITOR.config.contentsCss = $.map($('link'), function (link) {
 // ADCOG context
 $.fn.adcogContext = function () {
     // Datepickers
-    $(this).find('input.datepicker').datepicker();
+    $(this).find('input.datepicker').datepicker({ //Changement DatePicker pour pouvoir sélectionner années et mois
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "c-50:c+10"
+    });
+
 
     // Wysiwyg rich contents
     $(this).find('textarea.wysiwyg[data-wysiwyg]').each(function () {
