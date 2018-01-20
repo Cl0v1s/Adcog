@@ -74,7 +74,8 @@ class UserRegisterType extends AbstractType
             ->add('acceptedContact','checkbox',[
                 'label' => "Partage d'informations",
                 'help' => "En cochant, j'accepte d'être contacté par les autres membres du réseau de l'ADCOG pour répondre à leurs questions",
-            ])
+                'required' =>false,
+                ])
             ->add('acceptTermsOfUse', 'checkbox', [
                 'label' => 'Conditions',
                 'required' => true,
