@@ -7,7 +7,7 @@
 
 {% block subcontent %}
     <div id="banner">
-        <p>Vous avez ajouté formation(s) et {{ app.user.experiences.count() }} expérience(s) professionnelle(s)</p> 
+        <p>Vous avez ajouté {{ nbrStudies }} formation(s) et {{ nbrExperiences }} expérience(s) professionnelle(s)</p> 
         <p>Rien d'autre à ajouter ?</p>
         <div>
             <a href="{{ path('user_experience_index')}}" class="btn btn-success" role="button" aria-disabled="true">Ajouter une expérience</a>

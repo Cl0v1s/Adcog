@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Adcog\DefaultBundle\Entity\Experience;
+
 
 /**
  * Class UserAccountController
@@ -26,7 +28,14 @@ class UserAccountController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        $countStudies = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->getStudiesNumber($this->getUser()->getId());
+
+        $countExperiences = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->getExperiencesNumber($this->getUser()->getId());
+
+        return [
+            'nbrStudies' => $countStudies,
+            'nbrExperiences' => $countExperiences,
+        ];
     }
 
     /**

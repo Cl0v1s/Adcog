@@ -333,3 +333,7 @@ body#default_contact address{ margin-bottom:0; }
     font-size: 16px;
     text-align: center;
 }
+
+#banner div {
+    text-align: center;
+}

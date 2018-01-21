@@ -3,6 +3,7 @@
 namespace Adcog\DefaultBundle\Repository;
 
 use Adcog\DefaultBundle\Entity\Experience;
+use Adcog\DefaultBundle\Entity\ExperienceStudy;
 use Adcog\DefaultBundle\Entity\Sector;
 use EB\DoctrineBundle\Paginator\PaginatorHelper;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -139,5 +140,43 @@ class ExperienceRepository extends EntityRepository
                       ->getResult();
           
         return $query;
+    }
+
+    /**
+     * count nbr studies
+     * @return int
+     */
+
+    public function getStudiesNumber($id) {
+        $qb = $this->createQueryBuilder('e');
+
+        return $qb
+            ->select('COUNT(e)')
+            ->innerJoin('e.user', 'u')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->andWhere('e INSTANCE OF :expStudy')
+            ->setParameter('expStudy', 'study')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+     /**
+     * count nbr experiences != sudies
+     * @return int
+     */
+
+    public function getExperiencesNumber($id) {
+        $qb = $this->createQueryBuilder('e');
+
+        return $qb
+            ->select('COUNT(e)')
+            ->innerJoin('e.user', 'u')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->andWhere('e NOT INSTANCE OF :expStudy')
+            ->setParameter('expStudy', 'study')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }
