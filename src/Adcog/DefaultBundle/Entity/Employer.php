@@ -334,6 +334,31 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
     }
 
     /**
+     * Get employerType
+     *
+     * @return null|EmployerType
+     */
+    public function getEmployerType()
+    {
+        return $this->employerType;
+    }
+
+    /**
+     * Set employerType
+     *
+     * @param null|EmployerType $employerType
+     *
+     * @return Employer
+     */
+    public function setEmployerType(EmployerType $employerType = null)
+    {
+        
+        $this->employerType = $employerType;
+
+        return $this;
+    }
+
+    /**
      * Add experience
      *
      * @param Experience $experience
