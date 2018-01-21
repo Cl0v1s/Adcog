@@ -8,6 +8,7 @@
         <parameter key="adcog_default.form.field.date_field.class">Adcog\DefaultBundle\Form\Field\DateField</parameter>
         <parameter key="adcog_default.form.field.sectors_field.class">Adcog\DefaultBundle\Form\Field\SectorsField</parameter>
         <parameter key="adcog_default.form.field.tags_field.class">Adcog\DefaultBundle\Form\Field\TagsField</parameter>
+        <parameter key="adcog_default.form.field.experienceSource_field.class">Adcog\DefaultBundle\Form\Field\ExperienceSourceField</parameter>
         <parameter key="adcog_default.form.field.wysiwyg_field.class">Adcog\DefaultBundle\Form\Field\WysiwygField</parameter>
     </parameters>
     <services>
@@ -45,6 +46,14 @@
                 <argument>adcog_wysiwyg_field</argument>
             </call>
             <tag name="form.type" alias="adcog_wysiwyg_field"/>
+        </service>
+        <service id="adcog_default.form.field.experienceSource_field" class="%adcog_default.form.field.experienceSource_field.class%">
+            <argument type="service" id="router"/>
+            <argument type="service" id="adcog.default_bundle.transformer.experienceSource_transformer"/>
+            <call method="setName">
+                <argument>adcog_experienceSource_field</argument>
+            </call>
+            <tag name="form.type" alias="adcog_experienceSource_field"/>
         </service>
     </services>
 </container>

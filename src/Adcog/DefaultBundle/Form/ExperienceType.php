@@ -60,11 +60,9 @@ class ExperienceType extends AbstractType
             ->add('sectors', 'adcog_sectors_field', [
                 'label' => 'Secteurs',
             ])
-            ->add('experienceSource','entity',[
+            ->add('experienceSource','adcog_experienceSource_field',[
                 'label' => 'Comment en avez vous eu connaissance ?',
-                'placeholder' => 'Choissisez une raison',
-                'class' => 'Adcog\DefaultBundle\Entity\ExperienceSource',
-            ])
+                ])
             ->add('employer', 'adcog_employer', [
                 'label' => 'Employeur, Établissement',
             ])
