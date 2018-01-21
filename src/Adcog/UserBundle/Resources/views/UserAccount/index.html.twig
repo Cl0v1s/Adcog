@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block subcontent %}
+    <div id="banner">
+        <p>Vous avez ajouté formation(s) et {{ app.user.experiences.count() }} expérience(s) professionnelle(s)</p> 
+        <p>Rien d'autre à ajouter ?</p>
+        <div>
+            <a href="{{ path('user_experience_index')}}" class="btn btn-success" role="button" aria-disabled="true">Ajouter une expérience</a>
+            <a href="{{ path('user_experience_create_study')}}" class="btn btn-warning" role="button" aria-disabled="true">Ajouter une formation</a>
+        </div>
+    </div>
     <p>
         Bonjour <strong>{{ app.user }}</strong>,
     </p>

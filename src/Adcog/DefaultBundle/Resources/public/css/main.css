@@ -321,3 +321,15 @@ body#default_contact address{ margin-bottom:0; }
 .share span {
     vertical-align: baseline !important;
 }
+
+/*Banner connexion */
+#banner 
+{
+    background-color: #d2d2d2;
+    padding: 20px;
+}
+
+#banner p {
+    font-size: 16px;
+    text-align: center;
+}
