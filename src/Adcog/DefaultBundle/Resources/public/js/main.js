@@ -187,6 +187,54 @@ $(document).ready(function () {
             },
         });
     });
+    /*Liste déroulante pour comment avez vous eu connaissance de l'expérience -> recherche à partir de 0 caractère)*/
+    $('[data-source-ws]').each(function () {
+        var val = $(this).val();
+        $(this)
+            .select2({
+                minimumInputLength: 0,
+                allowClear: !$(this).prop('required'),
+                multiple: false,
+                initSelection: function (element, callback) {
+                    callback({
+                        id: $(element).val(),
+                        text: $(element).val()
+                    });
+                },
+                ajax: {
+                    url: $(this).data('source-ws'),
+                    dataType: 'json',
+                    quietMillis: 100,
+                    data: function (term, page) {
+                        return {
+                            query: term,
+                        };
+                    },
+                    results: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                if ('string' === typeof item) {
+                                    return {
+                                        id: item,
+                                        text: item,
+                                    };
+                                }
+
+                                return item;
+                            }),
+                        };
+                    }
+                },
+                createSearchChoice: function (term, data) {
+                    if ($(data).filter(function () {
+                            return this.text.localeCompare(term) === 0;
+                        }).length === 0) {
+                        return {id: term, text: term};
+                    }
+                },
+            })
+            .select2('val', val);
+    });
 
     // Images in blog
     $('#blog_read .article .col-sm-10 .content img').each(function () {
