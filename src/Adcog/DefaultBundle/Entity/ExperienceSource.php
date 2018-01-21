@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ExperienceSource
  *
  * @ORM\Table(name="adcog_experienceSource")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\ExperienceSourceRepository")
  */
 class ExperienceSource
 {
@@ -20,6 +20,12 @@ class ExperienceSource
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var Experience[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="Experience", mappedBy="experienceSource")
+     */
+    private $experiences;
 
     /**
      * @var string
@@ -68,5 +74,60 @@ class ExperienceSource
     public function __toString()
     {
         return $this->getContent();   
+    }
+
+    /**
+     * Add experience
+     *
+     * @param Experience $experience
+     *
+     * @return ExperienceSource
+     */
+    public function addExperience(Experience $experience)
+    {
+        if (false === $this->experiences->contains($experience)) {
+            $this->experiences[] = $experience;
+            $experience->setExperienceSource($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove experience
+     *
+     * @param Experience $experience
+     *
+     * @return ExperienceSource
+     */
+    public function removeExperience(Experience $experience)
+    {
+        if (true === $this->experiences->contains($experience)) {
+            $this->experiences->removeElement($experience);
+            $experience->setExperienceSource(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get experiences
+     *
+     * @return Experience[]|ArrayCollection
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    public function toArray() 
+    {
+        $result = get_object_vars($this);
+        foreach ((array)$this as $key => $value) 
+        {
+            $key = trim($key);
+        }
+
+        return $result;
     }
 }

@@ -123,7 +123,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
 
     /**
      * @var ExperienceSource
-     * @ORM\OneToOne(targetEntity="ExperienceSource", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="ExperienceSource",  cascade={"persist"})
      */
     private $experienceSource;
 
@@ -142,6 +142,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     public function __construct()
     {
         $this->sectors = new ArrayCollection();
+
     }
 
     /**
@@ -288,15 +289,9 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
         return $this;
     }
 
-    /**
-     * Get Discr
-     *
-     * @return string
-     */
-    public function getDiscr()
-    {
-        return $this->discr;
-    }
+    
+
+    
 
     /**
      * Get Description
@@ -356,6 +351,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
         return $this->experienceSource;
     }
 
+    
     /**
      * Set ExperienceSource
      *
@@ -363,12 +359,15 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
      *
      * @return Experience
      */
-    public function setExperienceSource(ExperienceSource $experienceSource= null)
+    
+    public function setExperienceSource($experienceSource= null)
     {
         $this->experienceSource = $experienceSource;
 
         return $this;
     }
+    
+
 
     /**
      * Get Status

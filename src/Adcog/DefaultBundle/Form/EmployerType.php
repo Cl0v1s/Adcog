@@ -77,15 +77,17 @@ class EmployerType extends AbstractType
                     'autocomplete' => 'off',
                 ],
             ])
-            ->add('country', 'text', [
+            ->add('country','country',[
+                'preferred_choices' => array('FR'),
                 'label' => 'Pays',
-                'placeholder' => 'ex: France',
-                'required' => false,
-                'attr' => [
-                    'data-ws' => $this->router->generate('user_employer_api_country'),
-                    'autocomplete' => 'off',
-                ],
+                'placeholder' => 'Choisissez le Pays',
             ])
+            ->add('employerType','entity', [
+                'label' => 'Type d\'entreprise',
+                'placeholder' => 'Choisissez le type d\'entreprise',
+                'class' => 'Adcog\DefaultBundle\Entity\EmployerType',
+                'required' => false,
+                ])
             ->add('phone', 'text', [
                 'label' => 'Téléphone',
                 'placeholder' => 'ex: 0566778899',

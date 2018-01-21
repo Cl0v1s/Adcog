@@ -6,6 +6,7 @@
         <parameter key="adcog.default_bundle.transformer.email_transformer.class">Adcog\DefaultBundle\Transformer\EmailTransformer</parameter>
         <parameter key="adcog.default_bundle.transformer.sector_transformer.class">Adcog\DefaultBundle\Transformer\SectorTransformer</parameter>
         <parameter key="adcog.default_bundle.transformer.tag_transformer.class">Adcog\DefaultBundle\Transformer\TagTransformer</parameter>
+        <parameter key="adcog.default_bundle.transformer.experienceSource_transformer.class">Adcog\DefaultBundle\Transformer\ExperienceSourceTransformer</parameter>
     </parameters>
     <services>
         <service id="adcog.default_bundle.transformer.email_transformer" class="%adcog.default_bundle.transformer.email_transformer.class%"/>
@@ -13,6 +14,9 @@
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
         </service>
         <service id="adcog.default_bundle.transformer.tag_transformer" class="%adcog.default_bundle.transformer.tag_transformer.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
+        <service id="adcog.default_bundle.transformer.experienceSource_transformer" class="%adcog.default_bundle.transformer.experienceSource_transformer.class%">
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
         </service>
     </services>

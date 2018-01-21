@@ -39,6 +39,14 @@ class EmployerType
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return (string)$this->getContent();
+    }
+
+    /**
      * Set content
      *
      * @param string $content

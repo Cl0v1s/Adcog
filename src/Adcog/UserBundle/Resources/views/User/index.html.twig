@@ -95,10 +95,9 @@
         </div>
     </div>
 {% endblock %}
-
 {% block javascript %}
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{{parent()}}
+{#PopUp inscription pour ajouter expérience#}
     {% if app.session.flashbag.get('reussite') %}
         <script type="text/javascript">
             $(window).on('load',function(){
@@ -107,6 +106,7 @@
         </script>
     {% endif %}
 {% endblock %}
+
 {#{% block javascript %}#}
     {#{{ parent() }}#}
     {#<script type="text/javascript">#}

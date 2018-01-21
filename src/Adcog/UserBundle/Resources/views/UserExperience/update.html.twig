@@ -22,16 +22,30 @@
     {{ form_end(form) }}
 {% endblock %}
 
-{# Marche mais bloque exécution des autres scripts js}
-{% block javascript %}
+{% block javascript%}
+{{parent()}}
+{#gestion de cacher/montrer le champ de texte suivant si on est à temps Partiel ou non#}
     {% if form.partTime is defined %}
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        
+        
         <script type="text/javascript">
+            var cpt=0;
+            if(cpt==0){
+                {% if form.partTimeValue.vars.value == 0 %}
+                    $({{form.partTimeValue.vars.id}}).hide();
+                    cpt++;
+                {% endif %}
+            }
             $({{form.partTime.vars.id}}).click(function() {
-            $({{form.partTimeValue.vars.id}})[this.checked ? "show" : "hide"]();
+            if(this.checked){
+                $({{form.partTimeValue.vars.id}}).show();
+            }
+            else{
+                $({{form.partTimeValue.vars.id}}).hide();
+                {{form.partTimeValue.vars.id}}.value=0;   
+            }
         });
-        </script>
+        </script>   
     {% endif %}
 {% endblock %}
-#}
