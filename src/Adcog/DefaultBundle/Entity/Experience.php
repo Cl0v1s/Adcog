@@ -123,7 +123,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
 
     /**
      * @var ExperienceSource
-     * @ORM\OneToOne(targetEntity="ExperienceSource",  cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ExperienceSource", inversedBy="experiences", cascade={"persist"})
      */
     private $experienceSource;
 
