@@ -40,6 +40,12 @@
                 {% if user.school %}
                     <li><strong>Promotion</strong> : {{ user.school }}</li>
                 {% endif %}
+                {% if user.acceptedContact %}
+                    <li><strong>Accepte d'être contacté</strong></li>
+                    <li><strong>Mail</strong> : <a href="mailto:{{ user.username }} title="{{user.username}}">{{ user.username }}</a></li>
+                {% else %}
+                    <li><strong>N'accepte pas d'être contacté</strong></li>
+                {% endif %}
             </ul>
             {% if user.experiences.count > 0 %}
                 <h3>Expériences</h3>

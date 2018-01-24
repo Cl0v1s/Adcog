@@ -42,9 +42,24 @@
                 {% if experience.salary %}
                     <li><strong>Salaire</strong> : {{ experience.salaryName }}</li>
                 {% endif %}
+                {% if experience.experienceSource is defined and experience.experienceSource %}
+                    <li><strong>Source</strong> : {{ experience.experienceSource }}</li>
+                {% endif %}
+                {% if experience.contractType is defined %}
+                    <li><strong>Type de contrat</strong> : {{experience.contractType}}</li>
+                {% endif %}
+                {% if experience.partTime is defined and experience.partTime %}
+                    <li><strong>Temps partiel (%)</strong> : {{experience.partTimeValue}}</li>
+                {% endif %}
                 <li><strong>Établissement/Employeur</strong> : {{ link('member_yearbook_employer',{employer:experience.employer.id,slug:experience.employer.slug},{name:experience.employer,title:experience.employer}) }}</li>
                 {% if experience.employer.address %}
                     <li><strong>Adresse</strong> : {{ experience.employer.address }}</li>
+                {% endif %}
+                {% if experience.employer.employerType %}
+                <li><strong>Type d'entreprise</strong> : {{experience.employer.employerType }}</li>
+                {% endif %}
+                {% if experience.tuteur is defined and experience.tuteur %}
+                <li><strong>Tuteur Entreprise</strong> : {{ experience.tuteur}}</li>
                 {% endif %}
                 {% if experience.employer.zip %}
                     <li><strong>Code postal</strong> : {{ experience.employer.zip }}</li>

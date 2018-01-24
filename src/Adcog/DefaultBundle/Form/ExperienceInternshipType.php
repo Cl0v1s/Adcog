@@ -32,6 +32,11 @@ class ExperienceInternshipType extends AbstractType
                 'required' => false,
                 'choices' => Experience::getSalaryInternshipNameList(),
             ])
+            ->add('tuteur','text',[
+                'label' => 'Tuteur Entreprise',
+                'placeholder' => 'ex:John DOE',
+                'required'=>false,
+            ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
             ]);

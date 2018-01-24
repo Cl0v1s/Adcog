@@ -32,6 +32,13 @@ class ExperienceInternship extends Experience
     private $internshipSubject;
 
     /**
+     * @var string
+     * @ORM\Column(type="string",length=200)
+     * @Assert\Length(max=200)
+     */
+    private $tuteur;
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
@@ -77,5 +84,29 @@ class ExperienceInternship extends Experience
     public function getInternshipSubject()
     {
         return $this->internshipSubject;
+    }
+
+    /**
+     * Get tuteur
+     *
+     * @return string|null
+     */
+    public function getTuteur()
+    {
+        return $this->tuteur;
+    }
+
+    /**
+     * Set Tuteur
+     *
+     * @param null|string $tuteur
+     *
+     * @return ExperienceInternship
+     */
+    public function setTuteur($tuteur =null)
+    {
+        $this->tuteur = $tuteur;
+
+        return $this;
     }
 }
