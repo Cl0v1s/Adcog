@@ -56,6 +56,7 @@ class ExperienceType extends AbstractType
             ->add('description', 'textarea', [
                 'label' => 'Description',
                 'placeholder' => 'Decrivez ici votre expérience...',
+                'required' => false,
             ])
             ->add('sectors', 'adcog_sectors_field', [
                 'label' => 'Secteurs',

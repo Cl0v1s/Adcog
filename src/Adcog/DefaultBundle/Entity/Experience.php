@@ -86,9 +86,7 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
 
     /**
      * @var string
-     * @ORM\Column(type="text")
-     * @Assert\NotNull()
-     * @Assert\NotBlank()
+     * @ORM\Column(type="text",nullable=true)
      * @Assert\Type(type="string")
      */
     private $description;
