@@ -23,7 +23,7 @@ class ContractType
 
     /**
      * @var string
-     * @ORM\Column(name="content", type="string", length=50)
+     * @ORM\Column(name="content", type="string", length=60)
      */
     private $content;
 
