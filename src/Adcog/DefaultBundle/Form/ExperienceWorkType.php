@@ -41,7 +41,7 @@ class ExperienceWorkType extends AbstractType
                 'label'=> 'Temps Partiel',
                 'required' => false,
             ]) 
-            ->add('partTimeValue','number', [
+            ->add('partTimeValue','integer', [
                 'placeholder'=>'A combien de % ?',
                 'required'=> false,
                 'label' => ' ',
