@@ -3,6 +3,10 @@
 namespace Adcog\DefaultBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EB\DoctrineBundle\Entity\CreatedInterface;
+use EB\DoctrineBundle\Entity\Doctrine\CreatedTrait;
+use EB\DoctrineBundle\Entity\Doctrine\UpdatedTrait;
+use EB\DoctrineBundle\Entity\UpdatedInterface;
 
 /**
  * ExperienceSource
@@ -10,8 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="adcog_experienceSource")
  * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\ExperienceSourceRepository")
  */
-class ExperienceSource
+class ExperienceSource implements CreatedInterface, UpdatedInterface
 {
+    use CreatedTrait;
+    use UpdatedTrait;
+
     /**
      * @var integer
      *

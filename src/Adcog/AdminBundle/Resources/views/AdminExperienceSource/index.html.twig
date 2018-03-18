@@ -1,0 +1,47 @@
+{% extends 'AdcogAdminBundle:Admin:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_experience_source_index') }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'AdcogDefaultBundle::filter.html.twig' %}
+    <ul class="list-inline">
+        <li>{{ link('admin_experience_source_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+    </ul>
+    <div class="row">
+        <div class="table_responsive">
+            <table class="{{ table_class }}">
+                <thead>
+                    <tr>
+                        <th class="sm">#</th>
+                        <th></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                        <th class="sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expsource in paginator %}
+                        <tr>
+                            <td>{{ expsource.id }}</td>
+                            <td>{{ expsource }}</td>
+                            <td>{{ link('admin_experience_source_read',{expsource:expsource.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:'',title:expsource}) }}</td>
+                            <td>{{ link('admin_experience_source_replace',{expsource:expsource.id},{class:'btn btn-xs btn-info',ficon:'random',name:'',title:expsource}) }}</td>
+                            <td>{{ link('admin_experience_source_update',{expsource:expsource.id},{class:'btn btn-xs btn-warning',ficon:'pencil',name:'',title:expsource}) }}</td>
+                            <td>{{ link('admin_experience_source_delete',{expsource:expsource.id},{class:'btn btn-xs btn-danger',ficon:'trash-o',name:'',title:expsource}) }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="100%">
+                                <p class="alert alert-info">Cette liste est vide ...</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -153,5 +153,17 @@
             </call>
             <tag name="form.type" alias="adcog_admin_experience_filter"/>
         </service>
+        <service id="adcog.admin_bundle.form.experience_source_type" class="Adcog\AdminBundle\Form\ExperienceSourceType">
+            <call method="setName">
+                <argument>adcog_admin_experience_source</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_experience_source"/>
+        </service>
+        <service id="adcog.admin_bundle.form.experience_source_filter_type" class="Adcog\AdminBundle\Form\ExperienceSourceFilterType">
+            <call method="setName">
+                <argument>adcog_admin_experience_source_filter</argument>
+            </call>
+            <tag name="form.type" alias="adcog_admin_experience_source_filter"/>
+        </service>
     </services>
 </container>
