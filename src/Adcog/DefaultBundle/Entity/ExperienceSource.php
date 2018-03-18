@@ -11,7 +11,7 @@ use EB\DoctrineBundle\Entity\UpdatedInterface;
 /**
  * ExperienceSource
  *
- * @ORM\Table(name="adcog_experienceSource")
+ * @ORM\Table(name="adcog_experience_source")
  * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\ExperienceSourceRepository")
  */
 class ExperienceSource implements CreatedInterface, UpdatedInterface

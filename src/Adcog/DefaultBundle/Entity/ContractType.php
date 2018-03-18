@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ContractType
  *
- * @ORM\Table(name="adcog_contractType")
+ * @ORM\Table(name="adcog_contract_type")
  * @ORM\Entity
  */
 class ContractType
