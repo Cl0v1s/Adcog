@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EmployerType
  *
- * @ORM\Table(name="adcog_employerType")
+ * @ORM\Table(name="adcog_employer_type")
  * @ORM\Entity
  */
 class EmployerType
