@@ -1,0 +1,36 @@
+{% extends 'AdcogAdminBundle:AdminEmployerType:read.html.twig' %}
+
+{% block title %}Supprimer {{ employerType }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_employer_type_delete',{employerType:employerType.id}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_employer_type_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_employer_type_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_employer_type_read',{employerType:employerType.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:employerType,title:employerType}) }}</li>
+        <li>{{ link('admin_employer_type_replace',{employer:employerType.id},{class:'btn btn-xs btn-info',ficon:'random'}) }}</li>
+        <li>{{ link('admin_employer_type_update',{employerType:employerType.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+    </ul>
+    <p class="alert alert-danger">Êtes-vous certain de voulois supprimer {{ employer }} ?</p>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('admin_employer_type_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('admin_employer_type_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('admin_employer_type_read',{employerType:employerType.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:employerType,title:employerType}) }}</li>
+                <li>{{ link('admin_employer_type_replace',{employerType:employerType.id},{class:'btn btn-xs btn-info',ficon:'random'}) }}</li>
+                <li>{{ link('admin_employer_type_update',{employerType:employerType.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-danger"><span class="fa fa-trash-o"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
