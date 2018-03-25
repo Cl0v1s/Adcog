@@ -115,3 +115,10 @@ page:
     email:
       name: 'Prévisualisation des emails'
       send: {name: 'Envoyer un email'}
+    contract:
+      type:
+        index: {name: Contrats}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}

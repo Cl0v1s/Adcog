@@ -3,15 +3,22 @@
 namespace Adcog\DefaultBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EB\DoctrineBundle\Entity\CreatedInterface;
+use EB\DoctrineBundle\Entity\Doctrine\CreatedTrait;
+use EB\DoctrineBundle\Entity\Doctrine\UpdatedTrait;
+use EB\DoctrineBundle\Entity\UpdatedInterface;
 
 /**
  * ContractType
  *
  * @ORM\Table(name="adcog_contract_type")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\ContractTypeRepository")
  */
 class ContractType
 {
+    use CreatedTrait;
+    use UpdatedTrait;
+
     /**
      * @var integer
      *
