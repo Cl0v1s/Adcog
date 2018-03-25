@@ -183,12 +183,11 @@ class AdminExperienceSourceController extends Controller
         if ($form->handleRequest($request)->isValid()) {
             $new = $form->get('expsource')->getData();
             $experiences = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->getPaginator(PaginatorHelper::createEmptyInstance(), [
-                'expsources' => [$new],
+                'experienceSource' => $expsource,
             ]);
-            array_map(function (Experience $experience) use ($new) {
-                $experience
-                    ->setExperienceSource($new);
-            }, iterator_to_array($experiences->getIterator()));
+            foreach ($experiences as $experience) {
+                $experience->setExperienceSource($new);
+            }
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->flush();
             $em->remove($expsource);
