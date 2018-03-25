@@ -236,12 +236,12 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
     public static function getStatutNameList()
     {
         return [
-            self::STATUT_1 => '1.Agriculteurs exploitants',
-            self::STATUT_2 => '2.Artisans, commerçants et chefs d’entreprise',
-            self::STATUT_3 => '3.Cadres et professions intellectuelles supérieures',
-            self::STATUT_4 => '4.Professions Intermédiaires',
-            self::STATUT_5 => '5.Employés',
-            self::STATUT_6 => '6.Ouvriers',
+            self::STATUT_1 => '1. Agriculteurs exploitants',
+            self::STATUT_2 => '2. Artisans, commerçants et chefs d’entreprise',
+            self::STATUT_3 => '3. Cadres et professions intellectuelles supérieures',
+            self::STATUT_4 => '4. Professions Intermédiaires',
+            self::STATUT_5 => '5. Employés',
+            self::STATUT_6 => '6. Ouvriers',
         ];
     }
 
