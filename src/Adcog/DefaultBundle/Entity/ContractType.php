@@ -14,7 +14,7 @@ use EB\DoctrineBundle\Entity\UpdatedInterface;
  * @ORM\Table(name="adcog_contract_type")
  * @ORM\Entity(repositoryClass="Adcog\DefaultBundle\Repository\ContractTypeRepository")
  */
-class ContractType
+class ContractType implements CreatedInterface, UpdatedInterface
 {
     use CreatedTrait;
     use UpdatedTrait;
