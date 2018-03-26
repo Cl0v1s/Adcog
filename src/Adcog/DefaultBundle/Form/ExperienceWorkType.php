@@ -7,6 +7,10 @@ use Adcog\DefaultBundle\Entity\Experience;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * Class ExperienceWorkType
@@ -45,6 +49,10 @@ class ExperienceWorkType extends AbstractType
                 'placeholder'=>'A combien de % ?',
                 'required'=> false,
                 'label' => ' ',
+                'attr' => [
+                    'min' => 1,
+                    'max' => 100
+                ]
             ])
             ->add('status','choice', [
                 'label' => 'Statut',

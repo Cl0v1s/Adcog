@@ -34,18 +34,29 @@
             if(cpt==0){
                 {% if form.partTimeValue.vars.value == 0 %}
                     $({{form.partTimeValue.vars.id}}).hide();
+                    $({{form.partTimeValue.vars.id}}).parent().parent().hide();
                     cpt++;
                 {% endif %}
             }
             $({{form.partTime.vars.id}}).click(function() {
             if(this.checked){
                 $({{form.partTimeValue.vars.id}}).show();
+                $({{form.partTimeValue.vars.id}}).parent().parent().show();
             }
             else{
                 $({{form.partTimeValue.vars.id}}).hide();
-                {{form.partTimeValue.vars.id}}.value=0;   
+                $({{form.partTimeValue.vars.id}}).parent().parent().hide();
+                {{form.partTimeValue.vars.id}}.value='';   
             }
-        });
+            });
+            $({{form.partTimeValue.vars.id}}).change(function() {
+                if ({{form.partTimeValue.vars.id}}.value > 100) {
+                    {{form.partTimeValue.vars.id}}.value = 100;
+                }
+                if ({{form.partTimeValue.vars.id}}.value <= 0) {
+                    {{form.partTimeValue.vars.id}}.value = 0;
+                }
+            })
         </script>   
     {% endif %}
 {% endblock %}
