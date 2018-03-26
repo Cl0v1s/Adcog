@@ -42,6 +42,14 @@
                 <td>{{ employer.country|default('-') }}</td>
             </tr>
             <tr>
+                <th>Type d'entreprise</th>
+                {% if employer.employerType %}
+                <td>{{ link('admin_employer_type_read',{employerType:employer.employerType.id},{name:employer.employerType,title:employer.employerType}) }}</td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
+            </tr>
+            <tr>
                 <th>Téléphone</th>
                 <td>{{ employer.phone|default('-') }}</td>
             </tr>
