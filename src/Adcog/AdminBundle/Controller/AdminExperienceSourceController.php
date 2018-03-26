@@ -182,7 +182,7 @@ class AdminExperienceSourceController extends Controller
             ->getForm();
         if ($form->handleRequest($request)->isValid()) {
             $new = $form->get('expsource')->getData();
-            $experiences = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->getPaginator(PaginatorHelper::createEmptyInstance(), [
+            $experiences = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->findBy([
                 'experienceSource' => $expsource,
             ]);
             foreach ($experiences as $experience) {

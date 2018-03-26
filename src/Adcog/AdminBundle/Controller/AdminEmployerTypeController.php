@@ -181,8 +181,8 @@ class AdminEmployerTypeController extends Controller
             ])
             ->getForm();
         if ($form->handleRequest($request)->isValid()) {
-            $new = $form->get('employer')->getData();
-            $employers = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer')->getPaginator(PaginatorHelper::createEmptyInstance(), [
+            $new = $form->get('employerType')->getData();
+            $employers = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer')->findBy([
                 'employerType' => $employerType,
             ]);
             foreach ($employers as $employer) {

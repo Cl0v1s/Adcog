@@ -182,7 +182,7 @@ class AdminContractTypeController extends Controller
             ->getForm();
         if ($form->handleRequest($request)->isValid()) {
             $new = $form->get('contract')->getData();
-            $experiences = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Experience')->getPaginator(PaginatorHelper::createEmptyInstance(), [
+            $experiences = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:ExperienceWork')->findBy([
                 'contractType' => $contract,
             ]);
             foreach ($experiences as $experience) {
