@@ -144,7 +144,7 @@ class ExperienceWork extends Experience
 
     /**
      * @var ContractType
-     * @ORM\OneToOne(targetEntity="ContractType", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ContractType", cascade={"persist"})
      */
     private $contractType;
 
@@ -165,7 +165,7 @@ class ExperienceWork extends Experience
     }
 
     /**
-     * Get PartTime
+     * Get ContractType
      *
      * @return ContractType
      */
