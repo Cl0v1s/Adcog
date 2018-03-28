@@ -18,11 +18,35 @@
         </tr>
         <tr>
             <th>Description</th>
-            <td>{{ experience.description|default('-') }}</td>
+            <td class="let">{{ experience.description|default('-') }}</td>
+        </tr>
+        <tr>
+            <th>Public ?</th>
+            <td>{% if experience.isPublic %}Oui{% else %}Non{% endif %}</td>
         </tr>
         <tr>
             <th>Salaire</th>
             <td>{{ experience.salaryName }}</td>
+        </tr>
+        <tr>
+            <th>Type de contrat</th>
+            {% if experience.contractType %}
+            <td>{{ link('admin_contract_type_read',{contract:experience.contractType.id},{name:experience.contractType,title:experience.contractType}) }}</td>
+            {% else %}
+            <td>-</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Temps partiel</th>
+            {% if experience.partTimeValue %}
+            <td>Oui ({{experience.partTimeValue}}%)</td>
+            {% else %}
+            <td>Non</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Statut</th>
+            <td>{{ experience.statusName }}</td>
         </tr>
         <tr>
             <th>Utilisateur</th>
@@ -41,6 +65,14 @@
                     {% endfor %}
                 </ul>
             </td>
+        </tr>
+        <tr>
+            <th>Source d'expérience</th>
+            {% if experience.experienceSource %}
+            <td>{{ link('admin_experience_source_read',{expsource:experience.experienceSource.id},{name:experience.experienceSource,title:experience.experienceSource}) }}</td>
+            {% else %}
+            <td>-</td>
+            {% endif %}
         </tr>
         <tr>
             <th>Création</th>

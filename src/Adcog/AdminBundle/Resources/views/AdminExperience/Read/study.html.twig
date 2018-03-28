@@ -18,7 +18,11 @@
         </tr>
         <tr>
             <th>Description</th>
-            <td>{{ experience.description|default('-') }}</td>
+            <td class="let">{{ experience.description|default('-') }}</td>
+        </tr>
+        <tr>
+            <th>Public ?</th>
+            <td>{% if experience.isPublic %}Oui{% else %}Non{% endif %}</td>
         </tr>
         <tr>
             <th>Salaire</th>

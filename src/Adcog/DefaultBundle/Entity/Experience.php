@@ -599,4 +599,16 @@ abstract class Experience implements CreatedInterface, UpdatedInterface, SlugInt
         return $result;
     }
 
+    /**
+     * Status Name
+     *
+     * @return string
+     */
+    public function getStatusName()
+    {
+        $status = self::getStatutNameList();
+
+        return array_key_exists($this->getStatus(), $status) ? $status[$this->getStatus()] : '-';
+    }
+
 }
