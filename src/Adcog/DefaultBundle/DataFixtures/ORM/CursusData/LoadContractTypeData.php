@@ -30,7 +30,7 @@ class LoadContractTypeData extends AbstractFixture
         $manager->persist($contract3);
 
         $contract4 = new ContractType();
-        $contract4->setContent('Contrat d’apprentissage ou de professionnalisation (alternance)');
+        $contract4->setContent('Contrat d’apprentissage ou de professionnalisation');
         $manager->persist($contract4);
 
         $manager->flush();
