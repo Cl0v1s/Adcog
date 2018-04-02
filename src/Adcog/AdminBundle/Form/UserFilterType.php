@@ -81,6 +81,10 @@ class UserFilterType extends AbstractType
                 'label' => 'Pays',
                 'placeholder' => 'France',
                 'required' => false,
+            ])
+            ->add('acceptedContact', 'adcog_ternary', [
+                'label' => 'Partage d\'informations',
+                'required' => false,
             ]);
     }
 }

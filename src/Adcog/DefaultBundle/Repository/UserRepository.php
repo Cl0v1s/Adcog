@@ -58,6 +58,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             ->applyEqFilter($qb, 'role', $filters)
             ->applyEqFilter($qb, 'gender', $filters)
             ->applyEqFilter($qb, 'nationality', $filters)
+            ->applyEqFilter($qb, 'acceptedContact', $filters)
             ->applyLikeFilter($qb, 'address', $filters)
             ->applyLikeFilter($qb, 'zip', $filters)
             ->applyLikeFilter($qb, 'city', $filters)

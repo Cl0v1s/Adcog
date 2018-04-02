@@ -57,6 +57,10 @@
                 <td>{{ user.enabled?'Oui':'Non' }}</td>
             </tr>
             <tr>
+                <th>Partage d'informations</th>
+                <td>{{ user.acceptedContact?'Oui':'Non' }}</td>
+            </tr>
+            <tr>
                 <th>Compte expiré</th>
                 <td>{{ user.accountExpired?user.accountExpired|timeago:'Non' }}</td>
             </tr>
