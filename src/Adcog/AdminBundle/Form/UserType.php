@@ -51,6 +51,23 @@ class UserType extends AbstractType
                 'label' => 'Nom',
                 'placeholder' => 'DOE',
             ])
+            ->add('gender', 'choice',[
+                'label' => 'Sexe',
+                'placeholder' => "Choisissez le Sexe",
+                'choices' => array(
+                    'H' => "Homme",
+                    'F' => "Femme"
+                )
+            ])
+            ->add('birthDate', 'adcog_date_field', [
+                'label'=>'Date de Naissance',
+                'placeholder' => 'ex: 15/08/1995',
+            ])
+            ->add('nationality', 'country', [
+                'label' => 'Nationalité',
+                'placeholder' => 'Choisissez la nationalité',
+                'preferred_choices' => array('FR')
+            ])
             ->add('school', 'entity', [
                 'label' => 'Promotion',
                 'class' => 'Adcog\DefaultBundle\Entity\School',
