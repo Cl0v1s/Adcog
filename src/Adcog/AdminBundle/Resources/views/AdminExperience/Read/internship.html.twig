@@ -18,11 +18,19 @@
         </tr>
         <tr>
             <th>Description</th>
-            <td>{{ experience.description|default('-') }}</td>
+            <td class="let">{{ experience.description|default('-') }}</td>
         </tr>
         <tr>
-            <th>Salaire</th>
+            <th>Public ?</th>
+            <td>{% if experience.isPublic %}Oui{% else %}Non{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Compensation mensuelle percue</th>
             <td>{{ experience.salaryName }}</td>
+        </tr>
+        <tr>
+            <th>Compensation mensuelle percue</th>
+            <td>{{ experience.tuteur|default('-') }}</td>
         </tr>
         <tr>
             <th>Utilisateur</th>
@@ -41,6 +49,14 @@
                     {% endfor %}
                 </ul>
             </td>
+        </tr>
+        <tr>
+            <th>Source d'expérience</th>
+            {% if experience.experienceSource %}
+            <td>{{ link('admin_experience_source_read',{expsource:experience.experienceSource.id},{name:experience.experienceSource,title:experience.experienceSource}) }}</td>
+            {% else %}
+            <td>-</td>
+            {% endif %}
         </tr>
         <tr>
             <th>Création</th>

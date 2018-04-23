@@ -90,6 +90,8 @@ class UserExperienceController extends Controller
         $experience = new ExperienceStudy();
         $experience->setUser($this->getUser());
         $form = $this->createForm('adcog_experience_study', $experience);
+        $form->get('experience')->remove('experienceSource');//On récupère le form expérience pour pouvoir enlever le champ de experienceSource
+        $form->get('experience')->get('employer')->remove('employerType'); //On enlève le type d'entreprise pour une formation
         if ($form->handleRequest($request)->isValid()) {
             $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
             $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);
@@ -192,8 +194,13 @@ class UserExperienceController extends Controller
         if ($experience->getUser()->getId() !== $this->getUser()->getId()) {
             throw new NotFoundHttpException();
         }
-
+        
+        
         $form = $this->createForm(sprintf('adcog_experience_%s', $experience->getType()), $experience);
+        if($experience->getType() ===ExperienceStudy::TYPE_STUDY)
+        {
+            $form->get('experience')->remove('experienceSource');//On récupère le form expérience pour pouvoir enlever le champ de experienceSource si on est dans le cas de modification de diplome
+        }
         if ($form->handleRequest($request)->isValid()) {
             $this->get('adcog.checkDoubles')->checkEmployerDoubles($experience);
             $this->get('adcog.checkDoubles')->checkSectorsDoubles($experience);

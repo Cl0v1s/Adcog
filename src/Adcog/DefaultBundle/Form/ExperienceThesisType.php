@@ -3,6 +3,7 @@
 namespace Adcog\DefaultBundle\Form;
 
 use Adcog\DefaultBundle\Entity\ExperienceThesis;
+use Adcog\DefaultBundle\Entity\Experience;
 use /** @noinspection PhpUnusedAliasInspection */
     Adcog\DefaultBundle\Form\NameTrait;
 use Symfony\Component\Form\AbstractType;
@@ -36,9 +37,15 @@ class ExperienceThesisType extends AbstractType
                 'label' => 'Sujet',
                 'placeholder' => 'ex: Analyse des comportements',
             ])
+            ->add('salary', 'choice', [
+                'label' => 'Salaire brut annuel',
+                'required' => false,
+                'choices' => Experience::getSalaryNameList()
+            ])
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
             ]);
+
     }
 
     /**

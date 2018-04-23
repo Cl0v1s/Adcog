@@ -122,4 +122,26 @@ class UserUserApiController extends Controller
 
         return new JsonResponse($data);
     }
+
+    /**
+     * ExperienceSources
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     * @Route("/experienceSource.{_format}", requirements={"_format":"json"}, defaults={"_format":"json"})
+     * @Method("GET")
+     */
+    public function sourceWsAction(Request $request)
+    {
+
+        $data = [];
+        if (null !== $query = $request->query->get('query')) {
+            if (AdcogDefaultBundle::WS_MIN_SIZE_0 <= mb_strlen($query)) {
+                $data = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:ExperienceSource')->search($query);
+            }
+        }
+
+        return new JsonResponse($data);
+    }
 }

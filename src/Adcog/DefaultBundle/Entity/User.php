@@ -38,6 +38,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, UserPasswordDateInterface, CreatedInterface, UpdatedInterface, \Serializable, LoggableInterface, FileReadableInterface, FileVersionableInterface, SlugInterface
 {
+
+    
+
     use UserTrait;
     use UserLoginTrait;
     use UserPasswordDateTrait;
@@ -164,6 +167,32 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
      * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist","remove"})
      */
     private $profile;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nationality;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
+     */
+    private $birthDate;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $acceptedContact = false;
 
     /**
      * {@inheritdoc}
@@ -367,6 +396,8 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
 
         return $this;
     }
+
+    
 
     /**
      * Get experiences
@@ -783,6 +814,7 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
         list ($this->id, $this->username, $this->password, $this->salt) = unserialize($serialized);
     }
 
+
     public function toArray() 
     {
         $result = get_object_vars($this);
@@ -792,5 +824,102 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
         }
 
         return $result;
+    }
+    /*Changement apporté Emile et Thomas*/ 
+
+    /**
+     * Get nationality
+     *
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * Set nationality
+     *
+     * @param string $nationality
+     *
+     * @return User
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+    
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get BirthDate
+     *
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set 
+     *
+     * @param \DateTime $birthDate BirthDate
+     *
+     * @return User
+     */
+    public function setBirthDate(\DateTime $birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get AcceptedContact
+     *
+     * @return bool
+     */
+    public function getAcceptedContact()
+    {
+        return $this->acceptedContact;
+    }
+
+    /**
+     * Set AcceptedContact
+     *
+     * @param bool $acceptedContact AcceptedContact
+     *
+     * @return User
+     */
+    public function setAcceptedContact($acceptedContact)
+    {
+        $this->acceptedContact = $acceptedContact;
+
+        return $this;
     }
 }

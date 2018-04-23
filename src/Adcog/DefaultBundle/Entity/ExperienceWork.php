@@ -69,4 +69,110 @@ class ExperienceWork extends Experience
     {
         return $this->workPosition;
     }
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $partTime;
+
+    /**
+     * Set partTime
+     *
+     * @param null|bool $partTime
+     *
+     * @return ExperienceWork
+     */
+    public function setPartTime($partTime =null)
+    {
+        if($partTime!=null){
+            $this->partTime = $partTime;
+        }
+        else{
+            $this->partTime = false;
+        }
+        
+
+        return $this;
+    }
+
+    /**
+     * Get PartTime
+     *
+     * @return bool
+     */
+    public function getPartTime()
+    {
+        return $this->partTime;
+    }
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $partTimeValue;
+    
+        /**
+         * Set partTimeValue
+         *
+         * @param null|int $partTime
+         *
+         * @return ExperienceWork
+         */
+        public function setPartTimeValue($partTimeValue =null)
+        {
+            if($partTimeValue!=null){
+                $this->partTimeValue = $partTimeValue;
+            }
+            else{
+                $this->partTimeValue = 0;
+            }
+            
+    
+            return $this;
+        }
+    
+        /**
+         * Get PartTimeValue
+         *
+         * @return int
+         */
+        public function getPartTimeValue()
+        {
+            return $this->partTimeValue;
+        }
+
+    /**
+     * @var ContractType
+     * @ORM\ManyToOne(targetEntity="ContractType", cascade={"persist"})
+     */
+    private $contractType;
+
+    /**
+     * Set contractType
+     *
+     * @param ContractType $contracType
+     *
+     * @return ExperienceWork
+     */
+    public function setContractType($contractType)
+    {
+       
+        $this->contractType = $contractType;
+        
+
+        return $this;
+    }
+
+    /**
+     * Get ContractType
+     *
+     * @return ContractType
+     */
+    public function getContractType()
+    {
+        return $this->contractType;
+    }
+
+
 }

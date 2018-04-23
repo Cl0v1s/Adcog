@@ -23,6 +23,7 @@ class EmployerFilterType extends AbstractType
         $builder
             ->add('name', 'text', [
                 'label' => 'Nom',
+                'required' => false,
             ])
             ->add('address', 'text', [
                 'label' => 'Adresse',
@@ -38,6 +39,12 @@ class EmployerFilterType extends AbstractType
             ])
             ->add('country', 'text', [
                 'label' => 'Pays',
+                'required' => false,
+            ])
+            ->add('employerType','entity', [
+                'label' => 'Type d\'entreprise',
+                'placeholder' => 'Choisissez le type d\'entreprise',
+                'class' => 'Adcog\DefaultBundle\Entity\EmployerType',
                 'required' => false,
             ])
             ->add('phone', 'text', [

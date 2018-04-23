@@ -12,4 +12,5 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class AdcogDefaultBundle extends Bundle
 {
     const WS_MIN_SIZE = 2;
+    const WS_MIN_SIZE_0=0;
 }

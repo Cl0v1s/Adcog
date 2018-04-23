@@ -4,7 +4,7 @@ http://adcog.fr
 
 ## Configuration
 
-Projet LAMP Symfony2.
+Projet LAMP Symfony2. //Test
 
 ## Apache2
 

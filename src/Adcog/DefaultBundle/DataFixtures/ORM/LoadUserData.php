@@ -23,7 +23,8 @@ class LoadUserData extends AbstractFixture
             ->setFirstname('CPI')
             ->setLastname('ADCOG')
             ->setRole(User::ROLE_ADMIN)
-            ->setRawPassword('pass');
+            ->setRawPassword('pass')
+            ->setBirthDate(new \Datetime());
         $manager->persist($user);
 
         $this->addReference('cpi', $user);
@@ -34,6 +35,7 @@ class LoadUserData extends AbstractFixture
             $user->setFirstname(strtoupper($username));
             $user->setLastname('ADCOG');
             $user->setRawPassword('pass');
+            $user->setBirthDate(new \Datetime());
             $manager->persist($user);
         }
 

@@ -14,4 +14,23 @@
             </p>
         {% endif %}
     {% endfor %}
+    <div class="container">
+        <div class="modal" id="modal-message">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title"> Bienvenue {{ app.user }} !</h3>
+                     </div>
+                     <div class="modal-body">
+                        Que dirais-tu de partager ton parcours avec l'ensemble du réseau ?
+                     </div>
+
+                     <div class="modal-footer">
+                        <a href="{{ path('user_experience_index')}}" class="btn btn-success">Ajouter une expérience</a>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endspaceless %}

@@ -50,6 +50,28 @@ class UserAccountType extends AbstractType
                 'label' => 'Nom',
                 'placeholder' => 'ex: DOE',
             ])
+            ->add('gender', 'choice',[
+                'label' => 'Sexe',
+                'placeholder' => "Choisissez votre Sexe",
+                'choices' => array(
+                    'H' => "Homme",
+                    'F' => "Femme"
+                )
+            ])
+            ->add('birthDate', 'adcog_date_field', [
+                'label'=>'Date de Naissance',
+                'placeholder' => 'ex: 15/08/1995',
+            ])
+            ->add('nationality', 'country', [
+                'label' => 'Nationalité',
+                'placeholder' => 'Choisissez votre nationalité',
+                'preferred_choices' => array('FR')
+            ])
+            ->add('school', 'entity', [
+                'label' => 'Promotion',
+                'placeholder' => 'Choisissez votre promotion',
+                'class' => 'Adcog\DefaultBundle\Entity\School',
+            ])
             ->add('address', 'textarea', [
                 'label' => 'Adresse',
                 'placeholder' => 'ex: 109 avenue Roul',
@@ -91,6 +113,10 @@ class UserAccountType extends AbstractType
                 'label' => 'Site web',
                 'placeholder' => 'ex: http://adcog.fr',
                 'required' => false,
+            ])
+            ->add('acceptedContact','checkbox',[
+                'label' => "Partage d'informations",
+                'help' => "En cochant, j'accepte d'être contacté par les autres membres du réseau de l'ADCOG pour répondre à leurs questions",
             ])
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $user = $event->getData();

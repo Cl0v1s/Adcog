@@ -3,10 +3,14 @@
 namespace Adcog\DefaultBundle\Form;
 
 use Adcog\DefaultBundle\Entity\ExperienceWork;
-
+use Adcog\DefaultBundle\Entity\Experience;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * Class ExperienceWorkType
@@ -27,6 +31,35 @@ class ExperienceWorkType extends AbstractType
                 'label' => 'Poste',
                 'placeholder' => 'ex: Ingénieur en Cognitique',
             ])
+            ->add('salary', 'choice', [
+                'label' => 'Salaire brut annuel',
+                'required' => false,
+                'choices' => Experience::getSalaryNameList()
+            ])
+            ->add('contractType','entity', [
+                'label' => 'Type de Contrat',
+                'placeholder' => 'Choissisez un type de contrat',
+                'class' => 'Adcog\DefaultBundle\Entity\ContractType',
+            ])
+            ->add('partTime','checkbox',[
+                'label'=> 'Temps Partiel',
+                'required' => false,
+            ]) 
+            ->add('partTimeValue','integer', [
+                'placeholder'=>'A combien de % ?',
+                'required'=> false,
+                'label' => ' ',
+                'attr' => [
+                    'min' => 1,
+                    'max' => 100
+                ]
+            ])
+            ->add('status','choice', [
+                'label' => 'Statut',
+                'choices' => ExperienceWork::getStatutNameList(),
+                'placeholder' => 'Choissisez un statut',
+                /*'preferred_choices' => array('Cadres et professions intellectuelles supérieures'),*/
+            ])  
             ->add('experience', 'adcog_experience', [
                 'inherit_data' => true,
             ])
@@ -35,6 +68,7 @@ class ExperienceWorkType extends AbstractType
                 'required' => false,
                 'choices' => ExperienceWork::getSalaryNameList(),
             ]);
+            
     }
 
     /**

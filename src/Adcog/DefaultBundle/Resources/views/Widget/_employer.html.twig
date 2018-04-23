@@ -27,6 +27,10 @@
                 </address>
             {% endif %}
             <ul>
+
+                {% if employer.employerType %}
+                    <li><strong>Type d'entreprise</strong> : {{ employer.employerType}}
+                {% endif %}
                 {% if employer.phone %}
                     <li><strong>Téléphone</strong> : <a href="tel:{{ employer.phone }}">{{ employer.phone }}</a></li>
                 {% endif %}

@@ -1,0 +1,38 @@
+{% extends 'AdcogAdminBundle:AdminEmployerType:index.html.twig' %}
+
+{% block title %}{{ employerType }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_employer_type_read',{employerType:employerType.id},{name:employerType,title:employerType}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_employer_type_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_employer_type_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_employer_type_replace',{employerType:employerType.id},{class:'btn btn-xs btn-info',ficon:'random',name:employerType,title:employerType}) }}</li>
+        <li>{{ link('admin_employer_type_update',{employerType:employerType.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_employer_type_delete',{employerType:employerType.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ employerType.id }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ employerType.content }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ employerType.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ employerType.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

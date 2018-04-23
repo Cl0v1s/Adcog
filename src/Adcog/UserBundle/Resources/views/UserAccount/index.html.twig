@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block subcontent %}
+    <div id="banner">
+        <p>Vous avez ajouté {{ nbrStudies }} formation(s) et {{ nbrExperiences }} expérience(s) professionnelle(s)</p> 
+        <p>Rien d'autre à ajouter ?</p>
+        <div>
+            <a href="{{ path('user_experience_index')}}" class="btn btn-success" role="button" aria-disabled="true">Ajouter une expérience</a>
+            <a href="{{ path('user_experience_create_study')}}" class="btn btn-warning" role="button" aria-disabled="true">Ajouter une formation</a>
+        </div>
+    </div>
     <p>
         Bonjour <strong>{{ app.user }}</strong>,
     </p>
@@ -61,6 +69,15 @@
             et vous êtes administrateur du site web
         {% endif %}
         !
+    </p>
+    <p class="no-margin">
+        {% if app.user.acceptedContact %}
+            <span class="label label-success"><span class="fa fa-pencil"></span></span>
+            Vous acceptez d'être contacté
+        {% else %}
+            <span class="label label-warning"><span class="fa fa-pencil"></span></span>
+            Vous n'acceptez pas d'être contacté.
+        {% endif %}
     </p>
     <table class="{{ table_class }}">
         <tbody>

@@ -28,8 +28,14 @@ class EmployerRepository extends EntityRepository
 
         $paginatorHelper
             ->applyLikeFilter($qb, 'name', $filters)
+            ->applyLikeFilter($qb, 'address', $filters)
+            ->applyLikeFilter($qb, 'zip', $filters)
             ->applyLikeFilter($qb, 'city', $filters)
             ->applyLikeFilter($qb, 'country', $filters)
+            ->applyEqFilter($qb, 'employerType', $filters)
+            ->applyLikeFilter($qb, 'phone', $filters)
+            ->applyLikeFilter($qb, 'website', $filters)
+            ->applyLikeFilter($qb, 'email', $filters)
             ->applyValidatedFilter($qb, $filters);
 
         return $paginatorHelper->create($qb, ['name' => 'ASC', 'created' => 'DESC']);

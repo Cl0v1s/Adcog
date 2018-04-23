@@ -101,6 +101,12 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
     private $experiences;
 
     /**
+     * @var EmployerType
+     * @ORM\ManyToOne(targetEntity="EmployerType", cascade={"persist"})
+     */
+    private $employerType;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
@@ -325,6 +331,31 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Get employerType
+     *
+     * @return null|EmployerType
+     */
+    public function getEmployerType()
+    {
+        return $this->employerType;
+    }
+
+    /**
+     * Set employerType
+     *
+     * @param null|EmployerType $employerType
+     *
+     * @return Employer
+     */
+    public function setEmployerType(EmployerType $employerType = null)
+    {
+        
+        $this->employerType = $employerType;
+
+        return $this;
     }
 
     /**

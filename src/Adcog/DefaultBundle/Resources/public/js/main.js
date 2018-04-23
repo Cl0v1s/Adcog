@@ -10,7 +10,12 @@ CKEDITOR.config.contentsCss = $.map($('link'), function (link) {
 // ADCOG context
 $.fn.adcogContext = function () {
     // Datepickers
-    $(this).find('input.datepicker').datepicker();
+    $(this).find('input.datepicker').datepicker({ //Changement DatePicker pour pouvoir sélectionner années et mois
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "c-50:c+10"
+    });
+
 
     // Wysiwyg rich contents
     $(this).find('textarea.wysiwyg[data-wysiwyg]').each(function () {
@@ -181,6 +186,54 @@ $(document).ready(function () {
                 }
             },
         });
+    });
+    /*Liste déroulante pour comment avez vous eu connaissance de l'expérience -> recherche à partir de 0 caractère)*/
+    $('[data-source-ws]').each(function () {
+        var val = $(this).val();
+        $(this)
+            .select2({
+                minimumInputLength: 0,
+                allowClear: !$(this).prop('required'),
+                multiple: false,
+                initSelection: function (element, callback) {
+                    callback({
+                        id: $(element).val(),
+                        text: $(element).val()
+                    });
+                },
+                ajax: {
+                    url: $(this).data('source-ws'),
+                    dataType: 'json',
+                    quietMillis: 100,
+                    data: function (term, page) {
+                        return {
+                            query: term,
+                        };
+                    },
+                    results: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                if ('string' === typeof item) {
+                                    return {
+                                        id: item,
+                                        text: item,
+                                    };
+                                }
+
+                                return item;
+                            }),
+                        };
+                    }
+                },
+                createSearchChoice: function (term, data) {
+                    if ($(data).filter(function () {
+                            return this.text.localeCompare(term) === 0;
+                        }).length === 0) {
+                        return {id: term, text: term};
+                    }
+                },
+            })
+            .select2('val', val);
     });
 
     // Images in blog

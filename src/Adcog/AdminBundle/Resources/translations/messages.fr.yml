@@ -21,6 +21,12 @@ page:
       read: {name: '%entity%'}
       update: {name: Modifier}
       delete: {name: Supprimer}
+      source:
+        index: {name: Sources d'expérience}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}
     price:
       index: {name: Prix}
       create: {name: Créer}
@@ -106,6 +112,20 @@ page:
       update: {name: Modifier}
       delete: {name: Supprimer}
       replace: {name: Remplacer}
+      type:
+        index: {name: Types d'entreprise}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}
+        replace: {name: Remplacer}
     email:
       name: 'Prévisualisation des emails'
       send: {name: 'Envoyer un email'}
+    contract:
+      type:
+        index: {name: Types de contrats}
+        create: {name: Créer}
+        read: {name: '%entity%'}
+        update: {name: Modifier}
+        delete: {name: Supprimer}

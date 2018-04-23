@@ -1,0 +1,38 @@
+{% extends 'AdcogAdminBundle:AdminExperienceSource:index.html.twig' %}
+
+{% block title %}{{ expsource }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_experience_source_read',{expsource:expsource.id},{name:expsource,title:expsource}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_experience_source_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_experience_source_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_experience_source_replace',{expsource:expsource.id},{class:'btn btn-xs btn-info',ficon:'random',name:expsource,title:expsource}) }}</li>
+        <li>{{ link('admin_experience_source_update',{expsource:expsource.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_experience_source_delete',{expsource:expsource.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ expsource.id }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ expsource.content }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ expsource.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ expsource.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

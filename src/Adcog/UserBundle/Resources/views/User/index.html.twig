@@ -95,6 +95,17 @@
         </div>
     </div>
 {% endblock %}
+{% block javascript %}
+{{parent()}}
+{#PopUp inscription pour ajouter expérience#}
+    {% if app.session.flashbag.get('reussite') %}
+        <script type="text/javascript">
+            $(window).on('load',function(){
+                $('#modal-message').modal('show');
+            });
+        </script>
+    {% endif %}
+{% endblock %}
 
 {#{% block javascript %}#}
     {#{{ parent() }}#}

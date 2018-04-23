@@ -86,6 +86,12 @@ class EmployerType extends AbstractType
                     'autocomplete' => 'off',
                 ],
             ])
+            ->add('employerType','entity', [
+                'label' => 'Type d\'entreprise',
+                'placeholder' => 'Choisissez le type d\'entreprise',
+                'class' => 'Adcog\DefaultBundle\Entity\EmployerType',
+                'required' => false,
+                ])
             ->add('phone', 'text', [
                 'label' => 'Téléphone',
                 'placeholder' => 'ex: 0566778899',

@@ -1,0 +1,35 @@
+{% extends 'AdcogAdminBundle:AdminContractType:read.html.twig' %}
+
+{% block title %}{{ contract }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_contract_type_replace',{contract:contract.id},{name:contract,title:contract}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_contract_type_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_contract_type_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_contract_type_read',{contract:contract.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:contract,title:contract}) }}</li>
+        <li>{{ link('admin_contract_type_update',{contract:contract.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_contract_type_delete',{contract:contract.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="row form-group">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>{{ link('admin_contract_type_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+                <li>{{ link('admin_contract_type_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+                <li>{{ link('admin_contract_type_read',{contract:contract.id},{class:'btn btn-xs btn-default',ficon:'tasks',name:contract,title:contract}) }}</li>
+                <li>{{ link('admin_contract_type_update',{contract:contract.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+                <li>{{ link('admin_contract_type_delete',{contract:contract.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+                <li class="pull-right">
+                    <button type="submit" class="btn btn-info"><span class="fa fa-pencil"></span> {{ title() }}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -37,6 +37,21 @@ class UserFilterType extends AbstractType
                 'placeholder' => 'DOE',
                 'required' => false,
             ])
+            ->add('gender', 'choice',[
+                'label' => 'Sexe',
+                'placeholder' => "Choisissez le Sexe",
+                'choices' => array(
+                    'H' => "Homme",
+                    'F' => "Femme"
+                ),
+                'required' => false,
+            ])
+            ->add('nationality', 'country', [
+                'label' => 'Nationalité',
+                'placeholder' => 'Choisissez la nationalité',
+                'preferred_choices' => array('FR'),
+                'required' => false,
+            ])
             ->add('role', 'choice', [
                 'label' => 'Rôle',
                 'choices' => User::getRoleNameList(),
@@ -65,6 +80,10 @@ class UserFilterType extends AbstractType
             ->add('country', 'text', [
                 'label' => 'Pays',
                 'placeholder' => 'France',
+                'required' => false,
+            ])
+            ->add('acceptedContact', 'adcog_ternary', [
+                'label' => 'Partage d\'informations',
                 'required' => false,
             ]);
     }

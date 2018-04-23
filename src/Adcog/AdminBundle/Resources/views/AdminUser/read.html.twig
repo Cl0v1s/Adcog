@@ -29,6 +29,18 @@
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
+                <th>Sexe</th>
+                <td>{{ user.gender|default('-') }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ user.birthDate|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Nationalité</th>
+                <td>{{ user.nationality|default('-') }}</td>
+            </tr>
+            <tr>
                 <th>Email</th>
                 <td>{{ user.username }}</td>
             </tr>
@@ -43,6 +55,10 @@
             <tr>
                 <th>Activé</th>
                 <td>{{ user.enabled?'Oui':'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Partage d'informations</th>
+                <td>{{ user.acceptedContact?'Oui':'Non' }}</td>
             </tr>
             <tr>
                 <th>Compte expiré</th>

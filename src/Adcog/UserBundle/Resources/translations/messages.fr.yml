@@ -25,9 +25,9 @@ page:
     experience:
       index: {name: 'Mon cursus'}
       create:
-        work: {name: 'Ajouter une expérience professionnelle'}
+        work: {name: 'Ajouter un emploi'}
         thesis: {name: 'Ajouter une thèse'}
-        study: {name: 'Ajouter un diplôme'}
+        study: {name: 'Ajouter une formation'}
         internship: {name: 'Ajouter un stage'}
       read: {name: Consulter}
       update: {name: Modifier}

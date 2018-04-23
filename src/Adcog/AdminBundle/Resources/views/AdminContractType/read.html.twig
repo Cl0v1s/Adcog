@@ -1,0 +1,38 @@
+{% extends 'AdcogAdminBundle:AdminContractType:index.html.twig' %}
+
+{% block title %}{{ contract }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>{{ link('admin_contract_type_read',{contract:contract.id},{name:contract,title:contract}) }}</li>
+{% endblock %}
+
+{% block subcontent %}
+    <ul class="list-inline">
+        <li>{{ link('admin_contract_type_index',{},{class:'btn btn-xs btn-default',ficon:'arrow-left'}) }}</li>
+        <li>{{ link('admin_contract_type_create',{},{class:'btn btn-xs btn-success',ficon:'plus'}) }}</li>
+        <li>{{ link('admin_contract_type_replace',{contract:contract.id},{class:'btn btn-xs btn-info',ficon:'random',name:contract,title:contract}) }}</li>
+        <li>{{ link('admin_contract_type_update',{contract:contract.id},{class:'btn btn-xs btn-warning',ficon:'pencil'}) }}</li>
+        <li>{{ link('admin_contract_type_delete',{contract:contract.id},{class:'btn btn-xs btn-danger',ficon:'trash-o'}) }}</li>
+    </ul>
+    <table class="{{ table_class }}">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ contract.id }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ contract.content }}</td>
+            </tr>
+            <tr>
+                <th>Création</th>
+                <td>{{ contract.created|timeago }}</td>
+            </tr>
+            <tr>
+                <th>Modification</th>
+                <td>{{ contract.updated|timeago }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
