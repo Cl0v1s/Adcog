@@ -67,7 +67,7 @@ class AdminUserController extends Controller
         // Set Response
         $response = $this->render('AdcogAdminBundle:AdminUser:export.csv.twig',array('data' => $paginator, 'excel_pack' => pack("CCC",0xef,0xbb,0xbf)));
         $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-        $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+        $response->headers->set('Content-Disposition','attachment; filename="exportUsersAdcog.csv"');
 
         return $response;
     }
