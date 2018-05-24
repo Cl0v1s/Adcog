@@ -117,6 +117,7 @@ class UserAccountType extends AbstractType
             ->add('acceptedContact','checkbox',[
                 'label' => "Partage d'informations",
                 'help' => "En cochant, j'accepte d'être contacté par les autres membres du réseau de l'ADCOG pour répondre à leurs questions",
+				'required' =>false,
             ])
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $user = $event->getData();
