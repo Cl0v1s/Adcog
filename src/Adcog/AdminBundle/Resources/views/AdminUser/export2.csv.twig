@@ -1,6 +1,6 @@
 {% autoescape false %}
 {{ excel_pack }}{{ name('admin_user_table_nom') }};{{ name('admin_user_table_prenom') }};{{ 'Email' }};{{ name('admin_user_table_promo') }};{{ name('admin_user_table_member') }};{{ name('admin_user_table_admin') }}
 {% for user in data %}
-{{ user.lastname }};{{ user.firstname }};{{ user.username }};{{ user.school ? user.school : '-' }};{{ user.isMember() ? 'X' : '' }};{{ user.isAdmin() ? 'X' : '' }}; {{ 'test' }}
+{{ user.lastname }};{{ user.firstname }};{{ user.username }};{{ user.school ? user.school : '-' }};{{ user.isMember() ? 'X' : '' }};{{ user.isAdmin() ? 'X' : '' }};
 {% endfor %}
 {% endautoescape %}
