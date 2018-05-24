@@ -65,7 +65,7 @@ class AdminUserController extends Controller
         $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:User')->exportData($filterData);
         
         // Set Response
-        $response = $this->render('AdcogAdminBundle:AdminUser:export.csv.twig',array('data' => $paginator, 'excel_pack' => pack("CCC",0xef,0xbb,0xbf)));
+        $response = $this->render('AdcogAdminBundle:AdminUser:export2.csv.twig',array('data' => $paginator, 'excel_pack' => pack("CCC",0xef,0xbb,0xbf)));
         $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
         $response->headers->set('Content-Disposition','attachment; filename="exportUsersAdcog.csv"');
 
