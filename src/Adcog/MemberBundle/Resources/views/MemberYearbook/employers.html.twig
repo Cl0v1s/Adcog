@@ -1,6 +1,8 @@
 {% extends 'AdcogMemberBundle:MemberYearbook:index.html.twig' %}
 
+{%if form is defined %}
 {% form_theme form _self %}
+{% endif %}
 
 {% block form_row %}
     {{ form_label(form) }}
