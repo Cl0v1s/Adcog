@@ -1,4 +1,6 @@
 <?php
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 namespace Adcog\MemberBundle\Form;
 
@@ -20,20 +22,31 @@ class EmployerFilterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
             ->add('name', 'text', [
-                'label' => 'Nom',
+                'label' => 'Dénomination',
                 'placeholder' => 'ex: Cognitive Corp\'',
                 'required' => false,
             ])
-            ->add('city', 'text', [
-                'label' => 'Ville',
+            ->add('place', 'text', [
+                'label' => 'Lieu (Ville, Code postal, ...)',
                 'placeholder' => 'ex: Talence',
                 'required' => false,
             ])
-            ->add('country', 'text', [
+            ->add('country', 'country', [
                 'label' => 'Pays',
-                'placeholder' => 'ex: France',
+                'preferred_choices' => array('FR'),
+                'required' => false,
+            ])
+            ->add('employerType', 'entity', [
+                'label'=> 'Type d\'entreprise',
+                'required' => false,
+                'class' => 'Adcog\DefaultBundle\Entity\EmployerType',
+            ])
+            ->add('sectors', 'adcog_sectors_field', [
+                'label' => 'Secteurs',
                 'required' => false,
             ]);
     }

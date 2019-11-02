@@ -1,5 +1,12 @@
 {% extends 'AdcogMemberBundle:MemberYearbook:index.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block form_row %}
+    {{ form_label(form) }}
+    {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+{% endblock %}
+
 {% block breadcrumb %}
     {{ parent() }}
     <li>{{ link('member_yearbook_employers') }}</li>
@@ -9,10 +16,29 @@
     <div class="filter">
         {{ form_start(form) }}
         {{ form_errors(form) }}
-        {{ form_rest(form) }}
-        <div class="controls pull-right">
-            <a href="{{ app.request.pathInfo }}" class="btn btn-xs btn-default"><span class="fa fa-times"></span> RAZ</a>
-            <button type="submit" class="btn btn-xs btn-default"><span class="fa fa-filter"></span> Filtrer</button>
+  <div class="form-group container-fluid">
+    {{ form_row(form.name)}}
+  </div>
+  <div class="form-group container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        {{ form_row(form.country) }}
+      </div>
+      <div class="col-md-8">
+        {{ form_row(form.place) }}
+      </div>
+    </div>
+  </div>
+    <div class="form-group container-fluid">
+      {{ form_row(form.employerType) }}
+    </div>
+  <div class="form-group container-fluid">
+      {{ form_row(form.sectors) }}      
+    </div>
+
+
+        <div class="form-group container-fluid text-center">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Rechercher</button>
         </div>
         {{ form_end(form) }}
     </div>

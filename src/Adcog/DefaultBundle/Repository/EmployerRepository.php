@@ -3,6 +3,7 @@
 namespace Adcog\DefaultBundle\Repository;
 
 use Adcog\DefaultBundle\Entity\Employer;
+use Adcog\DefaultBundle\Entity\Sector;
 use EB\DoctrineBundle\Paginator\PaginatorHelper;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -24,7 +25,12 @@ class EmployerRepository extends EntityRepository
      */
     public function getPaginator(PaginatorHelper $paginatorHelper, array $filters = [])
     {
-        $qb = $this->createQueryBuilder('a');
+        $qb = $this->createQueryBuilder('a')
+            ->leftJoin('a.experiences', 'b')
+            ->addSelect('b')
+            ->leftJoin('b.sectors', 'c')
+            ->addSelect('c');
+
 
         $paginatorHelper
             ->applyLikeFilter($qb, 'name', $filters)
@@ -37,6 +43,27 @@ class EmployerRepository extends EntityRepository
             ->applyLikeFilter($qb, 'website', $filters)
             ->applyLikeFilter($qb, 'email', $filters)
             ->applyValidatedFilter($qb, $filters);
+
+        // Sectors
+        if (array_key_exists('sectors', $filters) && 0 !== count($sectors = $filters['sectors'])) {
+
+            $qb
+                ->andWhere($qb->expr()->in('b.id', ':sectors_ids'))
+                ->setParameter('sectors_ids', array_map(function (Sector $sector) {
+                    return $sector->getId();
+            }, $sectors));
+        }
+
+        // Place
+        if (array_key_exists('place', $filters) && strlen($filters['place']) > 0) {
+            $qb->andWhere($qb->expr()->orX(
+                $qb->expr()->eq('a.address', ':place'),
+                $qb->expr()->eq('a.zip', ':place'),
+                $qb->expr()->eq('a.city', ':place')
+            ))
+            ->setParameter('place', $filters['place']);
+        }
+
 
         return $paginatorHelper->create($qb, ['name' => 'ASC', 'created' => 'DESC']);
     }
