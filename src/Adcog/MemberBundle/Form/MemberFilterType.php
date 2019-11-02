@@ -37,8 +37,8 @@ class MemberFilterType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'class' => 'Adcog\DefaultBundle\Entity\School',
-            ])
-            ->add('city', 'text', [
+            ]);
+            /*->add('city', 'text', [
                 'label' => 'Ville',
                 'placeholder' => 'ex: Talence',
                 'required' => false,
@@ -47,6 +47,6 @@ class MemberFilterType extends AbstractType
                 'label' => 'Pays',
                 'placeholder' => 'ex: France',
                 'required' => false,
-            ]);
+            ]);*/
     }
 }

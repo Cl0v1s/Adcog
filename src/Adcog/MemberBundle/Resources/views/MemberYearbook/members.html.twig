@@ -1,5 +1,16 @@
 {% extends 'AdcogMemberBundle:MemberYearbook:index.html.twig' %}
 
+{%if form is defined %}
+{% form_theme form _self %}
+{% endif %}
+
+{% block form_row %}
+    <div class="form-group container-fluid">
+        {{ form_label(form) }}
+        {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+{% endblock %}
+
 {% block breadcrumb %}
     {{ parent() }}
     <li>{{ link('member_yearbook_members') }}</li>
@@ -10,9 +21,8 @@
         {{ form_start(form) }}
         {{ form_errors(form) }}
         {{ form_rest(form) }}
-        <div class="controls pull-right">
-            <a href="{{ app.request.pathInfo }}" class="btn btn-xs btn-default"><span class="fa fa-times"></span> RAZ</a>
-            <button type="submit" class="btn btn-xs btn-default"><span class="fa fa-filter"></span> Filtrer</button>
+        <div class="form-group container-fluid text-center">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Rechercher</button>
         </div>
         {{ form_end(form) }}
     </div>
