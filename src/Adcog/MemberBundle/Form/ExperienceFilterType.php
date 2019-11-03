@@ -22,15 +22,24 @@ class ExperienceFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name', 'text', [
+                'label' => 'Titre, Mots cléfs', 
+                'required' => false,
+            ])
             ->add('type', 'choice', [
                 'label' => 'Type',
                 'placeholder' => 'Tous les types d\'expérience',
                 'required' => false,
                 'choices' => Experience::getTypeNameList(),
             ])
-            ->add('description', 'text', [
-                'label' => 'Mots clés',
-                'placeholder' => 'ex: Aviation, IHM, ...',
+            ->add('place', 'text', [
+                'label' => 'Lieu (Ville, Code postal, ...)',
+                'placeholder' => 'ex: Talence',
+                'required' => false,
+            ])
+            ->add('country', 'country', [
+                'label' => 'Pays',
+                'preferred_choices' => array('FR'),
                 'required' => false,
             ])
             ->add('sectors', 'entity', [

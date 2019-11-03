@@ -45,9 +45,11 @@ class EmployerFilterType extends AbstractType
                 'required' => false,
                 'class' => 'Adcog\DefaultBundle\Entity\EmployerType',
             ])
-            ->add('sectors', 'adcog_sectors_field', [
+            ->add('sectors', 'entity', [
                 'label' => 'Secteurs',
                 'required' => false,
+                'multiple' => true,
+                'class' => 'Adcog\DefaultBundle\Entity\Sector',
             ]);
     }
 }

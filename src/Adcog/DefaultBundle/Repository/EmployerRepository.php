@@ -57,11 +57,11 @@ class EmployerRepository extends EntityRepository
         // Place
         if (array_key_exists('place', $filters) && strlen($filters['place']) > 0) {
             $qb->andWhere($qb->expr()->orX(
-                $qb->expr()->eq('a.address', ':place'),
-                $qb->expr()->eq('a.zip', ':place'),
-                $qb->expr()->eq('a.city', ':place')
+                $qb->expr()->like('a.address', ':place'),
+                $qb->expr()->like('a.zip', ':place'),
+                $qb->expr()->like('a.city', ':place')
             ))
-            ->setParameter('place', $filters['place']);
+            ->setParameter('place', '%'.$filters['place'].'%');
         }
 
 

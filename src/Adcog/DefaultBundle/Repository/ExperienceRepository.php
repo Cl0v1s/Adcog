@@ -50,6 +50,7 @@ class ExperienceRepository extends EntityRepository
             ->applyEqFilter($qb, 'user', $filters)
             ->applyEqFilter($qb, 'salary', $filters)
             ->applyEqFilter($qb, 'isPublic', $filters)
+            ->applyLikeFilter($qb, 'country', $filters, 'c')
             ->applyValidatedFilter($qb, $filters, 'd');
 
         // Sectors
@@ -63,7 +64,93 @@ class ExperienceRepository extends EntityRepository
             }
         }
 
-        return $paginatorHelper->create($qb, ['started' => 'DESC', 'ended' => 'DESC', 'created' => 'DESC']);
+        // Place
+        if (array_key_exists('place', $filters) && strlen($filters['place']) > 0) {
+            $qb->andWhere($qb->expr()->orX(
+                $qb->expr()->like('c.address', ':place'),
+                $qb->expr()->like('c.zip', ':place'),
+                $qb->expr()->like('c.city', ':place')
+            ))
+            ->setParameter('place', '%'.$filters['place'].'%');
+        }
+
+        // Name
+        if (array_key_exists('name', $filters) && strlen($filters['name']) > 0) {
+            $tqb = $this->createQueryBuilder('z') 
+                ->from('Adcog\DefaultBundle\Entity\ExperienceWork', 'w')
+                ->addSelect('w.id as id');
+            $tqb->where($tqb->expr()->like('w.workPosition', ':name'));
+            $tqb->setParameter('name', '%'.$filters['name'].'%');
+            $q = $tqb->getQuery(); 
+            $results = $q->getArrayResult();
+            $works = array_map(function($a){ return $a['id']; }, $results);
+
+            $tqb = $this->createQueryBuilder('z') 
+                ->from('Adcog\DefaultBundle\Entity\ExperienceInternship', 'w')
+                ->addSelect('w.id as id');
+            $tqb->where(
+                $tqb->expr()->orX(
+                    $tqb->expr()->like('w.internshipSubject', ':name'),
+                    $tqb->expr()->like('w.tuteur', ':name')
+                )
+            );
+            $tqb->setParameter('name', '%'.$filters['name'].'%');
+            $q = $tqb->getQuery(); 
+            $results = $q->getArrayResult();
+            $interns = array_map(function($a){ return $a['id']; }, $results);
+
+            $tqb = $this->createQueryBuilder('z') 
+                ->from('Adcog\DefaultBundle\Entity\ExperienceStudy', 'w')
+                ->addSelect('w.id as id');
+            $tqb->where($tqb->expr()->like('w.studyDiploma', ':name'));
+            $tqb->setParameter('name', '%'.$filters['name'].'%');
+            $q = $tqb->getQuery(); 
+            $results = $q->getArrayResult();
+            $studies = array_map(function($a){ return $a['id']; }, $results);
+
+            $tqb = $this->createQueryBuilder('z') 
+            ->from('Adcog\DefaultBundle\Entity\ExperienceThesis', 'w')
+            ->addSelect('w.id as id');
+            $tqb->where(
+                $tqb->expr()->orX(
+                    $tqb->expr()->like('w.thesisDiscipline', ':name'),
+                    $tqb->expr()->like('w.thesisSubject', ':name'),
+                    $tqb->expr()->like('w.thesisType', ':name')
+                )
+            );
+            $tqb->setParameter('name', '%'.$filters['name'].'%');
+            $q = $tqb->getQuery(); 
+            $results = $q->getArrayResult();
+            $thesis = array_map(function($a){ return $a['id']; }, $results);
+
+
+            $conditions = [];
+            array_push($conditions, $qb->expr()->like('c.name', ':name'));
+            array_push($conditions, $qb->expr()->like('a.description', ':name'));
+            if(count($works) > 0) {
+                array_push($conditions, $qb->expr()->in('a.id', $works));
+            }
+            if(count($studies) > 0) {
+                array_push($conditions, $qb->expr()->in('a.id', $studies));
+            }
+            if(count($thesis) > 0) {
+                array_push($conditions, $qb->expr()->in('a.id', $thesis));
+            }
+            if(count($interns) > 0) {
+                array_push($conditions, $qb->expr()->in('a.id', $interns));
+            }
+
+            $qb->andWhere($qb->expr()->orX(
+                ...$conditions
+            ));
+            $qb->setParameter('name', '%'.$filters['name'].'%');
+        }
+
+
+
+        $res = $paginatorHelper->create($qb, ['started' => 'DESC', 'ended' => 'DESC', 'created' => 'DESC']);
+
+        return $res;
     }
 
     /**
