@@ -63,7 +63,7 @@ class MemberYearbookController extends Controller
      * @param Request $request Request
      *
      * @return array
-     * @Route("/etablissement/{page}", requirements={"page":"\d+"}, defaults={"page":1})
+     * @Route("/etablissement/{page}/{order}", requirements={"page":"\d+"}, defaults={"page":1, "order":"ASC"})
      * @Method("GET|POST")
      * @Template()
      */
@@ -72,12 +72,14 @@ class MemberYearbookController extends Controller
         $form = $this->get('form.factory')->createNamed(null, 'adcog_member_employer_filter', [], ['method' => 'GET', 'csrf_protection' => false])->handleRequest($request);
         $filter = $form->isValid() ? $form->getData() : [];
 
-        $paginatorHelper = $this->get('eb_paginator_helper');
-        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer')->getPaginator($paginatorHelper, $filter);
+        $order = strtoupper($request->get('order')) == 'ASC' ? 'ASC' : 'DESC';
 
+        $paginatorHelper = $this->get('eb_paginator_helper');
+        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer')->getPaginator($paginatorHelper, $filter, ['name' => $order, 'created' => 'DESC']);
         return [
             'form' => $form->createView(),
             'paginator' => $paginator,
+            'order' => $order
         ];
     }
 
@@ -173,7 +175,7 @@ class MemberYearbookController extends Controller
      * @param Request $request Request
      *
      * @return array
-     * @Route("/membres/{page}", requirements={"page":"\d+"}, defaults={"page":1})
+     * @Route("/membres/{page}/{order}", requirements={"page":"\d+"}, defaults={"page":1, "order":"ASC"})
      * @Method("GET|POST")
      * @Template()
      */
@@ -183,12 +185,15 @@ class MemberYearbookController extends Controller
         $filter = $form->isValid() ? $form->getData() : [];
         $filter['valid'] = true;
 
-        $paginatorHelper = $this->get('eb_paginator_helper');
-        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:User')->getPaginator($paginatorHelper, $filter);
+        $order = strtoupper($request->get('order')) == 'ASC' ? 'ASC' : 'DESC';
 
+        $paginatorHelper = $this->get('eb_paginator_helper');
+        $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:User')->getPaginator($paginatorHelper, $filter, ['lastname' => $order, 'firstname' => 'ASC', 'created' => 'DESC']);
+        
         return [
             'form' => $form->createView(),
             'paginator' => $paginator,
+            'order' => $order,
         ];
     }
 }

@@ -23,7 +23,7 @@ class EmployerRepository extends EntityRepository
      *
      * @return Employer[]|Paginator
      */
-    public function getPaginator(PaginatorHelper $paginatorHelper, array $filters = [])
+    public function getPaginator(PaginatorHelper $paginatorHelper, array $filters = [], array $orders = ['name' => 'ASC', 'created' => 'DESC'])
     {
         $qb = $this->createQueryBuilder('a')
             ->leftJoin('a.experiences', 'b')
@@ -65,7 +65,7 @@ class EmployerRepository extends EntityRepository
         }
 
 
-        return $paginatorHelper->create($qb, ['name' => 'ASC', 'created' => 'DESC']);
+        return $paginatorHelper->create($qb, $orders);
     }
 
     /**

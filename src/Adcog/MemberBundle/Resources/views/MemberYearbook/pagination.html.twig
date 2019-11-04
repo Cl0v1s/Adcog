@@ -1,0 +1,110 @@
+{% spaceless %}
+
+    {# Usage : include this template with a paginator or a set of paginatorLimit, paginatorCount, paginatorOffset values #}
+
+    {# Convert paginator into a set of paginatorLimit, paginatorCount, paginatorOffset values #}
+    {% if paginator is defined %}
+        {% set paginatorLimit = paginator.query.getMaxResults() %}
+        {% set paginatorCount = paginator.count() %}
+        {% set paginatorOffset = paginator.query.getFirstResult() %}
+    {% endif %}
+
+    {# Test if a paginator is required #}
+    {% if paginatorCount is defined and paginatorLimit is defined and paginatorOffset is defined %}
+        {# Analyze values to define page and max #}
+        {% if paginatorLimit > 0 %}
+            {% set page = (paginatorOffset / paginatorLimit) + 1 %}
+            {% set max = 1 + ((paginatorCount - 1) // paginatorLimit) %}
+        {% else %}
+            {% set page,max = 1,0 %}
+        {% endif %}
+
+        {# Set default values #}
+        {% set dem,demDisp1,demDisp2,route = 2,0,0,app.request.attributes.get('_route') %}
+        {% set parameters = app.request.query.all() %}
+        {% set parameters = parameters|merge(app.request.attributes.get('_route_params',{})) %}
+        {% set parameters = parameters|merge(app.request.attributes.get('_query',{})) %}
+
+        {# Display this pager only when there is at least one item #}
+        {% if max > 0 %}
+            <div class="component-sort">
+                <div class="row">
+                    <div>
+                        <ul class="pagination">
+                            {# Display previous page #}
+                            <li class="page-item {% if page <= 1 %} disabled {% endif %}">
+                                <a class="page-link" 
+                                    {% if page > 1 %}
+                                        href="{{ path(route,parameters|merge({page:page-1})) }}"
+                                    {% endif %}>
+                                    <span class="fa fa-arrow-left"></span> Précédent
+                                </a>
+                            </li>
+                            {# Display each page #}
+                            {% for i in 1..max %}
+                                {% if i == page %}
+                                    {# Current page #}
+                                    <li class="active"><a href="{{ path(route,parameters|merge({page:i})) }}">{{ i }}</a></li>
+                                {% elseif i > dem and i < page - dem %}
+                                    {# "..." before current page #}
+                                    {% if 0 == demDisp1 %}
+                                        <li><span>...</span></li>
+                                        {% set demDisp1 = 1 %}
+                                    {% endif %}
+                                {% elseif i > page + dem and i < max - dem %}
+                                    {# "..." after current page #}
+                                    {% if 0 == demDisp2 %}
+                                        <li><span>...</span></li>
+                                        {% set demDisp2 = 1 %}
+                                    {% endif %}
+                                {% else %}
+                                    {# Other pages #}
+                                    <li><a href="{{ path(route,parameters|merge({page:i})) }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {# Display next page #}
+                            <li class="page-item {% if page >= max %} disabled {% endif %}">
+                                <a class="page-link" 
+                                    {% if page < max %}
+                                        href="{{ path(route,parameters|merge({page:page+1})) }}"
+                                    {% endif %}>
+                                    <span class="fa fa-arrow-right"></span> &nbsp;Suivant&nbsp;&nbsp;
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% if order is defined %}
+                    <div>
+                        <span>Trier par: </span>
+                        <select class="form-control sort" onchange="if(this.value) window.location.href=this.value;">
+                            <option 
+                                {% if order == 'ASC' %}
+                                    selected
+                                {% endif %}
+                                value={{ path(route,parameters|merge({order:'ASC'})) }}
+                            >
+                                A-Z
+                            </option>
+                            <option
+                                {% if order == 'DESC' %}
+                                    selected
+                                {% endif %}
+                                value={{ path(route,parameters|merge({order:'DESC'})) }}
+                            >Z-A</option>
+                        </select>
+                    </div>
+                    {% endif %}
+                    <!--<div class="col-md-4">
+                        <ul class="pagination pagination-sm pull-right">
+                            <li>
+                                <span>{{ 1 + paginatorOffset }}-{{ paginatorOffset + paginatorLimit }} / {{ paginatorCount }}</span>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endspaceless %}

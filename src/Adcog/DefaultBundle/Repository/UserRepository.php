@@ -28,7 +28,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
      *
      * @return User[]|Paginator
      */
-    public function getPaginator(PaginatorHelper $paginatorHelper, array $filters = [])
+    public function getPaginator(PaginatorHelper $paginatorHelper, array $filters = [], array $orders = ['lastname' => 'ASC', 'firstname' => 'DESC', 'created' => 'DESC'])
     {
         $qb = $this->createQueryBuilder('a');
 
@@ -77,7 +77,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             }
         }
 
-        return $paginatorHelper->create($qb, ['lastname' => 'ASC', 'firstname' => 'DESC', 'created' => 'DESC']);
+        return $paginatorHelper->create($qb, $orders);
     }
     
     /**

@@ -26,6 +26,8 @@
         </div>
         {{ form_end(form) }}
     </div>
+  {% include 'AdcogMemberBundle:MemberYearbook:pagination.html.twig' %}
+
     <ul class="colored-timeline full">
         {% for user in paginator %}
             {% include 'AdcogDefaultBundle:Widget:_user.html.twig' %}

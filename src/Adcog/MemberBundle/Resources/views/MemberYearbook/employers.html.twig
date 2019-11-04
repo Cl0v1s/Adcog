@@ -5,19 +5,19 @@
 {% endif %}
 
 {% block form_row %}
-    {{ form_label(form) }}
-    {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+{{ form_label(form) }}
+{{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ parent() }}
-    <li>{{ link('member_yearbook_employers') }}</li>
+{{ parent() }}
+<li>{{ link('member_yearbook_employers') }}</li>
 {% endblock %}
 
 {% block tab %}
-    <div class="filter">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
+<div class="filter">
+  {{ form_start(form) }}
+  {{ form_errors(form) }}
   <div class="form-group container-fluid">
     {{ form_row(form.name)}}
   </div>
@@ -31,24 +31,24 @@
       </div>
     </div>
   </div>
-    <div class="form-group container-fluid">
-      {{ form_row(form.employerType) }}
-    </div>
   <div class="form-group container-fluid">
-      {{ form_row(form.sectors) }}      
-    </div>
+    {{ form_row(form.employerType) }}
+  </div>
+  <div class="form-group container-fluid">
+    {{ form_row(form.sectors) }}
+  </div>
 
-
-        <div class="form-group container-fluid text-center">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Rechercher</button>
-        </div>
-        {{ form_end(form) }}
-    </div>
-    <ul class="colored-timeline full">
-        {% for employer in paginator %}
-            {% include 'AdcogDefaultBundle:Widget:_employer.html.twig' %}
-        {% else %}
-            {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
-        {% endfor %}
-    </ul>
+  <div class="form-group container-fluid text-center">
+    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Rechercher</button>
+  </div>
+  {{ form_end(form) }}
+</div>
+  {% include 'AdcogMemberBundle:MemberYearbook:pagination.html.twig' %}
+<ul class="colored-timeline full">
+  {% for employer in paginator %}
+  {% include 'AdcogDefaultBundle:Widget:_employer.html.twig' %}
+  {% else %}
+  {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
+  {% endfor %}
+</ul>
 {% endblock %}

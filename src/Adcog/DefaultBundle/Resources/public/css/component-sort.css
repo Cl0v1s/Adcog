@@ -1,0 +1,29 @@
+.component-sort .text-center {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+.component-sort .row {
+  display: flex;
+  align-items: center;
+}
+.component-sort .row > div {
+  padding: 10px;
+}
+.component-sort .row > div:first-of-type {
+  text-align: right;
+  flex-grow: .65;
+}
+.component-sort .row > div:last-of-type {
+  text-align: right;
+  flex-grow: .35;
+}
+.component-sort .row > div:only-of-type {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.component-sort .row > div:last-of-type .form-control {
+  display: inline-block;
+  width: auto;
+}
