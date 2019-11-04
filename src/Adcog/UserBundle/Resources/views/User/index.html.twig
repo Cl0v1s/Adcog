@@ -91,7 +91,7 @@
             <h1>{{ block('title') }}</h1>
             {% include 'AdcogDefaultBundle::form.html.twig' %}
             {{ block('subcontent') }}
-            {{ include('EBDoctrineBundle::_paginator.html.twig') }}
+            {% include 'AdcogDefaultBundle::pagination.html.twig' %}
         </div>
     </div>
 {% endblock %}

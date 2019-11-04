@@ -1,0 +1,49 @@
+.component-experience {
+  padding: 10px;
+  max-width: 350px;
+  display: inline-block;
+  text-align: left;
+}
+.component-experience h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.component-experience ul {
+  margin-top: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  box-shadow: none;
+}
+.component-experience ul li {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0 !important;
+}
+.component-experience ul li .col-md-6:first-of-type {
+  font-weight: bold;
+}
+
+.component-experience .badge-type {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.component-experience.component-experience--work .badge-type{ background-color:#3f903f !important; }
+.component-experience.component-experience--work .badge-type .fa:before{ content:'\f0b1'; }
+
+.component-experience.component-experience--internship .badge-type{ color:#ac7740 !important; }
+.component-experience.component-experience--internship .badge-type{ background-color:#f0ad4e !important; }
+.component-experience.component-experience--internship .badge-type .fa:before{ content:'\f0c0'; }
+
+.component-experience.component-experience--study .badge-type{ color:#d9534f !important; }
+.component-experience.component-experience--study .badge-type{ background-color:#d9534f !important; }
+.component-experience.component-experience--study .badge-type .fa:before{ content:'\f02d'; }
+
+.component-experience.component-experience--thesis .badge-type{ color:#5bc0de !important; }
+.component-experience.component-experience--thesis .badge-type{ background-color:#5bc0de !important; }
+.component-experience.component-experience--thesis .badge-type .fa:before{ content:'\f085'; }

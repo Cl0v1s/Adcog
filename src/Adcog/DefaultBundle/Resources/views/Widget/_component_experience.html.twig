@@ -1,0 +1,141 @@
+<div class="thumbnail component-experience component-experience--{{ experience.type }} container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+       <h3>
+        <div class="badge-type">
+          <i class="fa"></i>
+        </div>
+        {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+       </h3>
+    </div>
+    <div class="col-md-4 text-muted text-right">
+      {% if experience.employer.city %} {{ experience.employer.city }} {% endif %}
+      {% if experience.employer.zip %} {{ experience.employer.zip }} {% endif %}
+      {% if experience.employer.country %} {{ experience.employer.country }} {% endif %}
+    </div>
+  </div>
+  <div>
+    Par {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            Type de contrat
+          </div>
+          <!--<div class="text-muted">
+            Temps partiel (%)
+          </div>-->
+        </div>
+        <div class="col-md-6 text-right">
+          <div>
+            {% if experience.contractType %}
+              {{experience.contractType}}
+            {% else %}
+                N/A
+            {% endif %}
+          </div>
+          <!--<div class="text-muted">
+            {% if experience.partTimeValue %}
+              {{experience.partTimeValue}}
+            {% else %}
+              N/A
+            {% endif %}
+          </div>-->
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Domaine de compétence
+        </div>
+        <div class="col-md-6 text-right">
+          {% for sector in experience.sectors %}
+              <span class="badge">{{ sector }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Source
+        </div>
+        <div class="col-md-6 text-right">
+          {% if experience.experienceSource %}
+            {{ experience.experienceSource }}
+          {% else %}
+            N/A
+          {% endif %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Salaire
+        </div>
+        <div class="col-md-6 text-right">
+          {% if experience.salary %}
+            {{ experience.salaryName }}
+          {% else %}
+            N/A
+          {% endif %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            Employeur
+          </div>
+          <!--<div class="text-muted">
+            Type
+          </div>-->
+        </div>
+        <div class="col-md-6 text-right">
+          <div>
+            {{ link('member_yearbook_employer',{employer:experience.employer.id,slug:experience.employer.slug},{name:experience.employer,title:experience.employer}) }}
+          </div>
+          <!--<div class="text-muted">
+            {% if experience.employer.employerType %}
+              {{experience.employer.employerType}}
+            {% else %}
+              N/A
+            {% endif %}
+          </div>-->
+        </div>
+      </div>
+    </li>
+   <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Tuteur
+        </div>
+        <div class="col-md-6 text-right">
+          {% if experience.tuteur is defined and experience.tuteur %}
+            {{ experience.tuteur}}
+          {% else %}
+            N/A
+          {% endif %}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div>
+    <h4>Description</h4>
+    {% if experience.description %}
+    <p>
+      {{ experience.description|nl2br }}
+    </p>
+    {% else %}
+    <p class="text-center text-muted">
+      Vide
+    </p>
+    {% endif %}
+  </div>
+</div>
+
