@@ -413,4 +413,15 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
         return $result;
     }
 
+    public function getSectors() {
+        $sectors = [];
+        foreach($this->experiences->toArray() as $exp) {
+            foreach($exp->getSectors()->getValues() as $s)
+            {
+                array_push($sectors, $s);
+            }
+        }
+        return $sectors;
+    }
+
 }

@@ -44,11 +44,11 @@
   {{ form_end(form) }}
 </div>
   {% include 'AdcogDefaultBundle::pagination.html.twig' %}
-<ul class="colored-timeline full">
+<div class="text-center">
   {% for employer in paginator %}
-  {% include 'AdcogDefaultBundle:Widget:_employer.html.twig' %}
+  {% include 'AdcogDefaultBundle:Widget:_component_employer.html.twig' %}
   {% else %}
   {% include 'AdcogDefaultBundle:Widget:_none.html.twig' %}
   {% endfor %}
-</ul>
+</div>
 {% endblock %}

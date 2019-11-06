@@ -1,0 +1,154 @@
+<div class="thumbnail component-card container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+       <h3>
+        {{ link('member_yearbook_employer',{employer:employer.id,slug:employer.slug},{name:employer,title:employer}) }}
+       </h3>
+    </div>
+    <div class="col-md-6 text-muted text-right">
+      {% if employer.city %}
+          {{ employer.city }}
+      {% endif %}
+      {% if employer.country %}
+          - ({{ employer.country }})
+      {% endif %}
+    </div>
+  </div>
+  <h4>Informations générales</h4>
+  <ul class="list-group">
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Localisation
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.address is not empty %}
+            {{ employer.address|nl2br }}<br>
+          {% endif %}
+          {% if employer.zip %}
+                {{ employer.zip }}
+          {% endif %}
+          {% if employer.city %}
+                {{ employer.city }}
+          {% endif %}
+          {% if employer.country %}
+                ({{ employer.country }})
+          {% endif %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Nature entreprise
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.employerType %}
+            {{employer.employerType}}
+          {% else %} N/A {% endif %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Nombre salariés
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.collaborators is defined and employer.collaborators %}
+            {{employer.collaborators}}
+          {% else %} N/A {% endif %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Secteurs d'activité
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.sectors  %}
+            {% for sector in employer.sectors %}
+                <span class="badge">{{ sector }}</span>
+            {% endfor %}
+          {% else %}
+            N/A
+          {% endif %}
+        </div>
+      </div>
+    </li>
+  </ul>
+  
+  <h4>Contact</h4>
+  <ul class="list-group">
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Mail
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.email %}
+            {{ employer.email }}
+          {% else %} N/A {% endif %}
+        </div>
+      </div>
+    </li>
+   <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Téléphone
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.phone %}
+            {{ employer.phone }}
+          {% else %} N/A {% endif %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          Site web
+        </div>
+        <div class="col-md-6 text-right">
+          {% if employer.website %}
+            {{ employer.website }}
+          {% else %} N/A {% endif %}
+        </div>
+      </div>
+    </li>
+  </ul>
+ 
+ <h4>Expériences</h4>
+  <ul class="list-group">
+    <li class="list-group-item container-fluid">
+      {% if employer.experiences.count > 0 %}
+        <ul>
+          {% for experience in employer.experiences %}
+            <li>
+              {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+              par
+              {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}
+            </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="text-center text-muted">
+          Aucune
+        </div>
+        {% endif %}
+    </li>
+  </ul>
+  <div>
+    <h4>Description</h4>
+    <p>
+      {% if employer.description is defined and employer.description %}
+        {{employer.description}}
+      {% else %}
+        <div class="text-center text-muted">
+          Vide
+        </div>
+      {% endif %}
+    </p>
+  </div>
+</div>

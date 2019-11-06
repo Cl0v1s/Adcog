@@ -1,0 +1,44 @@
+.component-card {
+  padding: 10px;
+  max-width: 350px;
+  display: inline-block;
+  text-align: left;
+}
+.component-card h3 {
+  margin-top: 0;
+  margin-bottom: 0px;
+}
+.component-card h4 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.component-card ul.list-group {
+  margin-top: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  box-shadow: none;
+}
+.component-card ul.list-group > li {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0 !important;
+}
+.component-card ul.list-group > li .col-md-6:first-of-type {
+  font-weight: bold;
+}
+
+
+.component-card.component-card--work .badge-type{ background-color:#3f903f !important; }
+.component-card.component-card--work .badge-type .fa:before{ content:'\f0b1'; }
+
+.component-card.component-card--internship .badge-type{ color:#ac7740 !important; }
+.component-card.component-card--internship .badge-type{ background-color:#f0ad4e !important; }
+.component-card.component-card--internship .badge-type .fa:before{ content:'\f0c0'; }
+
+.component-card.component-card--study .badge-type{ color:#d9534f !important; }
+.component-card.component-card--study .badge-type{ background-color:#d9534f !important; }
+.component-card.component-card--study .badge-type .fa:before{ content:'\f02d'; }
+
+.component-card.component-card--thesis .badge-type{ color:#5bc0de !important; }
+.component-card.component-card--thesis .badge-type{ background-color:#5bc0de !important; }
+.component-card.component-card--thesis .badge-type .fa:before{ content:'\f085'; }

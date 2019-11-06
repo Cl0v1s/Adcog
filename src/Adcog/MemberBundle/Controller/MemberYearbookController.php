@@ -76,6 +76,7 @@ class MemberYearbookController extends Controller
 
         $paginatorHelper = $this->get('eb_paginator_helper');
         $paginator = $this->get('doctrine.orm.default_entity_manager')->getRepository('AdcogDefaultBundle:Employer')->getPaginator($paginatorHelper, $filter, ['name' => $order, 'created' => 'DESC']);
+        
         return [
             'form' => $form->createView(),
             'paginator' => $paginator,
