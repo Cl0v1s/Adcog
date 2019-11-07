@@ -92,6 +92,13 @@ class EmployerType extends AbstractType
                 'class' => 'Adcog\DefaultBundle\Entity\EmployerType',
                 'required' => false,
                 ])
+            ->add('collaborators', 'integer', [
+                'label' => 'Nombre de salariés', 
+                'required' => false,
+                'attr' => [
+                    'min' => 0,
+                ]
+            ])
             ->add('phone', 'text', [
                 'label' => 'Téléphone',
                 'placeholder' => 'ex: 0566778899',
@@ -106,6 +113,10 @@ class EmployerType extends AbstractType
                 'label' => 'Email',
                 'placeholder' => 'ex: contact@cognitive-corp.fr',
                 'required' => false,
+            ])
+            ->add('description', 'textarea', [
+                'label' => 'Description', 
+                'required' => false
             ])
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 $employer = $event->getData();

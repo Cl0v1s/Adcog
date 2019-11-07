@@ -107,6 +107,21 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
     private $employerType;
 
     /**
+     * @var string
+     * @ORM\Column(type="text",nullable=true)
+     * @Assert\Type(type="string")
+     */
+    private $description;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]+/")
+     * @Assert\GreaterThanOrEqual(0)
+     */
+    private $collaborators;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
@@ -422,6 +437,24 @@ class Employer implements CreatedInterface, UpdatedInterface, LoggableInterface,
             }
         }
         return $sectors;
+    }
+
+    public function getCollaborators() {
+        return $this->collaborators;
+    }
+
+    public function setCollaborators($c) {
+        $this->collaborators = $c;
+        return $this;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function setDescription($c) {
+        $this->description = $c;
+        return $this;
     }
 
 }

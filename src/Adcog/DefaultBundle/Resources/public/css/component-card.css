@@ -9,7 +9,7 @@
   margin-bottom: 0px;
 }
 .component-card h4 {
-  margin-top: 15px;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 .component-card ul.list-group {
@@ -27,6 +27,15 @@
   font-weight: bold;
 }
 
+.component-card .badge-type {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .component-card.component-card--work .badge-type{ background-color:#3f903f !important; }
 .component-card.component-card--work .badge-type .fa:before{ content:'\f0b1'; }
