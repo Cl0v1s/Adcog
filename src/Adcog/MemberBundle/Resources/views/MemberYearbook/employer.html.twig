@@ -10,9 +10,17 @@
 {% endblock %}
 
 {% block subcontent %}
-    <ul class="colored-timeline full">
-        {% include 'AdcogDefaultBundle:Widget:_employer.html.twig' %}
-    </ul>
+    <div class="text-center">
+        {% include 'AdcogDefaultBundle:Widget:_component_employer.html.twig' %}
+    </div>
+    {% if employer.experiences.count > 0 %}
+        <h2>Expériences</h2>
+        <div class="text-center component-card__list">
+        {% for experience in employer.experiences %}
+            {% include 'AdcogDefaultBundle:Widget:_component_experience.html.twig' %}
+        {% endfor %}
+        </div>
+    {% endif %}
     <ul class="list-unstyled list-inline">
         <li>{{ link('member_yearbook_employers',{},{name:'&laquo; Retour',class:'btn btn-link'}) }}</li>
     </ul>

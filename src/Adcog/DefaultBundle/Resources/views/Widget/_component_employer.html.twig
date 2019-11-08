@@ -118,27 +118,28 @@
       </div>
     </li>
   </ul>
- 
- <h4>Expériences</h4>
-  <ul class="list-group">
-    <li class="list-group-item container-fluid">
-      {% if employer.experiences.count > 0 %}
-        <ul>
-          {% for experience in employer.experiences %}
-            <li>
-              {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
-              par
-              {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}
-            </li>
-          {% endfor %}
-        </ul>
-        {% else %}
-        <div class="text-center text-muted">
-          Aucune
-        </div>
-        {% endif %}
-    </li>
-  </ul>
+  <div class="only-list">
+  <h4>Expériences</h4>
+    <ul class="list-group">
+      <li class="list-group-item container-fluid">
+        {% if employer.experiences.count > 0 %}
+          <ul>
+            {% for experience in employer.experiences %}
+              <li>
+                {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+                par
+                {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}
+              </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="text-center text-muted">
+            Aucune
+          </div>
+          {% endif %}
+      </li>
+    </ul>
+  </div>
   <div>
     <h4>Description</h4>
     <p>
