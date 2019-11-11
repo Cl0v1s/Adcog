@@ -28,11 +28,11 @@
     </div>
   {% include 'AdcogDefaultBundle::pagination.html.twig' %}
 
-    <ul class="colored-timeline full component-card__list">
+    <div class="text-center component-card__list">
         {% for user in paginator %}
-            {% include 'AdcogDefaultBundle:Widget:_user.html.twig' %}
+            {% include 'AdcogDefaultBundle:Widget:_component_user.html.twig' %}
         {% else %}
             {% include 'AdcogDefaultBundle:Widget:_component_none.html.twig' %}
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

@@ -1,0 +1,162 @@
+  <div class="thumbnail component-card container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <h3>
+          <img class="badge-type" src="{{ user|user_profile|imagine_filter('default_40_40') }}"
+            style="margin-right: 10px" />
+          <span>
+            {{ link('member_yearbook_member',{user:user.id,slug:user.slug},{name:user,title:user}) }}
+          </span>
+        </h3>
+      </div>
+      <div class="col-md-4 text-right text-muted" style="font-size: 12px">
+        {% if user.acceptedContact %}
+          <i class="fa fa-check"></i> Accepte d'être contacté
+        {% else %}
+          <i class="fa fa-times"></i> N'accepte pas d'être contacté
+        {% endif %}
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Promotion
+          </div>
+          <div class="col-md-6 text-right">
+            {{ user.school }}
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Mail
+          </div>
+          <div class="col-md-6 text-right">
+            {% if user.username is defined and user.username %}
+            <a href="mailto:{{user.username}}">{{user.username}}</a>
+            {% else %}
+            N/A
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Téléphone
+          </div>
+          <div class="col-md-6 text-right">
+            {% if user.phone is defined and user.phone %}
+            {{user.phone}}
+            {% else %}
+            N/A
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Site web
+          </div>
+          <div class="col-md-6 text-right">
+            {% if user.website is defined and user.website %}
+            <a href="{{user.website}}">{{user.website}}</a>
+            {% else %}
+            N/A
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Adresse
+          </div>
+          <div class="col-md-6 text-right">
+            {% if user.address is defined and user.address %}
+            {{user.address}}
+            {% endif %}
+            {% if user.zip is defined and user.zip %}
+            {{user.zip}}
+            {% endif %}
+            {% if user.city is defined and user.city %}
+            {{user.city}}
+            {% endif %}
+            {% if not user.address and not user.zip and not user.city %}
+            N/A
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Semestre à l'étranger
+          </div>
+          <div class="col-md-6 text-right">
+            {% if user.foreign is defined and user.foreign %}
+            {{user.foreign}}
+            {% else %}
+            Non
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            Option
+          </div>
+          <div class="col-md-6 text-right">
+            {% if user.options is defined and user.options %}
+            {{user.options}}
+            {% else %}
+            N/A
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="only-list">
+      <h4>Expériences</h4>
+      <ul class="list-group">
+        <li class="list-group-item container-fluid">
+          {% if user.experiences.count > 0 %}
+          <ul>
+            {% for experience in user.experiences %}
+            <li>
+              {{ link('member_yearbook_experience',{experience:experience.id,slug:experience.slug},{name:experience,title:experience}) }}
+              par
+              {{ link('member_yearbook_member',{user:experience.user.id,slug:experience.user.slug},{name:experience.user,title:experience.user}) }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="text-center text-muted">
+            Aucune
+          </div>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>Description</h4>
+      <p>
+        {% if user.description is defined and user.description %}
+        {{user.description}}
+        {% else %}
+        <div class="text-center text-muted">
+          Vide
+        </div>
+        {% endif %}
+      </p>
+    </div>
+    <div class="text-center">
+      <h4></h4>
+      <a class="btn btn-secondary btn-outline" {% if user.linkedin is not defined or not user.linkedin %} disabled
+        {% else %} href={{user.linkedin}} {% endif %}><i class="fa fa-linkedin-square"></i> Voir sur Linkedin</a>
+    </div>
+  </div>

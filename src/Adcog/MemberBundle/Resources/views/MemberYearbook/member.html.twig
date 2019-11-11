@@ -10,12 +10,17 @@
 {% endblock %}
 
 {% block subcontent %}
-    <ul class="colored-timeline full">
-        {% include 'AdcogDefaultBundle:Widget:_user.html.twig' %}
-        {% for experience in paginator %}
-            {% include 'AdcogDefaultBundle:Widget:_experience.html.twig' %}
+    <div class="text-center">
+        {% include 'AdcogDefaultBundle:Widget:_component_user.html.twig' %}
+    </div>
+    {% if user.experiences.count > 0 %}
+        <h2>Expériences</h2>
+        <div class="text-center component-card__list">
+        {% for experience in user.experiences %}
+            {% include 'AdcogDefaultBundle:Widget:_component_experience.html.twig' %}
         {% endfor %}
-    </ul>
+        </div>
+    {% endif %}
     <ul class="list-unstyled list-inline">
         <li>{{ link('member_yearbook_members',{},{name:'&laquo; Retour',class:'btn btn-link'}) }}</li>
     </ul>

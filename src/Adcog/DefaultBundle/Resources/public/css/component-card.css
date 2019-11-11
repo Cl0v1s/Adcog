@@ -3,11 +3,21 @@
   display: inline-block;
   text-align: left;
   width: 100%;
+  margin: 15px;
 }
 .component-card h3 {
   margin-top: 0;
   margin-bottom: 0px;
 }
+
+.component-card h3 .badge-type {
+  vertical-align: middle;
+}
+
+.component-card h3 span {
+  vertical-align: middle;
+}
+
 .component-card h4 {
   margin-top: 30px;
   margin-bottom: 10px;
