@@ -114,11 +114,43 @@ class UserAccountType extends AbstractType
                 'placeholder' => 'ex: http://adcog.fr',
                 'required' => false,
             ])
+            
+            ->add('linkedIn', 'text', [
+                'label' => 'linkedIn',
+                'required' => false,
+            ])
+
+            ->add('options', 'choice',[
+                'label' => 'Option',
+                'placeholder' => "Choisissez votre option",
+                'choices' => array(
+                    '1' => "Robotique",
+                    '2' => "Intelligence Artificielle",
+                    '3' => "Systèmes Cognitifs",
+                    '4' => "Augmentation et Autonomie",
+                    '5' => "Ancien parcours Cognitique",
+                )
+            ])
+
+            ->add('abroad', 'choice',[
+                'label' => 'Parti.e à l\'étranger',
+                'choices' => array(
+                    '0' => "Non",
+                    '1' => "Oui"
+                )
+            ])
+
+            ->add('description', 'textarea', [
+                'label' => 'Description',
+                'required' => false,
+            ])
+
             ->add('acceptedContact','checkbox',[
                 'label' => "Partage d'informations",
                 'help' => "En cochant, j'accepte d'être contacté par les autres membres du réseau de l'ADCOG pour répondre à leurs questions",
 				'required' =>false,
             ])
+
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $user = $event->getData();
                 if ($user instanceof User) {

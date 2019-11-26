@@ -195,6 +195,33 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
     private $acceptedContact = false;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url()
+     */
+    private $linkedIn;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]+/")
+     */
+    private $options;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    private $abroad = false;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text",nullable=true)
+     * @Assert\Type(type="string")
+     */
+    private $user_description;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
@@ -922,4 +949,101 @@ class User implements AdvancedUserInterface, UserInterface, UserLoginInterface, 
 
         return $this;
     }
+
+    /**
+     * Get linkedIn
+     *
+     * @return string
+     */
+    public function getLinkedIn()
+    {
+        return $this->linkedIn;
+    }
+
+    /**
+     * Set linkedIn
+     *
+     * @param string $linkedIn
+     *
+     * @return User
+     */
+    public function setLinkedIn($linkedIn)
+    {
+        $this->linkedIn = $linkedIn;
+
+        return $this;
+    }
+
+    /**
+     * Get options
+     *
+     * @return int
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * Set options
+     *
+     * @param int $options
+     *
+     * @return School
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * Get Abroad
+     *
+     * @return bool
+     */
+    public function getAbroad()
+    {
+        return $this->abroad;
+    }
+
+    /**
+     * Set Abroad
+     *
+     * @param bool $abroad Abroad
+     *
+     * @return User
+     */
+    public function setAbroad($abroad)
+    {
+        $this->abroad = $abroad;
+
+        return $this;
+    }
+
+    /**
+     * Get Description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->user_description;
+    }
+
+    /**
+     * Set Description
+     *
+     * @param string $description
+     *
+     * @return User
+     */
+    public function setDescription($user_description)
+    {
+        $this->user_description = $user_description;
+
+        return $this;
+    }
+
 }
