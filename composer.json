@@ -19,7 +19,7 @@
         "emmanuelballery/eb-doctrinebundle": "~0.0",
         "emmanuelballery/eb-translationbundle": "~0.0",
         "emmanuelballery/eb-emailbundle": "~0.0",
-        "guzzlehttp/guzzle": "~4.2",
+        "guzzlehttp/guzzle": "~6.5",
         "liip/imagine-bundle": "~1.0",
         "guzzlehttp/psr7": "^1.3",
         "php-http/message": "^1.4"
